@@ -18,3 +18,5 @@ Edit later
   Posters: edit the POSTERS list near the bottom of index.html.
   Videos:  edit the VIDEOS list. EMBED = true plays inside the page, false links out.
   History: edit the ERAS list.
+
+Gallery note: the Melbourne exhibition PDF is shown through the University of Melbourne repository's (figshare) own embed widget on the live site, with Download and Open buttons beside it. The PDF is under a restrictive licence, so it is deliberately not copied into this folder.
