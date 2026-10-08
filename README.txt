@@ -20,3 +20,5 @@ Edit later
   History: edit the ERAS list.
 
 Gallery note: the Melbourne exhibition PDF is shown through the University of Melbourne repository's (figshare) own embed widget on the live site, with Download and Open buttons beside it. The PDF is under a restrictive licence, so it is deliberately not copied into this folder.
+
+Favicon: favicon.ico sits at the site root; the SVG and PNG versions are in assets/icons/. Keep both when uploading.
