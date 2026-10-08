@@ -1,183 +1,830 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Collection Object 1: There's No Ghost in the Machine</title>
-<meta name="description" content="Fortnightly digital exhibit submission: a technical report on algorithmic management and mental health among India's gig workers.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neither Employee Nor Free</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✊</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-:root {
-  --paper: #FAF6EE;
-  --paper-dim: #F1EADA;
-  --ink: #1A1A2E;
-  --ink-soft: #4A4A5E;
-  --amber: #E8A33D;
-  --rust: #C1502E;
-  --green: #2D5F4C;
-  --line: #DDD2B8;
+/* Layout: a night-march palette. Sticky header, hero with a live "tracked riders" map, then
+   objective, the object, and a stacked scroll deck of research slides. Pages are hash-routed. */
+:root{
+  --bg:#0F0D0C; --bg2:#1A1614; --ink:#F4EFE6; --mute:#B7ADA0; --line:#3B332D;
+  --red:#E5412A; --redf:#CC2310; --on-red:#FFFFFF;
+  --green:#C9F31D; --green-ink:#C9F31D; --on-green:#111111;
+  --yellow:#FFC933; --on-yellow:#111111;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --hh:56px;
+  --cloth:#1F1A17; --weave:rgba(255,255,255,.03); --stitch:rgba(244,239,230,.34); --redact:var(--ink);
+  --grime-filter:brightness(2.3) saturate(.9);
+  --tx-blood:url("assets/tex/blood.webp"); --tx-sweat:url("assets/tex/sweat.webp"); --tx-damp:url("assets/tex/damp.webp"); --tx-grime:url("assets/tex/grime.webp");
+  color-scheme:dark;
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "Noto Sans", -apple-system, sans-serif;
-  font-size: 18px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){--bg:#F4EEE3;--bg2:#E9E0D0;--ink:#17120F;--mute:#54493F;--line:#C9BDA9;--red:#B81D0A;--green-ink:#3B5C00;--cloth:#DDD0B8;--weave:rgba(0,0,0,.05);--stitch:rgba(23,18,15,.42);--grime-filter:none;--grime-op:.28;color-scheme:light}
 }
-.topbar {
-  border-bottom: 3px solid var(--ink);
-  padding: 18px 22px;
-  text-align: center;
-}
-.topbar .brand {
-  font-family: "Fraunces", serif;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: var(--ink);
-}
-.topbar .brand small {
-  display: block;
-  font-family: "Noto Sans", sans-serif;
-  font-weight: 400;
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-  color: var(--ink-soft);
-  margin-top: 3px;
-}
-main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 50px 24px 80px;
-}
-.eyebrow {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--amber);
-  color: var(--ink);
-  padding: 4px 12px;
-  border-radius: 20px;
-  margin-bottom: 18px;
-}
-h1 {
-  font-family: "Fraunces", serif;
-  font-weight: 700;
-  font-size: 2.1rem;
-  line-height: 1.2;
-  margin: 0 0 10px 0;
-}
-.subtitle {
-  font-size: 1.05rem;
-  color: var(--ink-soft);
-  margin-bottom: 36px;
-}
-.object-meta {
-  border: 2px solid var(--ink);
-  border-radius: 3px;
-  padding: 20px 22px;
-  background: var(--paper-dim);
-  margin-bottom: 32px;
-}
-.object-meta dl {
-  margin: 0;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 6px 16px;
-}
-.object-meta dt {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-.object-meta dd {
-  margin: 0;
-  font-size: 0.95rem;
-}
-.synthesis {
-  font-size: 1.08rem;
-  line-height: 1.75;
-}
-.synthesis p {
-  margin: 0 0 1.3em 0;
-}
-.source-box {
-  border-left: 4px solid var(--rust);
-  background: var(--paper-dim);
-  padding: 16px 20px;
-  margin-top: 40px;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-}
-.source-box a {
-  color: var(--rust);
-}
-footer {
-  border-top: 3px solid var(--ink);
-  padding: 26px 22px 40px;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--ink-soft);
-}
-@media (max-width: 600px) {
-  body { font-size: 17px; }
-  h1 { font-size: 1.7rem; }
-  main { padding: 36px 18px 60px; }
-  .object-meta dl { grid-template-columns: 1fr; }
-}
-</style>
-</head>
-<body>
+:root[data-theme="light"]{--bg:#F4EEE3;--bg2:#E9E0D0;--ink:#17120F;--mute:#54493F;--line:#C9BDA9;--red:#B81D0A;--green-ink:#3B5C00;--cloth:#DDD0B8;--weave:rgba(0,0,0,.05);--stitch:rgba(23,18,15,.42);--grime-filter:none;--grime-op:.28;color-scheme:light}
 
-<header class="topbar">
-  <div class="brand">Neither Employee Nor Free
-    <small>Digital Exhibit: Creating, Managing and Leading Social Enterprises</small>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;padding-inline:0;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:900;text-transform:uppercase;line-height:.92;margin:0;text-wrap:balance;letter-spacing:.005em}
+p{margin:0}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.wrap{width:100%;max-width:1180px;margin-inline:auto;padding-inline:20px}
+.mono{font-family:var(--f-mono)}
+.tape{display:inline-block;font-family:var(--f-mono);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--on-yellow);padding:4px 10px;transform:rotate(-1.5deg)}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:2px solid var(--ink);height:var(--hh)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:100%}
+.brand{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.25rem;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--red)}
+.nav{display:none;gap:2px}
+.nav a{font-family:var(--f-mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;padding:8px 10px;border-bottom:3px solid transparent}
+.nav a:hover{border-color:var(--red)}
+.nav a[aria-current="page"]{border-color:var(--green-ink);color:var(--green-ink)}
+@media(min-width:1060px){.nav{display:flex}}
+.btn{font-family:var(--f-mono);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:10px 16px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.solid{background:var(--redf);border-color:var(--redf);color:var(--on-red)}
+.btn.solid:hover{background:var(--green);border-color:var(--green);color:var(--on-green)}
+.progress{position:fixed;left:0;top:calc(var(--hh) + env(safe-area-inset-top,0px));height:4px;width:0;background:linear-gradient(90deg,var(--redf),var(--green));z-index:60}
+
+/* menu overlay */
+.menu{position:fixed;inset:0;z-index:100;background:var(--bg);padding:calc(24px + env(safe-area-inset-top,0px)) 20px 40px;overflow-y:auto}
+.menu[hidden]{display:none}
+.menu-head{display:flex;justify-content:space-between;align-items:center;max-width:1180px;margin:0 auto 24px}
+.menu ul{list-style:none;margin:0 auto;padding:0;max-width:1180px;display:grid;gap:0}
+.menu li a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-decoration:none;font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(2.2rem,8vw,4.6rem);line-height:1;padding:14px 0;border-top:2px solid var(--line)}
+.menu li a:hover{color:var(--green-ink);padding-left:12px}
+.menu li a small{font-family:var(--f-mono);font-weight:400;font-size:.72rem;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:2px solid var(--ink)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.8}
+canvas.flow{position:absolute;inset:0;width:100%;height:100%;opacity:.8;pointer-events:none;z-index:0}
+.hist>canvas.flow{position:absolute;inset:0 0 auto 0;height:640px;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.uc-wrap>canvas.flow{-webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--bg) 100%);pointer-events:none}
+.hero-in{position:relative;z-index:2;padding-block:56px 40px;display:grid;gap:22px}
+.hero h1{font-size:clamp(3.4rem,13vw,10.5rem);line-height:.84}
+.hero h1 .r{color:var(--red)}
+.hero h1 .f{color:transparent;-webkit-text-stroke:2px var(--green-ink);position:relative;display:inline-block}
+.hero h1 .f::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:.13em;background:repeating-linear-gradient(-45deg,var(--yellow) 0 .22em,#111 .22em .44em)}
+.lede{max-width:56ch;font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--ink)}
+.lede em{color:var(--green-ink);font-style:normal;font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.ticker{position:relative;z-index:2;border-block:2px solid var(--ink);background:var(--yellow);color:var(--on-yellow);overflow:hidden;white-space:nowrap}
+.ticker div{display:inline-block;padding:9px 0;font-family:var(--f-mono);font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;animation:tick 38s linear infinite}
+.ticker span{margin-inline:22px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* sections */
+.sec{padding-block:72px}
+.sec h2{font-size:clamp(2.4rem,7vw,5rem)}
+.sec .kick{display:block;margin-bottom:14px}
+.obj{display:grid;gap:28px}
+.obj p.big{font-size:clamp(1.15rem,2.6vw,1.55rem);line-height:1.5;max-width:46ch}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:s}
+.steps li{counter-increment:s;border-left:6px solid var(--redf);padding:6px 0 6px 16px;max-width:52ch}
+.steps li::before{content:"Step " counter(s);display:block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+@media(min-width:900px){.obj{grid-template-columns:1.3fr 1fr;align-items:start;gap:56px}}
+
+.objsec{background:var(--bg2);border-block:2px solid var(--ink)}
+.object{display:grid;gap:36px;margin-top:30px}
+.meta{border:2px solid var(--ink);background:var(--bg);align-self:start}
+.meta h3{font-size:1.6rem;padding:14px 16px;background:var(--redf);color:var(--on-red)}
+.meta dl{margin:0;display:grid}
+.meta div{display:grid;gap:2px;padding:10px 16px;border-top:1px solid var(--line)}
+.meta dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--mute)}
+.meta dd{margin:0;font-size:.95rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border:2px solid var(--ink);margin-top:20px}
+.stat{padding:14px 16px;border-right:1px solid var(--line);background:var(--bg)}
+.stat b{display:block;font-family:var(--f-display);font-weight:900;font-size:2.8rem;line-height:1;color:var(--green-ink)}
+.stat span{font-size:.85rem;color:var(--mute)}
+.essay{font-size:1.06rem;line-height:1.75;max-width:68ch}
+.essay::first-letter{font-family:var(--f-display);font-weight:900;float:left;font-size:4.6rem;line-height:.8;padding:6px 10px 0 0;color:var(--red)}
+.srcline{margin-top:20px;font-family:var(--f-mono);font-size:.82rem;color:var(--mute)}
+.srcline a{color:var(--green-ink)}
+@media(min-width:960px){.object{grid-template-columns:340px 1fr;gap:56px}}
+
+/* deck */
+.deckhead{padding-block:72px 40px}
+.deckhead h2{font-size:clamp(2.6rem,8vw,6rem)}
+.deckhead p{margin-top:16px;max-width:60ch;color:var(--mute)}
+.slide{position:relative;min-height:calc(100svh - var(--hh));display:flex;align-items:center;border-top:2px solid var(--ink);overflow:hidden}
+.slide .wrap{display:grid;gap:26px;padding-block:44px}
+.s-red{background:var(--redf);color:var(--on-red);--stroke:var(--on-red)}
+.s-lime{background:var(--green);color:var(--on-green);--stroke:var(--on-green)}
+.s-dark{background:var(--bg2);color:var(--ink)}
+.s-black{background:var(--bg);color:var(--ink)}
+.slide .num{font-family:var(--f-display);font-weight:900;font-size:clamp(5rem,20vw,15rem);line-height:.8;color:transparent;-webkit-text-stroke:2px var(--stroke,var(--ink));opacity:.6;user-select:none}
+.slide h3{font-size:clamp(2.4rem,6.4vw,5.2rem)}
+.slide .dir{display:inline-block;width:fit-content}
+.slide .cite{font-family:var(--f-mono);font-size:.78rem;line-height:1.55;opacity:.92;border-top:2px solid currentColor;padding-top:12px;max-width:70ch}
+.slide .cols{display:grid;gap:18px}
+.slide .cols h4{margin:0 0 4px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.slide .cols p{font-size:1.04rem;max-width:44ch}
+.slide .kind{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid currentColor;padding:2px 8px;width:fit-content}
+.slide .go{width:fit-content;border-color:currentColor;color:inherit}
+.slide .go:hover{background:currentColor}
+.slide .go:hover span{color:var(--bg)}
+.sinner{display:grid;gap:18px;align-content:center}
+@media(min-width:900px){
+  .slide .wrap{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:56px}
+  .slide .cols{grid-template-columns:1fr 1fr}
+}
+@media(min-width:900px) and (min-height:760px){
+  .slide{position:sticky;top:var(--hh);height:calc(100svh - var(--hh));min-height:0;box-shadow:0 -18px 40px rgba(0,0,0,.35)}
+}
+.bars{display:grid;gap:12px;max-width:520px}
+.bar{display:grid;grid-template-columns:150px 1fr 28px;gap:10px;align-items:center;font-family:var(--f-mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.bar i{display:block;height:22px;background:var(--redf);transform-origin:left;width:calc(var(--n) * 20%)}
+.s-lime .bar i{background:#111}
+.bar b{font-size:1.1rem}
+.in .bar i{animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.rv.in{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* under construction + footer */
+.uc{padding-block:90px;min-height:70svh}
+.uc h1{font-size:clamp(3rem,11vw,8rem)}
+.hazard{height:28px;margin-block:26px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 22px,#111 22px 44px);background-size:62px 62px;animation:slide 2.4s linear infinite}
+@keyframes slide{to{background-position:62px 0}}
+.uc p{max-width:50ch;color:var(--mute);margin-bottom:22px}
+footer{border-top:2px solid var(--ink);background:var(--bg2);padding-block:30px calc(34px + env(safe-area-inset-bottom,0px))}
+footer p{font-size:.88rem;color:var(--mute);max-width:70ch}
+footer p+p{margin-top:6px}
+
+/* gallery */
+.ghead{padding-block:64px 24px}
+.ghead h1{font-size:clamp(3rem,10vw,7.5rem)}
+.ghead .upd{margin-top:14px}
+.posters{columns:3 260px;column-gap:22px;margin-top:26px}
+.poster{break-inside:avoid;margin:0 0 26px;display:grid;gap:10px}
+.pbtn{display:block;width:100%;padding:0;border:2px solid var(--ink);background:var(--bg2);cursor:zoom-in;line-height:0}
+.pbtn img{width:100%;height:auto;display:block}
+.pbtn:hover{outline:3px solid var(--green)}
+.poster figcaption{display:grid;gap:4px;font-size:.92rem}
+.poster figcaption b{font-family:var(--f-display);font-size:1.45rem;line-height:1;text-transform:uppercase}
+.poster .pc{font-family:var(--f-mono);font-size:.72rem;color:var(--mute);line-height:1.5}
+.poster .pc a{color:var(--green-ink)}
+.pframe{aspect-ratio:3/4;border:2px dashed var(--line);display:grid;place-items:center;text-align:center;color:var(--mute)}
+.lb{position:fixed;inset:0;z-index:120;background:rgba(10,8,7,.94);display:grid;place-items:center;align-content:center;gap:14px;padding:60px 16px 24px}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:74svh;object-fit:contain;border:2px solid #F4EFE6}
+.lb p{color:#F4EFE6;font-size:.8rem;max-width:80ch;text-align:center}
+.exh{border:2px solid var(--ink);background:var(--bg2);padding:22px;display:grid;gap:12px;margin-top:20px;max-width:820px}
+.exh h3{font-size:2rem}
+.exh blockquote{margin:6px 0 0;padding-left:16px;border-left:6px solid var(--redf);font-style:italic;max-width:62ch}
+.exh .cite{font-family:var(--f-mono);font-size:.76rem;color:var(--mute);line-height:1.55}
+.videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:26px;margin-top:26px}
+.vid{display:grid;gap:10px;align-content:start;min-width:0}
+.vframe,.vlink{aspect-ratio:16/9;width:100%;max-width:100%;border:2px solid var(--ink);display:block;background:#111}
+.vframe iframe{width:100%;height:100%;border:0;display:block}
+.vlink{position:relative;text-decoration:none;color:#fff;display:grid;place-items:center;background:repeating-linear-gradient(-45deg,#1a1a1a 0 18px,#111 18px 36px)}
+.vlink svg{width:64px;height:64px}
+.vlink span{position:absolute;left:10px;bottom:10px;background:var(--yellow);color:var(--on-yellow);font-family:var(--f-mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;padding:3px 8px}
+.vlink:hover{outline:3px solid var(--green)}
+.vfall{font-family:var(--f-mono);font-size:.74rem;color:var(--green-ink);width:fit-content}
+.vid h3{font-size:1.5rem;line-height:1}
+.vid .vm{font-family:var(--f-mono);font-size:.72rem;color:var(--mute);letter-spacing:.04em}
+.vid p{font-size:.95rem;max-width:50ch}
+.note{font-size:.88rem;color:var(--mute);max-width:70ch;margin-top:16px}
+
+
+/* ---- grime, stains and signifiers of legal invisibility ---- */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--tx-grime);background-size:512px;opacity:var(--grime-op,.55);filter:var(--grime-filter)}
+main,footer,.pstrip{position:relative;z-index:1}
+.dirt{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.dirt i{position:absolute;display:block;background-repeat:no-repeat;background-size:100% 100%}
+.dirt .b{background-image:var(--tx-blood);opacity:.5}
+.dirt .s{background-image:var(--tx-sweat);opacity:.55}
+.dirt .d{background-image:var(--tx-damp);opacity:.6}
+.ghost{width:1em;height:1.6em;display:inline-block;vertical-align:middle}
+.ghostbg{position:absolute;color:var(--ink);opacity:.13;pointer-events:none;height:auto;z-index:0}
+.rd{background:var(--redact);color:transparent;padding:0 .15em;cursor:pointer;transition:background .25s,color .25s;border-radius:1px}
+.rd:hover,.rd:focus-visible,.rd.on{background:transparent;color:inherit}
+.stamp{display:inline-block;border:3px solid var(--red);color:var(--red);font-family:var(--f-mono);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;padding:4px 12px;transform:rotate(-6deg);filter:url(#rough);background:transparent}
+.stamp.sm{font-size:.6rem;padding:2px 7px;border-width:2px;letter-spacing:.1em}
+.slide>.wrap{position:relative;z-index:1}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--tx-grime);background-size:512px;opacity:.5;mix-blend-mode:multiply;z-index:0}
+.slide::before{content:"";position:absolute;width:520px;height:520px;right:-90px;bottom:-130px;background:var(--tx-sweat) center/100% 100% no-repeat;opacity:.5;pointer-events:none;z-index:0}
+.s-red::before{background-image:var(--tx-blood);opacity:.5;mix-blend-mode:multiply;left:-120px;right:auto;top:-100px;bottom:auto}
+.s-lime::before{background-image:var(--tx-damp);width:100%;height:55%;left:0;right:0;bottom:0;opacity:.45;mix-blend-mode:multiply}
+
+.dirt i,.patch .st,.slide::before,.hero .dirt i{-webkit-mask-image:radial-gradient(closest-side,#000 45%,transparent 100%);mask-image:radial-gradient(closest-side,#000 45%,transparent 100%)}
+.dirt i.d,.patch .st.d,.s-lime::before{-webkit-mask-image:linear-gradient(to top,#000 40%,transparent 100%);mask-image:linear-gradient(to top,#000 40%,transparent 100%)}
+.sm2 .rd{justify-self:start}
+/* page strip */
+.pstrip{border-bottom:2px solid var(--ink);background:var(--bg)}
+.pstrip .wrap{display:flex;align-items:center;gap:14px}
+.plabel{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.pchips{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:thin;min-width:0}
+.chip{flex:0 0 auto;display:grid;text-decoration:none;border:2px solid var(--ink);padding:6px 12px;line-height:1.15}
+.chip b{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.15rem;letter-spacing:.02em}
+.chip small{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.chip.soon{border-style:dashed}
+.chip:hover{border-color:var(--green-ink)}
+.chip[aria-current="page"]{background:var(--redf);border-color:var(--redf);color:var(--on-red)}
+.chip[aria-current="page"] small{color:var(--on-red)}
+
+/* history */
+.hist{position:relative;overflow:hidden}
+.hist>*{position:relative;z-index:1}
+.hist>.dirt{position:absolute;z-index:0}
+.hh{padding-block:64px 44px;display:grid;gap:18px;position:relative}
+.hh h1{font-size:clamp(3.2rem,11vw,9rem);line-height:.84;max-width:11ch}
+.hh p{max-width:56ch;font-size:1.12rem}
+.era{position:relative;padding-block:46px 26px;border-top:2px solid var(--ink);overflow:hidden}
+.era::before{content:"";position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none}
+.era-mill::before{background:linear-gradient(rgba(0,0,0,.35) 3px,transparent 3px) 0 0/100% 34px,linear-gradient(90deg,rgba(0,0,0,.35) 3px,transparent 3px) 0 0/68px 34px}
+.era-street::before{background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 7px,rgba(0,0,0,.2) 7px 14px,rgba(255,255,255,.02) 14px 21px)}
+.era-app::before{background:repeating-linear-gradient(0deg,rgba(201,243,29,.06) 0 1px,transparent 1px 4px)}
+.era>.wrap{position:relative;z-index:1}
+.era-h{display:grid;gap:6px;margin-bottom:30px}
+.era-h h2{font-size:clamp(2.4rem,7vw,5rem)}
+.era-h .when{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-ink)}
+.era-h p{max-width:56ch;color:var(--mute)}
+.thread{position:relative;display:grid;gap:34px;padding-left:44px}
+.thread::before{content:"";position:absolute;left:12px;top:0;bottom:0;border-left:4px dashed var(--redf)}
+.entry{position:relative}
+.entry::before{content:"";position:absolute;left:-42px;top:20px;width:22px;height:22px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink)}
+.patch{position:relative;isolation:isolate;overflow:hidden;border:2px solid var(--ink);background:repeating-linear-gradient(0deg,var(--weave) 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,var(--weave) 0 1px,transparent 1px 4px),var(--cloth);padding:22px 22px 24px;display:grid;gap:16px;max-width:900px}
+.patch::before{content:"";position:absolute;inset:7px;border:2px dashed var(--stitch);pointer-events:none;z-index:1}
+.patch .st{position:absolute;z-index:-1;pointer-events:none;background-size:100% 100%;background-repeat:no-repeat}
+.patch .st.s{background-image:var(--tx-sweat);opacity:.8;width:300px;height:300px;right:-70px;top:-60px}
+.patch .st.b{background-image:var(--tx-blood);opacity:.8;width:340px;height:340px;left:-80px;bottom:-110px}
+.patch .st.d{background-image:var(--tx-damp);opacity:.7;width:120%;height:60%;left:-10%;bottom:0}
+.patch>*:not(.st){position:relative;z-index:2}
+.yr{font-family:var(--f-display);font-weight:900;font-size:clamp(3rem,9vw,5.2rem);line-height:.8;color:var(--red)}
+.patch h3{font-size:clamp(1.7rem,4vw,2.5rem)}
+.patch .ptxt{display:grid;gap:12px;font-size:1rem;max-width:60ch}
+.patch .pbody{display:grid;gap:18px}
+@media(min-width:860px){.patch .pbody.has{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:start}}
+.sm2{display:grid;gap:8px;border-top:2px solid var(--ink);padding-top:12px}
+.sm2 div{display:grid;grid-template-columns:92px 1fr;gap:10px;font-size:.92rem}
+.sm2 b{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding-top:3px}
+.sm2 .seen b{color:var(--green-ink)}
+.sm2 .miss b{color:var(--red)}
+.hfig{margin:0;position:relative}
+.hfig img{width:100%;height:auto;display:block;filter:grayscale(.35) contrast(1.05) sepia(.15);border:2px solid var(--ink)}
+.hfig figcaption{font-family:var(--f-mono);font-size:.66rem;color:var(--mute);margin-top:6px;line-height:1.5}
+.hfig .stamp{position:absolute;right:8px;top:8px}
+.hfig::before{content:"";position:absolute;left:-10px;top:-8px;width:70px;height:20px;background:rgba(255,201,51,.75);transform:rotate(-8deg);z-index:2}
+.hsrc{font-family:var(--f-mono);font-size:.7rem;color:var(--mute);line-height:1.5}
+.hsrc a{color:var(--green-ink)}
+.hend{padding-block:50px 70px;display:grid;gap:18px}
+.hend h2{font-size:clamp(2.2rem,6vw,4rem);max-width:16ch}
+.hend p{max-width:56ch;color:var(--mute)}
+
+/* under construction forms */
+.uc-wrap{position:relative;overflow:hidden}
+.uc{position:relative;z-index:1}
+.formbox{display:grid;gap:0;border:2px solid var(--ink);background:var(--cloth);max-width:520px;margin-bottom:26px}
+.formbox div{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:10px 14px;border-top:1px solid var(--line);font-size:.95rem}
+.formbox div:first-child{border-top:0}
+.formbox dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);padding-top:3px}
+.formbox dd{margin:0}
+.pbtn{position:relative}
+.pbtn .stamp{position:absolute;right:8px;top:10px;background:rgba(0,0,0,.45);color:#FF6A52;border-color:#FF6A52}
+@media(max-width:560px){.formbox div{grid-template-columns:110px 1fr}.sm2 div{grid-template-columns:76px 1fr}}
+
+@media(max-width:560px){.bar{grid-template-columns:96px 1fr 22px;font-size:.7rem}.hero-in{padding-block:40px 28px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker div,.hazard{animation:none}.rv.in,.in .bar i{animation:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="ghost" viewBox="0 0 100 160"><g fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round"><circle cx="50" cy="26" r="18"/><path d="M18 152V90Q18 62 50 62Q82 62 82 90V152Z"/></g></symbol>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter>
+</defs></svg>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" data-nav="home">Neither <b>Employee</b> Nor Free</a>
+    <nav class="nav" aria-label="Pages" id="topnav"></nav>
+    <button class="btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </header>
+<nav class="pstrip" aria-label="All pages"><div class="wrap"><span class="plabel"><svg class="ghost" aria-hidden="true"><use href="#ghost"/></svg> Pages</span><div class="pchips" id="pchips"></div></div></nav>
 
-<main>
+<div class="lb" id="lb" hidden role="dialog" aria-label="Poster viewer"><button class="btn" data-lbclose style="position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:14px">Close</button><img id="lbImg" alt=""><p id="lbCap" class="mono"></p></div>
 
-  <span class="eyebrow">Fortnight 1 · Collection Object</span>
-  <h1>There's No Ghost in the Machine</h1>
-  <p class="subtitle">A technical report on algorithmic management and mental health among India's gig workers.</p>
+<div class="menu" id="menu" hidden role="dialog" aria-label="All pages">
+  <div class="menu-head"><span class="tape">All pages</span><button class="btn" id="menuClose">Close</button></div>
+  <ul id="menuList"></ul>
+</div>
 
-  <div class="object-meta">
-    <dl>
-      <dt>Object type</dt>
-      <dd>Technical Report</dd>
-      <dt>Title</dt>
-      <dd>"There's No Ghost in the Machine"</dd>
-      <dt>Source</dt>
-      <dd>National Law School of India University, Centre for Labour Studies, with IT for Change</dd>
-      <dt>Date</dt>
-      <dd>2025</dd>
-      <dt>Exhibit theme</dt>
-      <dd>The legal invisibility of India's gig workers</dd>
-    </dl>
+<main id="app">
+
+<!-- HOME -->
+<section data-page="home">
+  <div class="hero">
+    <canvas id="map" class="flow-hero" aria-hidden="true"></canvas>
+    <div class="dirt" style="z-index:1"><i class="b" style="width:520px;height:520px;right:-120px;top:-40px;transform:rotate(18deg)"></i><i class="s" style="width:460px;height:460px;left:-140px;bottom:-120px"></i></div>
+    <svg class="ghostbg" style="right:7%;top:36px;width:min(26vw,260px);z-index:1" aria-hidden="true"><use href="#ghost"/></svg>
+    <div class="wrap hero-in">
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center"><span class="tape">Digital Exhibit · Creating, Managing and Leading Social Enterprises</span><span class="stamp">Unclassified</span></div>
+      <h1>Neither <span class="r">Employee</span><br>Nor <span class="f">Free</span></h1>
+      <p class="lede">The law knows India's gig workers exist. It just won't say <span class="rd" tabindex="0" title="Tap or hover to read">who they work for</span>. This exhibit follows that gap into a worker's head, one shift at a time, with the <em>evidence</em> to back it up.</p>
+      <div class="cta">
+        <button class="btn solid" data-scroll="objective">Start with our objective ↓</button>
+        <button class="btn" data-openmenu>Explore all pages →</button>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true"><div id="tickerTrack"></div></div>
   </div>
 
-  <div class="synthesis">
-    <p>The object I picked for this fortnight is a technical report called "There's No Ghost in the Machine," published by the Centre for Labour Studies at the National Law School of India University together with IT for Change, based on interviews with 26 workers and five union organisers across Indian cities between November 2024 and February 2025. What struck me most is a quote from an Amazon warehouse worker in Manesar, who said people scanning products have a target of 1,200 products an hour while also having to load the truck at the same time, and that the pressure simply does not account for having to do both jobs together. If you damage a product while rushing to hit that number and the CCTV catches it, you get blacklisted. The report also documents Urban Company's auto acceptance feature, where the algorithm assigns you a job automatically and you cannot say no. It sounds efficient until a worker explains that the only cancellation reason the system accepts is an accident, so even being sick does not really count unless you can produce a doctor's note, and only for that one day. What makes this report matter for my exhibit on the legal invisibility of India's gig workers is the accountability gap it keeps surfacing. Workers can describe the algorithm's logic in surprising detail, comparing it to riding a bicycle where the manager holds the only speedometer, but knowing how you are being scored does not actually help you, because the same company that built the scoring system also runs the only complaint channel you are allowed to use. One worker straight up said that channel rarely works in their favour. This connects to something Michael Sandel argues in <em>Justice: What's the Right Thing to Do?</em>, which we read for Session 16, that how a system decides who gets a voice and who gets information is itself a moral choice and not a neutral technical detail. A grievance process that exists on paper but has no real teeth is not an accident. It is a design decision about who gets to feel heard, and this report suggests the psychological weight of that gap, described elsewhere as learned helplessness, falls entirely on the worker. The report also points out that Rajasthan's platform worker law does not even mention algorithmic decision making, while Karnataka, Telangana, and Jharkhand only require platforms to reveal some information about their systems, without ever giving a worker or a union the actual right to challenge whether an algorithm's decision was fair. That is the same gap Sandel is describing: transparency without any real justice attached to it. The Code on Social Security tells us gig workers sit in a legal grey zone. This report tells us what living inside that grey zone actually feels like on an ordinary working day, constantly watched, rarely heard, and never quite sure where the actual power sits.</p>
-  </div>
+  <section class="sec" id="objective">
+    <div class="wrap obj">
+      <div class="rv">
+        <span class="tape kick">Our objective</span>
+        <h2>The law gave them a name. Not a safety net.</h2>
+      </div>
+      <div class="rv" style="display:grid;gap:22px">
+        <p class="big">India's Code on Social Security even gives gig workers a name. What it does not give them is the protection that comes with being called an employee, or the freedom that comes with truly running your own business.</p>
+        <p>This exhibit sets out to show that gap with evidence, and then follow it into one human cost: what it does to your peace of mind when an algorithm is your manager and nobody is on the other end of the complaint button.</p>
+        <ol class="steps">
+          <li>Read the collection object, a field report built on what workers told researchers.</li>
+          <li>Scroll the evidence. Thirteen sources, four lines of argument, one slide each.</li>
+          <li>Visit the gallery for posters and films that put faces on the numbers.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-  <div class="source-box">
-    Full report: <a href="https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf" target="_blank" rel="noopener">There's No Ghost in the Machine (PDF)</a>, IT for Change &amp; NLSIU Centre for Labour Studies.
+  <section class="sec objsec" id="object">
+    <div class="wrap">
+      <span class="tape kick">Fortnight 1 · Collection object</span>
+      <h2 class="rv">There's no ghost<br>in the machine</h2>
+      <div class="object">
+        <aside class="rv">
+          <div class="meta">
+            <h3>Object 01</h3>
+            <dl>
+              <div><dt>Object type</dt><dd>Technical report</dd></div>
+              <div><dt>Title</dt><dd>There's no ghost in the machine! A field study of platform workers' experiences of algorithmic management in India</dd></div>
+              <div><dt>Authors</dt><dd>Sadhana Sanjay, Nandini Chami, Saloni Mishra, Madhulika T.</dd></div>
+              <div><dt>Published by</dt><dd>NLSIU Centre for Labour Studies, with IT for Change</dd></div>
+              <div><dt>Year and licence</dt><dd>2025 · CC BY-SA 4.0</dd></div>
+              <div><dt>Evidence type</dt><dd>Secondary source. Published by others. We did not collect this data.</dd></div>
+              <div><dt>Exhibit theme</dt><dd>The legal invisibility of India's gig workers</dd></div>
+            </dl>
+          </div>
+          <p class="mono" style="font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:20px">What the report's authors did, not us</p>
+          <div class="stats" style="margin-top:8px">
+            <div class="stat"><b data-count="26">26</b><span>workers interviewed by the report's authors</span></div>
+            <div class="stat"><b data-count="5">5</b><span>union organisers interviewed by the authors</span></div>
+            <div class="stat"><b data-count="1200" data-fmt="1">1,200</b><span>products an hour, a worker's account in the report</span></div>
+          </div>
+        </aside>
+        <article class="rv">
+          <p class="essay">My exhibit is about how India's gig workers are named by the law but left out of its protections, and this fortnight I want to look at one specific cost of that: what constant algorithmic management does to a worker's peace of mind. The object I picked is a technical report called "There's No Ghost in the Machine," written by Sadhana Sanjay, Nandini Chami, Saloni Mishra and Madhulika T. and published by the Centre for Labour Studies at the National Law School of India University with IT for Change. It draws on interviews with 26 workers and five union organisers between November 2024 and February 2025. The title is the report's main argument. We like to imagine the algorithm as a boss-bot nobody controls, but the authors show it is really a mix of software, platform executives and human managers, which means nobody gets to hide behind the machine. The details are hard to read. An Amazon worker in Manesar says scanners must hit 1,200 products an hour while also loading the truck, and the pressure does not account for that. Another says even the millisecond it takes to move your phone from one place to another is logged as idle time. At Urban Company, auto acceptance assigns jobs without letting you refuse, and the only penalty-free cancellation the system accepts is an accident. What I find most useful is the report's second finding, algorithmic anxiety. Workers can partly decode how the algorithm treats them, one even compared it to riding a bike where the company holds the only meter, but they cannot challenge it, because the same company runs the only complaint channel, and one worker said it rarely works in their favour. That gap between understanding and power is where the unease lives. Knowing the rules of a game you can never play differently does not calm anyone down, it just turns every shift into an exam you cannot pass. This is where Sandel's argument in <em>Justice: What's the Right Thing to Do?</em> helps. He asks whether a market deal is truly voluntary when the bargaining conditions are unequal. Auto acceptance is sold as a choice that pays more, but the price is losing your breaks, and a union organiser in the report notes that women with care responsibilities struggle to opt in and so earn less. A choice made with ratings, penalties and ID blocks hanging over you is not fully free. The legal side matters too. Rajasthan's law ignores algorithmic decisions entirely, and Karnataka's Act and the proposed Telangana and Jharkhand laws only give workers a limited right to request information, with no way to challenge a decision and no rights for unions. The Code on Social Security tells us gig workers sit in a legal grey zone. This report shows what that grey zone feels like on an ordinary working day: constantly watched, rarely heard, and never sure where the power sits.</p>
+          <p class="srcline">Source: <a href="https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf" target="_blank" rel="noopener">Read the full report (PDF)</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="deckhead wrap">
+    <span class="tape kick">The evidence</span>
+    <h2 class="rv">Thirteen sources.<br>Scroll to read them.</h2>
+    <p class="rv"><strong>Everything here is a secondary source.</strong> We did not run interviews or surveys. Each slide summarises published work and links to it. Each slide is one source, what it found, and why it matters for our claim. Each is tagged as a journal article, report, brief or opinion piece, so you know what you are reading. They are not all cheerleaders. One of them gives the platforms a fair point, and we kept it in.</p>
   </div>
+  <div id="deck"></div>
+
+</section>
+
+<!-- GALLERY -->
+<section data-page="gallery" hidden>
+  <div class="ghead-wrap" style="position:relative;overflow:hidden"><canvas class="flow" aria-hidden="true"></canvas><div class="dirt"><i class="s" style="width:420px;height:420px;right:-60px;top:-80px"></i><i class="b" style="width:300px;height:300px;left:30%;top:60px;opacity:.35"></i></div><svg class="ghostbg" style="right:8%;top:40px;width:min(22vw,200px)" aria-hidden="true"><use href="#ghost"/></svg><div class="wrap ghead" style="position:relative;z-index:1">
+    <span class="tape">Gallery</span>
+    <h1 style="margin-top:14px">Posters &amp; Films</h1>
+    <p class="mono upd" style="color:var(--mute);font-size:.82rem">Last updated 8 October 2026</p>
+  </div></div>
+  <div class="wrap" style="padding-bottom:70px">
+    <h2 style="font-size:2.6rem;margin-top:30px">Posters</h2>
+    <p class="note">Five photographs from recent gig worker protests, each with its source. Click one to enlarge. The red stamps on the photos are ours, not part of the photographs. Photographs remain the property of their photographers and publishers. They appear here, with credit, for non-commercial coursework.</p>
+    <div class="posters" id="posters"></div>
+
+    <h2 style="font-size:2.6rem;margin-top:70px">A photo exhibition, elsewhere</h2>
+    <div class="exh rv">
+      <h3>The Everyday Lives of Gig Workers</h3>
+      <p>A photo exhibition of images captured between October 2023 and February 2024 by platform-based delivery workers in Melbourne, curated by Lutfun Nahar Lata, Andrew Copolov and Rashed Azizi. The photos are not reproduced here. Open the exhibition at the University of Melbourne.</p>
+      <blockquote>“This was a fancy apartment complex, with almost no one around. I put the delivery in the designated area. The sign says ‘Place food delivery here and leave the building immediately’. Not exactly welcoming.”<br><small>A delivery worker, quoted in the exhibition</small></blockquote>
+      <p class="cite">Lata, L. N., Copolov, A., &amp; Azizi, R. (2024). <i>The Everyday Lives of Gig Workers: A Photo Exhibition</i> (Version 2). The University of Melbourne. <a href="https://doi.org/10.26188/28397225.v2" target="_blank" rel="noopener">https://doi.org/10.26188/28397225.v2</a></p>
+    </div>
+
+    <h2 style="font-size:2.6rem;margin-top:70px">Films &amp; documentaries</h2>
+    <p class="note" id="vnote"></p>
+    <div class="videos" id="videos"></div>
+  </div>
+</section>
+
+<!-- UNDER CONSTRUCTION PAGES -->
+<section data-page="history" hidden></section>
+<section data-page="your-path" hidden></section>
+<section data-page="gig-worker" hidden></section>
+<section data-page="mental-health" hidden></section>
+<section data-page="resources" hidden></section>
 
 </main>
 
 <footer>
-  Developed by Ratnakar Goswami as part of coursework for Creating, Managing and Leading Social Enterprises.
+  <div class="wrap">
+    <p>Developed by Ratnakar Goswami (MBA/0212/62) as part of coursework for Creating, Managing and Leading Social Enterprises.</p>
+    <p>All research, quotes, photographs and videos on this site are secondary sources, credited where they appear. No original fieldwork was done.</p>
+    <p class="mono">Employer on record: <span class="rd" tabindex="0">none</span>. Status: unclassified.</p>
+    <p>Digital Exhibit, IIM Calcutta. Illustrations on this site are original and drawn in code.</p>
+  </div>
 </footer>
 
-</body>
+<script>
+(function(){
+var EMBED = true; /* set true on a self-hosted copy to play YouTube inside the page */
+
+var IMG = {p1:"assets/posters/poster-1.jpg",p2:"assets/posters/poster-2.jpg",p3:"assets/posters/poster-3.jpg",p4:"assets/posters/poster-4.jpg",p5:"assets/posters/poster-5.jpg",sewa:"assets/history/sewa.jpg"};
+var PAGES = [
+  {id:"home", label:"Home", note:"Live", live:1},
+  {id:"history", label:"History", note:"Live", live:1},
+  {id:"your-path", label:"Your Path", note:"Under construction"},
+  {id:"gig-worker", label:"Gig Worker", note:"Under construction"},
+  {id:"mental-health", label:"Mental Health", note:"Under construction"},
+  {id:"gallery", label:"Gallery", note:"Updated 8 Oct 2026", live:1},
+  {id:"resources", label:"Resources", note:"Under construction"}
+];
+var UC = {
+  "your-path":"Pick who you are, get what you need.",
+  "gig-worker":"What gig workers are owed, in plain words.",
+  "mental-health":"The mental toll of being managed by an algorithm.",
+  "resources":"Free, checked places to read, learn and get help."
+};
+
+/* ---- research slides ---- */
+var DIRS = ["The law files them as nobody","Control without an employer","The cost lands on the person","A fair counterpoint"];
+var DECK = [
+ {d:0,c:"s-red",kind:"ILO working paper",t:"A label decides who is protected",
+  cite:"De Stefano, V. (2016). The rise of the “just-in-time workforce”: On-demand work, crowdwork and labour protection in the “gig-economy”. International Labour Organization.",
+  f:"Looks at how on-demand work and crowdwork strain labour protections built for standard jobs, and argues these workers need protection too.",
+  m:"Protection starts from a label. Platforms choose the label, and the label says “partner”.",
+  u:"https://www.ilo.org/publications/rise-just-time-workforce-demand-work-crowdwork-and-labour-protection-gig"},
+ {d:0,c:"s-black",kind:"LLM thesis, York University",t:"India has left informal workers out before",
+  cite:"Katrak, M. V. (2024). Informality, Precarity, and (Mis)classification: Regulating Platform Work in India. York University.",
+  f:"Argues that keeping location-based platform workers outside formal labour law continues a pattern of exclusion that goes back to the colonial era. It asks whether the new labour Codes help, and whether constitutional litigation could.",
+  m:"Gig workers are not a new gap in the law. They are the latest group to fall into an old one.",
+  u:"https://hdl.handle.net/10315/41966"},
+ {d:0,c:"s-lime",kind:"Government think-tank policy brief",t:"The state sizes the workforce, then recommends",
+  cite:"NITI Aayog. (2022, June). India's booming gig and platform economy: Perspectives and recommendations on the future of work (Policy brief). Government of India.",
+  f:"Estimates 77 lakh (7.7 million) gig workers in 2020-21 and projects 2.35 crore (23.5 million) by 2029-30. It recommends that platforms offer paid sick leave, accident insurance, pension plans and income support.",
+  m:"The government's own think tank counts millions of workers and recommends cover. A recommendation is not a duty.",
+  u:"https://www.niti.gov.in/sites/default/files/2022-06/Policy_Brief_India%27s_Booming_Gig_and_Platform_Economy_27062022.pdf"},
+ {d:0,c:"s-dark",kind:"Opinion piece",t:"Employer-less, by design",
+  cite:"Ranade, A. (2026, January 11). The lives of \u2018employer-less\u2019 gig workers. National Herald.",
+  f:"The economist argues that platforms call riders \u201cbusiness partners\u201d while setting prices, assigning tasks and deactivating accounts through opaque algorithms. He says the Code on Social Security names gig workers for the first time but falls short on minimum wages, working hours, collective bargaining and protection from arbitrary deactivation.",
+  m:"This is an opinion, not a study. We use it because it states our claim plainly: economic dependence should count for more than the contract label.",
+  u:"https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"},
+ {d:0,c:"s-red",kind:"Union press statement",t:"The workers' own list of demands",
+  cite:"Gig and Platform Service Workers Union (GIPSWU). (2026, February 4). Nationwide protest led by women gig workers across the country. Countercurrents.",
+  f:"The union reports protests on 3 February 2026 in Delhi, Jaipur, Bengaluru and Mumbai, among other places. Its demands include a separate, enforceable law for gig and platform workers, recognition as workers, social security, fair wages, transparent grievance redressal and an end to exploitative algorithmic practices.",
+  m:"This is the people in our story saying it themselves. It is an advocacy source and carries allegations with no company response, so we read it alongside the research.",
+  u:"https://countercurrents.org/2026/02/nationwide-protest-led-by-women-gig-workers-across-the-country/"},
+ {d:1,c:"s-lime",kind:"Journal article",t:"The app is the boss, the boss is not an employer",
+  cite:"Rosenblat, A., & Stark, L. (2016). Algorithmic labor and information asymmetries: A case study of Uber's drivers. International Journal of Communication, 10, 3758–3784.",
+  f:"Studies Uber's drivers and shows how information asymmetries and platform design give the company control over their work, while drivers are treated as independent.",
+  m:"The report in our object says the same thing from the Indian side: the company holds the only meter.",
+  u:"https://ijoc.org/index.php/ijoc/article/view/4892"},
+ {d:1,c:"s-dark",kind:"Journal article",t:"Six ways an algorithm manages you",
+  cite:"Kellogg, K. C., Valentine, M. A., & Christin, A. (2020). Algorithms at work: The new contested terrain of control. Academy of Management Annals, 14(1), 366–410.",
+  f:"Reviews research on workplace algorithms and shows how they are used to direct, evaluate and discipline workers: recommending, restricting, recording, rating, replacing and rewarding.",
+  m:"Management is happening in full. There is just no manager for the law to point at.",
+  u:"https://par.nsf.gov/biblio/10195395"},
+ {d:1,c:"s-red",kind:"Law review article",t:"Your pay, set just for you",
+  cite:"Dubal, V. (2023). On algorithmic wage discrimination. Columbia Law Review, 123(7).",
+  f:"Describes algorithmic wage discrimination: pay set by data, worker by worker, in ways the worker cannot see or compare.",
+  m:"If you cannot see how your pay is set, you cannot argue that it is unfair.",
+  u:"https://columbialawreview.org/wp-content/uploads/2023/11/Dubal-On_Algorithmic_Wage_discrimination.pdf"},
+ {d:2,c:"s-black",kind:"Journal article",t:"Free to choose your hours. Tired all the same.",
+  cite:"Wood, A. J., Graham, M., Lehdonvirta, V., & Hjorth, I. (2019). Good gig, bad gig: Autonomy and algorithmic control in the global gig economy. Work, Employment and Society, 33(1), 56–75.",
+  f:"Based on 107 interviews in six countries and a survey of 679 workers in Southeast Asia and Sub-Saharan Africa. Workers reported flexibility and autonomy, and also low pay, isolation, irregular hours, overwork and exhaustion.",
+  m:"Flexibility is real. So is the price of it, and the price is paid in sleep.",
+  u:"https://research.birmingham.ac.uk/en/publications/good-gig-bad-gig-autonomy-and-algorithmic-control-in-the-global-g/"},
+ {d:2,c:"s-lime",kind:"Journal article",t:"Misclassification is a health hazard",
+  cite:"Bajwa, U., Gastaldo, D., Di Ruggiero, E., & Knorr, L. (2018). The health of workers in the global gig economy. Globalization and Health, 14, 124.",
+  f:"A scoping review that groups gig workers' health risks into occupational hazards, precarity, and platform issues such as misclassification, information asymmetry and surveillance.",
+  m:"Being misclassified is not just a legal problem. It sits on the list of things that make workers ill.",
+  u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6299501"},
+ {d:2,c:"s-dark",kind:"NGO feature report",t:"Unpaid waiting is part of the shift",
+  cite:"Simet, L., & Spehn, J. (2026, May 13). Algorithms of exploitation: Rights abuses in the gig economy and the global fight for change. Human Rights Watch.",
+  f:"Across countries, workers say waiting for orders can take 30 to 50 percent of their working hours, unpaid. Injured workers described no sick pay or injury compensation because platforms classify them as independent contractors. The report cites an estimated 12 million platform workers in India.",
+  m:"The same label produces the same missing safety net everywhere. India is one entry in a global pattern.",
+  u:"https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"},
+ {d:2,c:"s-red",kind:"Technical report (our object)",t:"Algorithmic anxiety has a name now",
+  cite:"Sanjay, S., Chami, N., Mishra, S., & T., M. (2025). There's no ghost in the machine! A field study of platform workers' experiences of algorithmic management in India. NLSIU Centre for Labour Studies and IT for Change.",
+  f:"Interviews with 26 workers and five union organisers describe what the authors call machinic dispossession, through targets, ratings and surveillance, and a second finding they call algorithmic anxiety.",
+  m:"This is Object 01. It is where the legal gap and the mental toll meet.",
+  u:"https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf"},
+ {d:3,c:"s-dark",kind:"Journal article",t:"Why drivers sign up anyway",
+  cite:"Surie, A., & Koduganti, J. (2016). The emerging nature of work in platform economy companies in Bengaluru, India: The case of Uber and Ola cab drivers. E-Journal of International and Comparative Labour Studies.",
+  f:"Based on in-depth interviews with 45 Uber and Ola drivers in Bengaluru. It finds that platforms give drivers a stable, medium-term window to build earnings, which lets them take on the risks of flexible work with more confidence.",
+  m:"A fair point for the platforms. Workers join for sensible reasons. Our argument is about the missing floor under the good days.",
+  u:"https://iihs.co.in/knowledge-gateway/?p=10989"}
+];
+
+var VIDEOS = [
+ {id:"xtd1aB-iLe0",t:"Zwigato (official trailer)",m:"Feature film \u00b7 Applause Entertainment, India",p:"A food delivery rider and the app that scores him. Nandita Das's film puts the algorithm in the room."},
+ {id:"1RKb-Yk3_MI",t:"Anger against 10-minute delivery: gig workers strike across India",m:"News segment \u00b7 WION",p:"A news segment on the nationwide gig workers' strike over 10-minute delivery targets."},
+ {id:"9uqUQdyiEBM",t:"Are 10-minute deliveries pushing workers to the edge?",m:"Discussion \u00b7 The Indian Express",p:"A discussion with Anish Gawande on delivery targets and the gig workers' strike."},
+ {id:"y30Cqxx9AEY",t:"Gig workers vs quick commerce platforms",m:"News segment \u00b7 ET Now",p:"A business-news look at the strike by gig workers against quick commerce platforms."},
+ {id:"rUS4ab_qEQo",t:"Delivery workers on a two-day strike: what do they demand?",m:"Hindi report \u00b7 The Lallantop",p:"A Hindi report on the strike by Zomato, Swiggy, Blinkit and Amazon delivery workers, and their demands."},
+ {id:"donk6p2atYg",t:"Why did delivery workers strike? (Kharcha Pani)",m:"Hindi explainer \u00b7 The Lallantop",p:"A Hindi explainer on why delivery workers went on strike, from The Lallantop's Kharcha Pani show."}
+];
+
+var POSTERS = [
+ {title:"Gig workers' satyagraha, Jantar Mantar, New Delhi",src:IMG.p1,alt:"Protesters at Jantar Mantar, mostly women, raise fists and hold placards including one reading We are not slaves of algorithms",
+  cap:"Mostly women protesters hold placards at a nationwide gig workers' protest. One reads \u201cWe are not slaves of algorithms\u201d.",
+  credit:"Hindustan Times, \u201cAt Jantar Mantar, gig workers join national protest\u201d (February 2026). Photographer credit as given in the article.",
+  url:"https://www.hindustantimes.com/cities/delhi-news/at-jantar-mantar-gig-workers-join-national-protest-101770142463506.html"},
+ {title:"Delivery workers demand a decent living wage, Kolkata",src:IMG.p2,alt:"Delivery workers in orange shirts hold hand-painted placards in English and Bengali reading Ensure decent living wage",
+  cap:"Food-delivery workers march with hand-painted placards in English and Bengali, 22 November 2022.",
+  credit:"\u00a9 2022 Sankhadeep Banerjee/NurPhoto via Reuters, as published by Human Rights Watch in \u201cAlgorithms of Exploitation\u201d (13 May 2026).",
+  url:"https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"},
+ {title:"\u201cUnfair & cruel\u201d: the auto-assign trap",src:IMG.p3,alt:"A Gig and Platform Service Workers Union placard reading Unfair and cruel, end the auto-assign trap, stop the bundle booking abuse",
+  cap:"A Gig and Platform Service Workers Union placard against auto-assign and bundle booking.",
+  credit:"The Economic Times, \u201cPromised flexibility, living with fear: now women gig workers stage protest in Delhi\u201d. Photographer credit as given in the article.",
+  url:"https://m.economictimes.com/tech/technology/promised-flexibility-living-with-fear-now-women-gig-workers-stage-protest-in-delhi/articleshow/127886589.cms"},
+ {title:"\u201cUnblock our IDs, unblock our lives\u201d",src:IMG.p4,alt:"A union placard reading Unblock our IDs, unblock our lives, against ID blocking",
+  cap:"A union placard against ID blocking, the account suspensions workers call arbitrary.",
+  credit:"National Herald, \u201cPromised flexibility, living in fear: Women gig workers protest in Delhi\u201d (3 February 2026). Photographer credit as given in the article.",
+  url:"https://www.nationalheraldindia.com/national/promised-flexibility-living-in-fear-women-gig-workers-protest-in-delhi"},
+ {title:"\u201cDon't bite the hand that feeds you\u201d",src:IMG.p5,alt:"A protester holds a hand-painted sign reading Don't bite the hand that feeds you",
+  cap:"A protester's sign at a gig workers' demonstration, from reporting on UK gig pay.",
+  credit:"The Guardian, \u201cHalf of UK gig economy workers earn below minimum wage, study reveals\u201d (11 May 2023). Photographer credit as given in the article.",
+  url:"https://www.theguardian.com/global-development/2023/may/11/half-of-uk-gig-economy-workers-earn-below-minimum-wage-study-reveals"}
+];
+
+var STAMPS=["Filed as: partner","Employer: none on record","Status: unclassified","Counted: not yet","Safety net: pending"];
+var TICKS = ["1,200 products an hour, plus loading the truck","Move your phone? That millisecond is idle time","Cancel only for an accident","The complaint channel is run by the same company","Nobody to blame but the algorithm?","Named by the law, left out of its protections"];
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+
+/* ---- build nav, menu, ticker ---- */
+var topnav=document.getElementById("topnav"), menuList=document.getElementById("menuList");
+PAGES.forEach(function(p){
+  topnav.insertAdjacentHTML("beforeend",'<a href="#'+p.id+'" data-nav="'+p.id+'">'+p.label+'</a>');
+  menuList.insertAdjacentHTML("beforeend",'<li><a href="#'+p.id+'" data-nav="'+p.id+'">'+p.label+'<small>'+p.note+'</small></a></li>');
+});
+var pch=document.getElementById("pchips");
+PAGES.forEach(function(p){pch.insertAdjacentHTML("beforeend",'<a class="chip'+(p.live?'':' soon')+'" href="#'+p.id+'" data-nav="'+p.id+'"><b>'+p.label+'</b><small>'+(p.live?'Live':'Under construction')+'</small></a>')});
+var tt=TICKS.map(function(t){return "<span>"+t+"</span><span>■</span>"}).join("");
+document.getElementById("tickerTrack").innerHTML=tt+tt;
+
+/* ---- build deck ---- */
+(function(){
+  var h='';
+  var counts=[0,0,0,0]; DECK.forEach(function(s){counts[s.d]++});
+  h+='<article class="slide s-black" data-slide><div class="wrap"><div class="sinner rv"><span class="tape dir">Overview</span><h3>What the thirteen sources say</h3><p style="max-width:44ch;color:var(--mute)">Four lines of argument. Three of them back our claim. One pushes back, and we kept it. Journal articles sit next to think-tank briefs, a union statement and one opinion piece.</p></div><div class="bars rv" aria-label="Sources per line of argument">';
+  DIRS.forEach(function(n,i){h+='<div class="bar"><span>'+n.split(" ").slice(0,3).join(" ")+'</span><i style="--n:'+counts[i]+'"></i><b>'+counts[i]+'</b></div>'});
+  h+='</div></div></article>';
+  DECK.forEach(function(s,i){
+    var n=String(i+1).padStart(2,"0")+"/"+String(DECK.length).padStart(2,"0");
+    h+='<article class="slide '+s.c+'" data-slide><div class="wrap"><div class="sinner rv"><span class="num" aria-hidden="true">'+n.split("/")[0]+'</span><span class="tape dir">'+esc(DIRS[s.d])+'</span><h3>'+esc(s.t)+'</h3><span class="kind">'+esc(s.kind)+'</span></div>'
+      +'<div class="sinner rv"><div class="cols"><div><h4>What it found</h4><p>'+esc(s.f)+'</p></div><div><h4>Why it matters for us</h4><p>'+esc(s.m)+'</p></div></div>'
+      +'<p class="cite">'+esc(s.cite)+'</p><a class="btn go" href="'+esc(s.u)+'" target="_blank" rel="noopener"><span>Open the source ↗</span></a></div></div></article>';
+  });
+  document.getElementById("deck").innerHTML=h;
+})();
+
+/* ---- gallery ---- */
+(function(){
+  var h='';
+  POSTERS.forEach(function(p,i){
+    var img=p.src?'<button class="pbtn" data-lb="'+i+'" aria-label="Enlarge: '+esc(p.title)+'"><img src="'+esc(p.src)+'" alt="'+esc(p.alt)+'" loading="lazy"><span class="stamp sm">'+esc(STAMPS[i])+'</span></button>':'<div class="pframe"><div><b>0'+(i+1)+'</b>Poster to come</div></div>';
+    h+='<figure class="poster">'+img+'<figcaption><b>'+esc(p.title)+'</b><span>'+esc(p.cap)+'</span><span class="pc">Source: <a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.credit)+'</a></span></figcaption></figure>';
+  });
+  document.getElementById("posters").innerHTML=h;
+  var v='';
+  VIDEOS.forEach(function(x){
+    var media=EMBED
+      ?'<div class="vframe"><iframe src="https://www.youtube-nocookie.com/embed/'+x.id+'" title="'+esc(x.t)+'" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>'
+      :'<a class="vlink" href="https://www.youtube.com/watch?v='+x.id+'" target="_blank" rel="noopener" aria-label="Watch '+esc(x.t)+' on YouTube"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#CC2310"/><path d="M26 19l20 13-20 13z" fill="#fff"/></svg><span>Watch on YouTube ↗</span></a>';
+    v+='<div class="vid">'+media+'<h3>'+esc(x.t)+'</h3><div class="vm">'+esc(x.m)+'</div><p>'+esc(x.p)+'</p>'+(EMBED?'<a class="vfall" href="https://www.youtube.com/watch?v='+x.id+'" target="_blank" rel="noopener">Not playing? Watch on YouTube \u2197</a>':'')+'</div>';
+  });
+  document.getElementById("videos").innerHTML=v;
+  document.getElementById("vnote").textContent=(EMBED?"Videos play on this page.":"Videos open on YouTube from this preview.")+" All six are uploaded by Indian publishers or channels. If one does not play for you, use the YouTube link under it, since availability is set by the uploader and can change.";
+})();
+
+/* ---- lightbox ---- */
+var lb=document.getElementById("lb");
+function openLb(i){var p=POSTERS[i];document.getElementById("lbImg").src=p.src;document.getElementById("lbImg").alt=p.alt;document.getElementById("lbCap").textContent=p.title+". "+p.cap;lb.hidden=false;document.body.style.overflow="hidden"}
+function closeLb(){lb.hidden=true;document.body.style.overflow=""}
+document.addEventListener("click",function(e){var b=e.target.closest("[data-lb]");if(b){openLb(+b.getAttribute("data-lb"));return}if(e.target.closest("[data-lbclose]")||e.target===lb)closeLb()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!lb.hidden)closeLb()});
+
+/* ---- under-construction pages ---- */
+PAGES.forEach(function(p){
+  var sec=document.querySelector('[data-page="'+p.id+'"]');
+  if(sec && UC[p.id]){
+    sec.innerHTML='<div class="uc-wrap"><canvas class="flow" aria-hidden="true"></canvas><div class="dirt"><i class="s" style="width:420px;height:420px;right:-60px;top:-60px"></i><i class="d" style="width:100%;height:50%;left:0;bottom:0"></i><i class="b" style="width:260px;height:260px;left:12%;top:40%;opacity:.35"></i></div><svg class="ghostbg" style="right:9%;top:70px;width:min(26vw,240px)" aria-hidden="true"><use href="#ghost"/></svg>'
+     +'<div class="wrap uc"><span class="tape">'+p.label+'</span><h1 style="margin-top:14px">Under<br>construction</h1><div class="hazard" aria-hidden="true"></div>'
+     +'<dl class="formbox"><div><dt>Page</dt><dd>'+p.label+'</dd></div><div><dt>Employer on record</dt><dd><span class="rd" tabindex="0">none</span></dd></div><div><dt>Status</dt><dd>Unclassified</dd></div><div><dt>Opens</dt><dd>When the next object is in</dd></div></dl>'
+     +'<p>'+UC[p.id]+'</p><button class="btn solid" data-nav="home">Back to home</button></div></div>';
+  }
+});
+
+/* ---- history ---- */
+var ERAS=[
+ {cls:"mill",when:"1918 to 1948",t:"The mill gate",lead:"Early labour law was built around factories and a boss you could point to.",stains:'<i class="s" style="width:420px;height:420px;right:-60px;top:-40px"></i><i class="b" style="width:300px;height:300px;left:-60px;bottom:40px;opacity:.4"></i>',items:[
+  {y:"1918",h:"Mill workers say enough",p:"Textile workers in Ahmedabad struck for higher pay between February and March 1918. Mohandas Gandhi and Anasuya Sarabhai backed them, and an arbitrator settled on a 35 percent rise. The welfare work around that strike fed into the Textile Labour Association, set up in 1920.",seen:"Mill hands, inside a factory, with a clear employer.",miss:"Anyone working outside the mill gate.",src:["Global Nonviolent Action Database, Swarthmore College","https://nvdatabase.swarthmore.edu/content/ahmedabad-textile-laborers-win-strike-economic-justice-1918"],st:"s"},
+  {y:"1947 to 48",h:"Rules written for factories",p:"The Industrial Disputes Act of 1947 and the Factories Act of 1948 were built around factories and formal employers. If you could name your employer, you were in the picture. If you could not, you were not.",seen:"A \u201cworkman\u201d with an employer.",miss:"The self-employed and casual worker with no one to name.",src:["A critical analysis of the definition of workman under the Industrial Disputes Act, 1947 (JGU)","https://pure.jgu.edu.in/id/eprint/1575/"],st:"b"}
+ ]},
+ {cls:"street",when:"1972 to 2008",t:"The street",lead:"Millions worked outside any factory. They carried, sold, stitched and hauled, and the law mostly looked past them.",stains:'<i class="d" style="width:100%;height:45%;left:0;bottom:0"></i><i class="s" style="width:380px;height:380px;right:-50px;top:10px"></i>',items:[
+  {y:"1972",h:"A union with no employer",p:"Ela Bhatt and the Textile Labour Association helped women headloaders and handcart-pullers in Ahmedabad's cloth market form SEWA. It was registered as a trade union on 12 April 1972. Officials objected that there was no employer. SEWA's answer was that a union exists to unite workers and does not need an employer to justify it.",seen:"Self-employed women, as a registered union.",miss:"The employer officials kept asking for.",src:["SEWA, our history","https://www.sewa.org/about-us/history/"],img:{k:"sewa",alt:"A group of SEWA women members sitting together on steps",cap:"SEWA members. Image supplied by the project author. Photographer and source to be added.",stamp:"Employer: none"},st:"s"},
+  {y:"2008",h:"A promise for the unorganised",p:"Parliament passed the Unorganised Workers' Social Security Act in 2008, promising welfare schemes for workers outside formal jobs. Economist Ajit Ranade later pointed out that the Arjun Sengupta Committee had found about 64 percent of unorganised workers were self-employed with no identifiable employer.",seen:"\u201cUnorganised worker\u201d, a category on paper.",miss:"An employer to hold responsible.",src:["Ranade, National Herald (2026)","https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"],st:"d"}
+ ]},
+ {cls:"app",when:"2010 to now",t:"The app",lead:"The boss became software. The job got tracked to the second, and the law took years to find a word for it.",stains:'<i class="b" style="width:380px;height:380px;right:-80px;top:30px;opacity:.4"></i><i class="s" style="width:360px;height:360px;left:-100px;bottom:60px"></i>',items:[
+  {y:"2010s",h:"The apps arrive",p:"From about 2010, apps like Ola, Uber and Swiggy begin operating in Indian cities. Researchers Aditi Surie and Jyothi Koduganti, who interviewed 45 Uber and Ola drivers in Bengaluru, found that drivers valued a stable, medium-term window to build their earnings. The apps called them partners. The labour law books had no word for them yet.",seen:"Customers, riders and cars on a map.",miss:"A status for the person at the wheel.",src:["Surie and Koduganti (2016), IIHS","https://iihs.co.in/knowledge-gateway/?p=10989"],st:"s"},
+  {y:"2020",h:"The law says the words",p:"The Code on Social Security, 2020 recognises gig workers and platform workers as a category for the first time. Ajit Ranade argues it still falls short on minimum wages, working hours, collective bargaining and protection from arbitrary deactivation.",seen:"A named category.",miss:"The wage, hours and deactivation rules.",src:["Ranade, National Herald (2026)","https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"],st:"b"},
+  {y:"2022",h:"Counting millions",p:"In June 2022, NITI Aayog estimated 77 lakh gig workers in 2020-21 and projected 2.35 crore by 2029-30. It recommended that platforms offer paid sick leave, accident insurance, pensions and income support.",seen:"A fast-growing headcount.",miss:"A duty to provide cover, rather than a recommendation.",src:["NITI Aayog policy brief (June 2022)","https://www.niti.gov.in/sites/default/files/2022-06/Policy_Brief_India%27s_Booming_Gig_and_Platform_Economy_27062022.pdf"],st:"s"},
+  {y:"Nov 2022",h:"Kolkata asks for a living wage",p:"On 22 November 2022, food-delivery workers marched in Kolkata with hand-painted placards in English and Bengali, demanding a decent living wage. Human Rights Watch later published the photograph.",seen:"A delivery partner.",miss:"A wage floor.",src:["Human Rights Watch, Algorithms of Exploitation (2026)","https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"],img:{k:"p2",alt:"Delivery workers in orange shirts with placards reading Ensure decent living wage",cap:"\u00a9 2022 Sankhadeep Banerjee/NurPhoto via Reuters, as published by Human Rights Watch.",stamp:"Filed as: partner"},st:"b"},
+  {y:"2023",h:"Rajasthan goes first",p:"On 24 July 2023, Rajasthan's assembly passed a law to register platform gig workers and set up a welfare board and fund. The report we use as Object 01 notes that the law does not touch algorithmic decision making.",seen:"Registration and a welfare board.",miss:"A say over the algorithm.",src:["Drishti IAS summary","https://www.drishtiias.com/state-pcs-current-affairs/rajasthan-becomes-1st-state-to-pass-bill-for-welfare-of-online-platfor-based-gig-workers/print_manually"],st:"d"},
+  {y:"Feb 2025",h:"ID cards and health cover",p:"The Union Budget of 1 February 2025 announced identity cards, e-Shram registration and PM-JAY health cover for nearly one crore gig workers.",seen:"A card and a registry entry.",miss:"The details. They were promised for later.",src:["exchange4media, Budget 2025","https://www.exchange4media.com/announcements-news/budget-2025-gig-workers-to-get-identity-cards-140555.html"],st:"s"},
+  {y:"May 2025",h:"Karnataka adds a cess and a board",p:"A Karnataka ordinance of 27 May 2025 let the state charge aggregators a welfare cess of 1 to 5 percent of each gig worker's payout, form a welfare board, and bar termination without 14 days' notice and written reasons. It later became an Act.",seen:"A cess, a board and notice before termination.",miss:"A right to challenge an algorithmic decision, says the report.",src:["Deccan Herald","https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fkarnataka-ordinance-promulgated-for-welfare-of-gig-workers-3559689"],st:"b"},
+  {y:"Nov 2025",h:"The codes come into force",p:"The four labour codes, including the Code on Social Security, came into force nationally on 21 November 2025. An analysis from the Institute of South Asian Studies noted that benefit and contribution details depended on rules and boards still to be notified.",seen:"Gig workers named in a law now in force.",miss:"The details, still to be written at the time.",src:["Institute of South Asian Studies, Insights 773 (Dec 2025)","https://www.isas.nus.edu.sg/wp-content/uploads/2025/12/Insights-773HK.pdf"],st:"d"},
+  {y:"Feb 2026",h:"Back to Jantar Mantar",p:"On 3 February 2026, women-led gig workers rallied at Jantar Mantar in Delhi, and their union reported protests in other cities. They asked for a separate, enforceable law, recognition as workers, social security, fair wages and an end to exploitative algorithmic practices.",seen:"A crowd on the road.",miss:"A law of their own, still being asked for.",src:["Countercurrents, by GIPSWU (4 Feb 2026)","https://countercurrents.org/2026/02/nationwide-protest-led-by-women-gig-workers-across-the-country/"],img:{k:"p1",alt:"Protesters at Jantar Mantar with placards reading We are not slaves of algorithms",cap:"Hindustan Times, \u201cAt Jantar Mantar, gig workers join national protest\u201d (Feb 2026). Photographer credit as given in the article.",stamp:"Status: unclassified"},st:"s"}
+ ]}
+];
+(function(){
+  var sec=document.querySelector('[data-page="history"]'); if(!sec) return;
+  var h='<div class="hist"><canvas class="flow" aria-hidden="true"></canvas><div class="dirt"><i class="b" style="width:560px;height:560px;right:-160px;top:-120px;transform:rotate(25deg);opacity:.45"></i><i class="s" style="width:480px;height:480px;left:-140px;top:40px"></i></div>'
+   +'<div class="wrap hh"><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center"><span class="tape">History</span><span class="stamp">Not on the list</span></div>'
+   +'<svg class="ghostbg" style="right:6%;top:46px;width:min(26vw,250px)" aria-hidden="true"><use href="#ghost"/></svg>'
+   +'<h1>A history of being left off the list</h1>'
+   +'<p>Gig work looks new. Being unseen by the law is not. For over a century, India\u2019s labour rules have been written around the worker with a boss to point at. This page follows that thread, from the mill gate to the app, using published sources.</p>'
+   +'<p class="mono" style="font-size:.76rem;color:var(--mute)">Tap or hover a black bar to read what was left out. Everything here is a secondary source, linked on each card.</p></div>';
+  ERAS.forEach(function(er){
+    h+='<section class="era era-'+er.cls+'"><div class="dirt">'+er.stains+'</div><div class="wrap"><div class="era-h"><span class="when">'+er.when+'</span><h2>'+esc(er.t)+'</h2><p>'+esc(er.lead)+'</p></div><div class="thread">';
+    er.items.forEach(function(it){
+      var img=it.img?'<figure class="hfig"><img src="'+esc(IMG[it.img.k])+'" alt="'+esc(it.img.alt)+'" loading="lazy"><span class="stamp sm">'+esc(it.img.stamp)+'</span><figcaption>'+esc(it.img.cap)+'</figcaption></figure>':'';
+      h+='<article class="entry"><div class="patch"><i class="st '+it.st+'"></i><div class="yr">'+esc(it.y)+'</div><h3>'+esc(it.h)+'</h3>'
+       +'<div class="pbody'+(it.img?' has':'')+'"><div class="ptxt"><p>'+esc(it.p)+'</p><div class="sm2"><div class="seen"><b>The law saw</b><span>'+esc(it.seen)+'</span></div><div class="miss"><b>Left out</b><span class="rd" tabindex="0">'+esc(it.miss)+'</span></div></div><p class="hsrc">Source: <a href="'+esc(it.src[1])+'" target="_blank" rel="noopener">'+esc(it.src[0])+'</a></p></div>'+img+'</div></div></article>';
+    });
+    h+='</div></div></section>';
+  });
+  h+='<section class="wrap hend"><span class="stamp" style="width:fit-content">Counted as: partner</span><h2>Named at last. Protected, still pending.</h2><p>\u201cThe law saw\u201d and \u201cLeft out\u201d are our reading of the sources on each card, not a quotation from them. The pattern across a hundred years is the exhibit\u2019s argument: protection followed the employer, and the gig worker is a worker whose employer is an app.</p><div class="cta"><button class="btn solid" data-nav="gallery">See the gallery</button><button class="btn" data-nav="home">Back to home</button></div></section></div>';
+  sec.innerHTML=h;
+})();
+
+/* redaction bars: tap to read */
+document.addEventListener("click",function(e){var r=e.target.closest(".rd");if(r)r.classList.toggle("on")});
+document.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&e.target.classList&&e.target.classList.contains("rd")){e.preventDefault();e.target.classList.toggle("on")}});
+
+/* ---- router ---- */
+var sections=[].slice.call(document.querySelectorAll("[data-page]"));
+function show(id,noPush){
+  if(!PAGES.some(function(p){return p.id===id})) id="home";
+  sections.forEach(function(s){s.hidden = s.getAttribute("data-page")!==id});
+  document.querySelectorAll("[data-nav]").forEach(function(a){
+    if(a.tagName==="A"&&a.closest(".nav,.pchips")) { if(a.getAttribute("data-nav")===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); }
+  });
+  if(!noPush){ try{ if(location.hash!=="#"+id) history.replaceState(null,"","#"+id) }catch(e){} }
+  window.scrollTo(0,0);
+  closeMenu();
+  setTimeout(observe,30);
+}
+document.addEventListener("click",function(e){
+  var n=e.target.closest("[data-nav]");
+  if(n){ e.preventDefault(); show(n.getAttribute("data-nav")); return; }
+  var s=e.target.closest("[data-scroll]");
+  if(s){ e.preventDefault(); var el=document.getElementById(s.getAttribute("data-scroll")); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); return; }
+  if(e.target.closest("[data-openmenu]")) openMenu();
+});
+window.addEventListener("hashchange",function(){show((location.hash||"#home").slice(1),true)});
+
+/* ---- menu ---- */
+var menu=document.getElementById("menu"), menuBtn=document.getElementById("menuBtn");
+function openMenu(){menu.hidden=false;menuBtn.setAttribute("aria-expanded","true");document.body.style.overflow="hidden"}
+function closeMenu(){menu.hidden=true;menuBtn.setAttribute("aria-expanded","false");document.body.style.overflow=""}
+menuBtn.addEventListener("click",openMenu);
+document.getElementById("menuClose").addEventListener("click",closeMenu);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeMenu()});
+
+/* ---- scroll progress ---- */
+var prog=document.getElementById("progress");
+function onScroll(){var h=document.documentElement.scrollHeight-innerHeight;prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+"%"}
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+/* ---- reveal + counters ---- */
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var io=("IntersectionObserver" in window)?new IntersectionObserver(function(es){
+  es.forEach(function(en){
+    if(!en.isIntersecting) return;
+    var el=en.target; io.unobserve(el);
+    el.classList.add("in");
+    el.querySelectorAll("[data-count]").forEach(count);
+    if(el.hasAttribute("data-slide")) el.querySelectorAll(".rv").forEach(function(r){r.classList.add("in")});
+  });
+},{threshold:.18}):null;
+function observe(){
+  if(!io) return;
+  document.querySelectorAll("[data-page]:not([hidden]) .rv, [data-page]:not([hidden]) [data-slide], [data-page]:not([hidden]) .stats").forEach(function(el){ if(!el.classList.contains("in")) io.observe(el) });
+}
+function count(el){
+  if(reduce||el.dataset.done) return; el.dataset.done=1;
+  var to=+el.dataset.count, fmt=el.dataset.fmt, t0=performance.now(), dur=1100;
+  (function step(t){var k=Math.min(1,(t-t0)/dur), v=Math.round(to*(1-Math.pow(1-k,3)));el.textContent=fmt?v.toLocaleString("en-IN"):v;if(k<1)requestAnimationFrame(step);else el.textContent=fmt?to.toLocaleString("en-IN"):to})(t0);
+}
+
+/* ---- moving layers: tracked dots plus tiny gig workers who never stop ---- */
+function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function drawWorker(cx,k,t,col,acc){
+  cx.save();cx.lineWidth=1.6;cx.lineCap="round";cx.lineJoin="round";cx.strokeStyle=col;cx.fillStyle=col;
+  var sw=Math.sin(t*.3);
+  function wheel(x,y,r){cx.beginPath();cx.arc(x,y,r,0,6.283);cx.stroke();var a=t*.45;cx.beginPath();cx.moveTo(x+Math.cos(a)*r,y+Math.sin(a)*r);cx.lineTo(x-Math.cos(a)*r,y-Math.sin(a)*r);cx.stroke()}
+  function head(x,y){cx.beginPath();cx.arc(x,y,2.3,0,6.283);cx.fill()}
+  function ln(a,b,c,d){cx.beginPath();cx.moveTo(a,b);cx.lineTo(c,d);cx.stroke()}
+  function box(x,y,w,h){cx.fillStyle=acc;cx.fillRect(x,y,w,h);cx.fillStyle=col}
+  if(k===0){/* delivery rider on a scooter, bag on the back */
+    wheel(-6,5,3);wheel(7,5,3);ln(-6,5,-1,5);ln(-1,5,1,-1);ln(1,-1,6,-2);ln(6,-2,7,5);head(0,-8);ln(0,-5.5,-2,-1);ln(0,-4,5,-2);box(-11,-7,8,7)
+  }else if(k===1){/* cab driver */
+    cx.beginPath();cx.moveTo(-10,4);cx.lineTo(-10,-1);cx.lineTo(-6,-2);cx.lineTo(-4,-6);cx.lineTo(4,-6);cx.lineTo(7,-2);cx.lineTo(10,-1);cx.lineTo(10,4);cx.closePath();cx.fill();
+    cx.fillStyle=acc;cx.fillRect(-3,-5,6,2.4);cx.fillRect(-1.6,-8.2,3.2,2);cx.fillStyle=col;wheel(-6,5,2.6);wheel(6,5,2.6)
+  }else if(k===2){/* courier on a bicycle */
+    wheel(-6,4,4);wheel(7,4,4);ln(-6,4,-1,4);ln(-1,4,-3,-1);ln(-3,-1,5,-1);ln(5,-1,7,4);ln(-1,4,5,-1);head(-1,-9);ln(-1,-6.5,-3,-1);ln(-1,-5,5,-1);box(-9,-8,6,6)
+  }else if(k===3){/* headloader walking with a load */
+    cx.translate(0,-2);head(0,-5);ln(0,-3,0,4);ln(0,4,sw*4,10);ln(0,4,-sw*4,10);ln(0,-1,-3,-6);ln(0,-1,3,-6);box(-7,-12,14,6)
+  }else if(k===4){/* home-service worker with a toolbox */
+    cx.translate(0,-2);head(0,-6);ln(0,-4,0,3);ln(0,3,sw*4,9);ln(0,3,-sw*4,9);ln(0,-2,-3,1);ln(0,-2,5,2);box(3,2,8,5);ln(5,2,5,0.5);ln(9,2,9,.5);ln(5,.5,9,.5)
+  }else{/* auto rickshaw */
+    cx.beginPath();cx.moveTo(-10,5);cx.lineTo(-10,-4);cx.lineTo(0,-7);cx.lineTo(9,0);cx.lineTo(9,5);cx.closePath();cx.fill();
+    cx.fillStyle=acc;cx.fillRect(-4,-3,8,4);cx.fillStyle=col;wheel(-6,6,2.6);wheel(7,6,2.6)
+  }
+  cx.restore();
+}
+function flow(cv){
+  if(!cv||!cv.getContext) return;
+  var cx=cv.getContext("2d"),W=0,H=0,G=56,ag=[],ws=[],raf=0,tick=0;
+  function size(){var r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;if(W<2)return;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);init()}
+  function init(){
+    ag=[];var n=Math.max(5,Math.min(26,Math.round(W*H/48000)));
+    for(var i=0;i<n;i++){
+      var gx=Math.floor(Math.random()*(W/G)),gy=Math.floor(Math.random()*(H/G));
+      var a={x:gx*G,y:gy*G,dx:Math.random()<.5?1:0,dy:0,s:.5+Math.random()*1.1,tr:[],flag:Math.random()<.18,age:Math.random()*400};
+      if(!a.dx)a.dy=1; if(Math.random()<.5){a.dx*=-1;a.dy*=-1}
+      ag.push(a);
+    }
+    ws=[];var lanes=Math.max(1,Math.floor(H/G)),m=Math.max(4,Math.min(12,Math.round(W*H/90000)));
+    for(var j=0;j<m;j++){ws.push({k:j%6,x:Math.random()*W,y:(1+Math.floor(Math.random()*lanes))*G-4,v:(.45+Math.random()*.9)*(Math.random()<.5?1:-1),ph:Math.random()*100})}
+  }
+  function draw(){
+    if(W<2){size();if(W<2)return}
+    var ink=css("--ink"),red=css("--red"),green=css("--green"),bg=css("--bg"),light=/^#[c-f]/i.test(bg),acc=light?css("--redf"):css("--yellow");
+    cx.clearRect(0,0,W,H);
+    cx.strokeStyle=ink;cx.globalAlpha=.1;cx.lineWidth=1;cx.beginPath();
+    for(var x=0;x<=W;x+=G){cx.moveTo(x+.5,0);cx.lineTo(x+.5,H)}
+    for(var y=0;y<=H;y+=G){cx.moveTo(0,y+.5);cx.lineTo(W,y+.5)}
+    cx.stroke();cx.globalAlpha=1;
+    ag.forEach(function(a){
+      a.tr.push([a.x,a.y]);if(a.tr.length>22)a.tr.shift();
+      for(var i=1;i<a.tr.length;i++){cx.globalAlpha=i/a.tr.length*.7;cx.strokeStyle=red;cx.lineWidth=2;cx.beginPath();cx.moveTo(a.tr[i-1][0],a.tr[i-1][1]);cx.lineTo(a.tr[i][0],a.tr[i][1]);cx.stroke()}
+      cx.globalAlpha=1;cx.fillStyle=red;cx.fillRect(a.x-3,a.y-3,6,6);
+      if(a.flag){cx.strokeStyle=green;cx.lineWidth=1.5;cx.strokeRect(a.x-11,a.y-11,22,22);cx.fillStyle=green;cx.font="10px IBM Plex Mono, monospace";cx.fillText("IDLE",a.x+15,a.y-4)}
+      a.x+=a.dx*a.s;a.y+=a.dy*a.s;a.age++;
+      var onx=Math.abs(a.x/G-Math.round(a.x/G))<.02,ony=Math.abs(a.y/G-Math.round(a.y/G))<.02;
+      if(onx&&ony&&Math.random()<.35){var h=Math.random()<.5;a.dx=h?(Math.random()<.5?1:-1):0;a.dy=h?0:(Math.random()<.5?1:-1)}
+      if(a.x<0||a.x>W)a.dx*=-1;if(a.y<0||a.y>H)a.dy*=-1;
+      if(a.age%260===0)a.flag=!a.flag&&Math.random()<.5;
+    });
+    tick++;
+    ws.forEach(function(w){
+      var dir=w.v>0?1:-1,tt=tick+w.ph,bob=Math.sin(tt*.3)*.9;
+      /* tracking tail */
+      cx.globalAlpha=.55;cx.strokeStyle=red;cx.lineWidth=2;cx.beginPath();cx.moveTo(w.x-dir*16,w.y+9);cx.lineTo(w.x-dir*42,w.y+9);cx.stroke();
+      cx.globalAlpha=1;
+      cx.save();cx.translate(w.x,w.y+bob);cx.scale(dir*1.35,1.35);drawWorker(cx,w.k,tt,ink,acc);cx.restore();
+      /* ping dot above head */
+      cx.fillStyle=red;cx.globalAlpha=.5+.5*Math.sin(tt*.12);cx.beginPath();cx.arc(w.x,w.y-22,2,0,6.283);cx.fill();cx.globalAlpha=1;
+      w.x+=w.v;if(w.v>0&&w.x>W+30)w.x=-30;if(w.v<0&&w.x<-30)w.x=W+30;
+    });
+  }
+  function loop(){draw();raf=requestAnimationFrame(loop)}
+  size();
+  if(reduce){draw()}else{
+    var vis=new IntersectionObserver(function(es){es[0].isIntersecting?(!raf&&loop()):(cancelAnimationFrame(raf),raf=0)});vis.observe(cv);
+  }
+  var rt;addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(size,150)});
+}
+document.querySelectorAll("canvas.flow,#map").forEach(flow);
+
+show((location.hash||"#home").slice(1),true);
+})();
+</script>
+
 </html>
