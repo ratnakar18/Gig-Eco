@@ -2,7 +2,8 @@ Neither Employee Nor Free (digital exhibit)
 
 Files
   index.html              the whole site (all pages are inside this one file)
-  assets/posters/*.jpg    the five gallery photographs
+  assets/posters/poster-1..5.jpg   the five gallery photographs
+  assets/posters/poster-hero*.jpg  the large poster at the top of the Gallery (web size, 4K and 8K downloads)
   assets/history/sewa.jpg the SEWA photo on the History page
   assets/tex/*.webp       stain, sweat, damp and grime textures
   vercel.json             optional, harmless
@@ -13,6 +14,7 @@ Deploy
   3. Vercel redeploys on its own. The domain gig-eco.vercel.app does not change.
 
 Edit later
+  Big poster: replace the three poster-hero files, keeping the names.
   Posters: edit the POSTERS list near the bottom of index.html.
   Videos:  edit the VIDEOS list. EMBED = true plays inside the page, false links out.
   History: edit the ERAS list.

@@ -68,6 +68,7 @@ p{margin:0}
 /* hero */
 .hero{position:relative;overflow:hidden;border-bottom:2px solid var(--ink)}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.8}
+canvas.roam{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;pointer-events:none;z-index:40;opacity:.85;transition:opacity .45s ease}
 canvas.flow{position:absolute;inset:0;width:100%;height:100%;opacity:.8;pointer-events:none;z-index:0}
 .hist>canvas.flow{position:absolute;inset:0 0 auto 0;height:640px;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
 .uc-wrap>canvas.flow{-webkit-mask-image:linear-gradient(#000 60%,transparent);mask-image:linear-gradient(#000 60%,transparent)}
@@ -108,8 +109,8 @@ canvas.flow{position:absolute;inset:0;width:100%;height:100%;opacity:.8;pointer-
 .stat{padding:14px 16px;border-right:1px solid var(--line);background:var(--bg)}
 .stat b{display:block;font-family:var(--f-display);font-weight:900;font-size:2.8rem;line-height:1;color:var(--green-ink)}
 .stat span{font-size:.85rem;color:var(--mute)}
-.essay{font-size:1.06rem;line-height:1.75;max-width:68ch}
-.essay::first-letter{font-family:var(--f-display);font-weight:900;float:left;font-size:4.6rem;line-height:.8;padding:6px 10px 0 0;color:var(--red)}
+.essaybox p{font-size:1.06rem;line-height:1.75;max-width:68ch;margin:0 0 1.15em}
+.essaybox p:first-child::first-letter{font-family:var(--f-display);font-weight:900;float:left;font-size:4.6rem;line-height:.8;padding:6px 10px 0 0;color:var(--red)}
 .srcline{margin-top:20px;font-family:var(--f-mono);font-size:.82rem;color:var(--mute)}
 .srcline a{color:var(--green-ink)}
 @media(min-width:960px){.object{grid-template-columns:340px 1fr;gap:56px}}
@@ -293,6 +294,18 @@ main,footer,.pstrip{position:relative;z-index:1}
 .formbox div:first-child{border-top:0}
 .formbox dt{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);padding-top:3px}
 .formbox dd{margin:0}
+.feature{display:grid;grid-template-columns:minmax(0,540px) minmax(0,1fr);gap:clamp(26px,4.5vw,64px);align-items:start;margin-top:34px}
+.feature .pbtn{border-width:3px;box-shadow:10px 10px 0 var(--redf)}
+.fbody{display:grid;gap:16px;align-content:start}
+.fbody h2{font-size:clamp(2.4rem,5vw,3.8rem);line-height:.95;margin:0}
+.fbody h3{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:6px 0 0}
+.fbody p{max-width:56ch}
+.demands{margin:0;padding:0;list-style:none;display:grid;gap:8px;counter-reset:d}
+.demands li{counter-increment:d;display:grid;grid-template-columns:34px 1fr;align-items:baseline;border-bottom:1px dashed var(--line,rgba(244,239,230,.25));padding-bottom:8px;font-weight:600}
+.demands li::before{content:counter(d);font-family:var(--f-display);font-weight:900;font-size:1.5rem;color:var(--red)}
+.fdl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.fdl .btn{font-size:.82rem;padding:9px 14px}
+@media(max-width:860px){.feature{grid-template-columns:1fr}.feature .pbtn{box-shadow:7px 7px 0 var(--redf);margin-right:7px}}
 .pbtn{position:relative}
 .pbtn .stamp{position:absolute;right:8px;top:10px;background:rgba(0,0,0,.45);color:#FF6A52;border-color:#FF6A52}
 @media(max-width:560px){.formbox div{grid-template-columns:110px 1fr}.sm2 div{grid-template-columns:76px 1fr}}
@@ -334,10 +347,10 @@ main,footer,.pstrip{position:relative;z-index:1}
     <div class="wrap hero-in">
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center"><span class="tape">Digital Exhibit · Creating, Managing and Leading Social Enterprises</span><span class="stamp">Unclassified</span></div>
       <h1>Neither <span class="r">Employee</span><br>Nor <span class="f">Free</span></h1>
-      <p class="lede">The law knows India's gig workers exist. It just won't say <span class="rd" tabindex="0" title="Tap or hover to read">who they work for</span>. This exhibit follows that gap into a worker's head, one shift at a time, with the <em>evidence</em> to back it up.</p>
+      <p class="lede">India's law has finally noticed its gig workers. It still won't say <span class="rd" tabindex="0" title="Tap or hover to read">who they work for</span>. This exhibit follows that gap right into a worker's head, one shift at a time, and cites everything it says.</p>
       <div class="cta">
-        <button class="btn solid" data-scroll="objective">Start with our objective ↓</button>
-        <button class="btn" data-openmenu>Explore all pages →</button>
+        <button class="btn solid" data-scroll="objective">Start with the objective ↓</button>
+        <button class="btn" data-openmenu>See all the pages →</button>
       </div>
     </div>
     <div class="ticker" aria-hidden="true"><div id="tickerTrack"></div></div>
@@ -347,15 +360,15 @@ main,footer,.pstrip{position:relative;z-index:1}
     <div class="wrap obj">
       <div class="rv">
         <span class="tape kick">Our objective</span>
-        <h2>The law gave them a name. Not a safety net.</h2>
+        <h2>The law learned their name and stopped there</h2>
       </div>
       <div class="rv" style="display:grid;gap:22px">
-        <p class="big">India's Code on Social Security even gives gig workers a name. What it does not give them is the protection that comes with being called an employee, or the freedom that comes with truly running your own business.</p>
-        <p>This exhibit sets out to show that gap with evidence, and then follow it into one human cost: what it does to your peace of mind when an algorithm is your manager and nobody is on the other end of the complaint button.</p>
+        <p class="big">India's Code on Social Security does give gig workers a name. It doesn't give them what employees get, like leave, insurance and a manager you can actually complain about. It doesn't give them what people running their own business get either, which is a say over their prices and their customers.</p>
+        <p>I try to show that gap with evidence, then follow it to one cost you won't find in any statute: what happens to your peace of mind when an algorithm is your manager and the only complaint channel belongs to the company.</p>
         <ol class="steps">
-          <li>Read the collection object, a field report built on what workers told researchers.</li>
-          <li>Scroll the evidence. Thirteen sources, four lines of argument, one slide each.</li>
-          <li>Visit the gallery for posters and films that put faces on the numbers.</li>
+          <li>Start with the report at the centre of this exhibit. Its authors interviewed the workers, not me.</li>
+          <li>Scroll through the evidence: thirteen sources, one slide each, grouped under four arguments.</li>
+          <li>Spend a few minutes in the gallery, where posters and films give the numbers some faces.</li>
         </ol>
       </div>
     </div>
@@ -375,7 +388,7 @@ main,footer,.pstrip{position:relative;z-index:1}
               <div><dt>Authors</dt><dd>Sadhana Sanjay, Nandini Chami, Saloni Mishra, Madhulika T.</dd></div>
               <div><dt>Published by</dt><dd>NLSIU Centre for Labour Studies, with IT for Change</dd></div>
               <div><dt>Year and licence</dt><dd>2025 · CC BY-SA 4.0</dd></div>
-              <div><dt>Evidence type</dt><dd>Secondary source. Published by others. We did not collect this data.</dd></div>
+              <div><dt>Evidence type</dt><dd>Secondary source. Someone else collected this data, not me.</dd></div>
               <div><dt>Exhibit theme</dt><dd>The legal invisibility of India's gig workers</dd></div>
             </dl>
           </div>
@@ -387,7 +400,7 @@ main,footer,.pstrip{position:relative;z-index:1}
           </div>
         </aside>
         <article class="rv">
-          <p class="essay">My exhibit is about how India's gig workers are named by the law but left out of its protections, and this fortnight I want to look at one specific cost of that: what constant algorithmic management does to a worker's peace of mind. The object I picked is a technical report called "There's No Ghost in the Machine," written by Sadhana Sanjay, Nandini Chami, Saloni Mishra and Madhulika T. and published by the Centre for Labour Studies at the National Law School of India University with IT for Change. It draws on interviews with 26 workers and five union organisers between November 2024 and February 2025. The title is the report's main argument. We like to imagine the algorithm as a boss-bot nobody controls, but the authors show it is really a mix of software, platform executives and human managers, which means nobody gets to hide behind the machine. The details are hard to read. An Amazon worker in Manesar says scanners must hit 1,200 products an hour while also loading the truck, and the pressure does not account for that. Another says even the millisecond it takes to move your phone from one place to another is logged as idle time. At Urban Company, auto acceptance assigns jobs without letting you refuse, and the only penalty-free cancellation the system accepts is an accident. What I find most useful is the report's second finding, algorithmic anxiety. Workers can partly decode how the algorithm treats them, one even compared it to riding a bike where the company holds the only meter, but they cannot challenge it, because the same company runs the only complaint channel, and one worker said it rarely works in their favour. That gap between understanding and power is where the unease lives. Knowing the rules of a game you can never play differently does not calm anyone down, it just turns every shift into an exam you cannot pass. This is where Sandel's argument in <em>Justice: What's the Right Thing to Do?</em> helps. He asks whether a market deal is truly voluntary when the bargaining conditions are unequal. Auto acceptance is sold as a choice that pays more, but the price is losing your breaks, and a union organiser in the report notes that women with care responsibilities struggle to opt in and so earn less. A choice made with ratings, penalties and ID blocks hanging over you is not fully free. The legal side matters too. Rajasthan's law ignores algorithmic decisions entirely, and Karnataka's Act and the proposed Telangana and Jharkhand laws only give workers a limited right to request information, with no way to challenge a decision and no rights for unions. The Code on Social Security tells us gig workers sit in a legal grey zone. This report shows what that grey zone feels like on an ordinary working day: constantly watched, rarely heard, and never sure where the power sits.</p>
+          <div class="essaybox"><p>My exhibit is about how India's gig workers are named by the law but left out of its protections. This fortnight I wanted to look at one cost of that gap: what constant algorithmic management does to a worker's peace of mind.</p><p>The object I picked is a technical report called "There's No Ghost in the Machine," written by Sadhana Sanjay, Nandini Chami, Saloni Mishra and Madhulika T. and published by the Centre for Labour Studies at the National Law School of India University, with IT for Change. It draws on interviews with 26 workers and five union organisers, held between November 2024 and February 2025. The authors did those interviews. I am only reading their report.</p><p>The title is the argument. We like to imagine the algorithm as a boss-bot that nobody controls. The authors show it is really a mix of software, platform executives and human managers, which means nobody gets to hide behind the machine.</p><p>The details are hard to read. An Amazon worker in Manesar says scanners must hit 1,200 products an hour while the worker also loads the truck, and the target does not account for that. Another says even the millisecond it takes to move your phone from one hand to the other is logged as idle time. At Urban Company, auto acceptance hands you jobs without letting you refuse, and the only cancellation the system accepts without a penalty is an accident.</p><p>The finding I find most useful is the second one, algorithmic anxiety. Workers can partly decode how the algorithm treats them. One even compared it to riding a bike where the company holds the only meter. But they cannot challenge any of it, because the same company runs the only complaint channel, and one worker said it rarely works in their favour. That gap between understanding and power is where the unease lives. Knowing the rules of a game you can never play differently does not calm anyone down. It just turns every shift into an exam you cannot pass.</p><p>This is where Sandel's argument in <em>Justice: What's the Right Thing to Do?</em> helps. He asks whether a market deal is truly voluntary when the bargaining conditions are unequal. Auto acceptance is sold as a choice that pays more, but the price is losing your breaks, and a union organiser in the report notes that women with care responsibilities struggle to opt in and so earn less. A choice made with ratings, penalties and ID blocks hanging over you is not fully free.</p><p>The legal side matters too. Rajasthan's law ignores algorithmic decisions entirely. Karnataka's Act and the proposed Telangana and Jharkhand laws give workers only a limited right to request information, with no way to challenge a decision and no rights for unions. The Code on Social Security tells us gig workers sit in a legal grey zone. This report shows what that grey zone feels like on an ordinary working day: constantly watched, rarely heard, and never sure where the power sits.</p></div>
           <p class="srcline">Source: <a href="https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf" target="_blank" rel="noopener">Read the full report (PDF)</a></p>
         </article>
       </div>
@@ -396,8 +409,8 @@ main,footer,.pstrip{position:relative;z-index:1}
 
   <div class="deckhead wrap">
     <span class="tape kick">The evidence</span>
-    <h2 class="rv">Thirteen sources.<br>Scroll to read them.</h2>
-    <p class="rv"><strong>Everything here is a secondary source.</strong> We did not run interviews or surveys. Each slide summarises published work and links to it. Each slide is one source, what it found, and why it matters for our claim. Each is tagged as a journal article, report, brief or opinion piece, so you know what you are reading. They are not all cheerleaders. One of them gives the platforms a fair point, and we kept it in.</p>
+    <h2 class="rv">Thirteen sources,<br>one slide each</h2>
+    <p class="rv"><strong>Everything below is a secondary source.</strong> I haven't run a single interview or survey. What you'll find is other people's published work, summarised and linked. Each slide gives the source, what it found and why I think it matters, and each carries a tag (journal article, report, brief, opinion piece) so you know what kind of thing you're reading. Not every source takes the workers' side. One makes a fair point for the platforms, and I kept it in.</p>
   </div>
   <div id="deck"></div>
 
@@ -411,19 +424,21 @@ main,footer,.pstrip{position:relative;z-index:1}
     <p class="mono upd" style="color:var(--mute);font-size:.82rem">Last updated 8 October 2026</p>
   </div></div>
   <div class="wrap" style="padding-bottom:70px">
-    <h2 style="font-size:2.6rem;margin-top:30px">Posters</h2>
-    <p class="note">Five photographs from recent gig worker protests, each with its source. Click one to enlarge. The red stamps on the photos are ours, not part of the photographs. Photographs remain the property of their photographers and publishers. They appear here, with credit, for non-commercial coursework.</p>
+    <div id="featureWrap"></div>
+
+    <h2 style="font-size:2.6rem;margin-top:80px">Protest photographs</h2>
+    <p class="note">Five photographs from gig worker protests, four from India and one from reporting on UK gig pay. Each links to where it was published. Click one to enlarge. The red stamps are mine and are not part of the photographs. The photos belong to their photographers and publishers, and they are here with credit for non-commercial coursework.</p>
     <div class="posters" id="posters"></div>
 
     <h2 style="font-size:2.6rem;margin-top:70px">A photo exhibition, elsewhere</h2>
     <div class="exh rv">
       <h3>The Everyday Lives of Gig Workers</h3>
-      <p>A photo exhibition of images captured between October 2023 and February 2024 by platform-based delivery workers in Melbourne, curated by Lutfun Nahar Lata, Andrew Copolov and Rashed Azizi. The photos are not reproduced here. Open the exhibition at the University of Melbourne.</p>
+      <p>Delivery workers in Melbourne took these photographs between October 2023 and February 2024, and Lutfun Nahar Lata, Andrew Copolov and Rashed Azizi curated them. I haven't reproduced any of them here, so please open <a href="https://doi.org/10.26188/28397225.v2" target="_blank" rel="noopener">the exhibition at the University of Melbourne</a>.</p>
       <blockquote>“This was a fancy apartment complex, with almost no one around. I put the delivery in the designated area. The sign says ‘Place food delivery here and leave the building immediately’. Not exactly welcoming.”<br><small>A delivery worker, quoted in the exhibition</small></blockquote>
       <p class="cite">Lata, L. N., Copolov, A., &amp; Azizi, R. (2024). <i>The Everyday Lives of Gig Workers: A Photo Exhibition</i> (Version 2). The University of Melbourne. <a href="https://doi.org/10.26188/28397225.v2" target="_blank" rel="noopener">https://doi.org/10.26188/28397225.v2</a></p>
     </div>
 
-    <h2 style="font-size:2.6rem;margin-top:70px">Films &amp; documentaries</h2>
+    <h2 style="font-size:2.6rem;margin-top:70px">Films, music &amp; documentaries</h2>
     <p class="note" id="vnote"></p>
     <div class="videos" id="videos"></div>
   </div>
@@ -441,7 +456,7 @@ main,footer,.pstrip{position:relative;z-index:1}
 <footer>
   <div class="wrap">
     <p>Developed by Ratnakar Goswami (MBA/0212/62) as part of coursework for Creating, Managing and Leading Social Enterprises.</p>
-    <p>All research, quotes, photographs and videos on this site are secondary sources, credited where they appear. No original fieldwork was done.</p>
+    <p>Every piece of research, quote, photograph and video on this site comes from someone else's published work and is credited where it appears. I did no fieldwork of my own.</p>
     <p class="mono">Employer on record: <span class="rd" tabindex="0">none</span>. Status: unclassified.</p>
     <p>Digital Exhibit, IIM Calcutta. Illustrations on this site are original and drawn in code.</p>
   </div>
@@ -451,7 +466,7 @@ main,footer,.pstrip{position:relative;z-index:1}
 (function(){
 var EMBED = true; /* set true on a self-hosted copy to play YouTube inside the page */
 
-var IMG = {p1:"assets/posters/poster-1.jpg",p2:"assets/posters/poster-2.jpg",p3:"assets/posters/poster-3.jpg",p4:"assets/posters/poster-4.jpg",p5:"assets/posters/poster-5.jpg",sewa:"assets/history/sewa.jpg"};
+var IMG = {p1:"assets/posters/poster-1.jpg",p2:"assets/posters/poster-2.jpg",p3:"assets/posters/poster-3.jpg",p4:"assets/posters/poster-4.jpg",p5:"assets/posters/poster-5.jpg",sewa:"assets/history/sewa.jpg",hero:"assets/posters/poster-hero.jpg",heroBig:"assets/posters/poster-hero-4k.jpg",dl4k:"assets/posters/poster-hero-4k.jpg",dl8k:"assets/posters/poster-hero-8k.jpg"};
 var PAGES = [
   {id:"home", label:"Home", note:"Live", live:1},
   {id:"history", label:"History", note:"Live", live:1},
@@ -462,89 +477,92 @@ var PAGES = [
   {id:"resources", label:"Resources", note:"Under construction"}
 ];
 var UC = {
-  "your-path":"Pick who you are, get what you need.",
-  "gig-worker":"What gig workers are owed, in plain words.",
-  "mental-health":"The mental toll of being managed by an algorithm.",
-  "resources":"Free, checked places to read, learn and get help."
+  "your-path":"Say who you are, and I'll show you where to start.",
+  "gig-worker":"What gig workers are owed, minus the legalese.",
+  "mental-health":"What it does to your head when an algorithm is your manager.",
+  "resources":"Free places to read, learn and get help, each one checked before it goes up."
 };
 
 /* ---- research slides ---- */
-var DIRS = ["The law files them as nobody","Control without an employer","The cost lands on the person","A fair counterpoint"];
+var DIRS = ["Filed as nobody","Control without an employer","The cost lands on the worker","A fair counterpoint"];
+var DSH = ["The law\u2019s blind spot","Control, no employer","The personal cost","A fair counterpoint"];
 var DECK = [
  {d:0,c:"s-red",kind:"ILO working paper",t:"A label decides who is protected",
   cite:"De Stefano, V. (2016). The rise of the “just-in-time workforce”: On-demand work, crowdwork and labour protection in the “gig-economy”. International Labour Organization.",
-  f:"Looks at how on-demand work and crowdwork strain labour protections built for standard jobs, and argues these workers need protection too.",
-  m:"Protection starts from a label. Platforms choose the label, and the label says “partner”.",
+  f:"De Stefano looks at how on-demand work and crowdwork strain labour protections designed for standard jobs, and argues that these workers deserve protection too.",
+  m:"Everything starts with the label. Platforms get to choose it, and they chose “partner”.",
   u:"https://www.ilo.org/publications/rise-just-time-workforce-demand-work-crowdwork-and-labour-protection-gig"},
  {d:0,c:"s-black",kind:"LLM thesis, York University",t:"India has left informal workers out before",
   cite:"Katrak, M. V. (2024). Informality, Precarity, and (Mis)classification: Regulating Platform Work in India. York University.",
-  f:"Argues that keeping location-based platform workers outside formal labour law continues a pattern of exclusion that goes back to the colonial era. It asks whether the new labour Codes help, and whether constitutional litigation could.",
-  m:"Gig workers are not a new gap in the law. They are the latest group to fall into an old one.",
+  f:"Katrak argues that keeping location-based platform workers outside formal labour law carries on a pattern of exclusion that goes back to colonial times. The thesis then asks whether the new labour Codes can fix this, and whether constitutional litigation could.",
+  m:"This hole in the law is an old one. Gig workers are just the latest people to fall into it.",
   u:"https://hdl.handle.net/10315/41966"},
- {d:0,c:"s-lime",kind:"Government think-tank policy brief",t:"The state sizes the workforce, then recommends",
+ {d:0,c:"s-lime",kind:"Government think-tank policy brief",t:"The government counts them, then offers advice",
   cite:"NITI Aayog. (2022, June). India's booming gig and platform economy: Perspectives and recommendations on the future of work (Policy brief). Government of India.",
-  f:"Estimates 77 lakh (7.7 million) gig workers in 2020-21 and projects 2.35 crore (23.5 million) by 2029-30. It recommends that platforms offer paid sick leave, accident insurance, pension plans and income support.",
-  m:"The government's own think tank counts millions of workers and recommends cover. A recommendation is not a duty.",
+  f:"The brief estimates 77 lakh (7.7 million) gig workers in 2020-21 and projects 2.35 crore (23.5 million) by 2029-30. Its recommendations to platforms: paid sick leave, accident insurance, pension plans and income support.",
+  m:"Even the government's own think tank counts these millions and then only recommends cover. A recommendation is not an obligation, which is exactly the gap this exhibit is about.",
   u:"https://www.niti.gov.in/sites/default/files/2022-06/Policy_Brief_India%27s_Booming_Gig_and_Platform_Economy_27062022.pdf"},
  {d:0,c:"s-dark",kind:"Opinion piece",t:"Employer-less, by design",
   cite:"Ranade, A. (2026, January 11). The lives of \u2018employer-less\u2019 gig workers. National Herald.",
-  f:"The economist argues that platforms call riders \u201cbusiness partners\u201d while setting prices, assigning tasks and deactivating accounts through opaque algorithms. He says the Code on Social Security names gig workers for the first time but falls short on minimum wages, working hours, collective bargaining and protection from arbitrary deactivation.",
-  m:"This is an opinion, not a study. We use it because it states our claim plainly: economic dependence should count for more than the contract label.",
+  f:"Ranade, an economist, argues that platforms call riders \u201cbusiness partners\u201d while setting prices, assigning tasks and deactivating accounts through opaque algorithms. He says the Code on Social Security names gig workers for the first time but falls short on minimum wages, working hours, collective bargaining and protection from arbitrary deactivation.",
+  m:"This is an opinion piece, not a study, and I treat it that way. I use it because it says my claim plainly: how much a worker depends on the platform should count for more than what the contract calls them.",
   u:"https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"},
  {d:0,c:"s-red",kind:"Union press statement",t:"The workers' own list of demands",
   cite:"Gig and Platform Service Workers Union (GIPSWU). (2026, February 4). Nationwide protest led by women gig workers across the country. Countercurrents.",
   f:"The union reports protests on 3 February 2026 in Delhi, Jaipur, Bengaluru and Mumbai, among other places. Its demands include a separate, enforceable law for gig and platform workers, recognition as workers, social security, fair wages, transparent grievance redressal and an end to exploitative algorithmic practices.",
-  m:"This is the people in our story saying it themselves. It is an advocacy source and carries allegations with no company response, so we read it alongside the research.",
+  m:"Here the people in this story speak for themselves. It is an advocacy source, and its allegations come with no reply from the companies, so I read it next to the research and not on its own.",
   u:"https://countercurrents.org/2026/02/nationwide-protest-led-by-women-gig-workers-across-the-country/"},
- {d:1,c:"s-lime",kind:"Journal article",t:"The app is the boss, the boss is not an employer",
+ {d:1,c:"s-lime",kind:"Journal article",t:"The app is the boss, but not the employer",
   cite:"Rosenblat, A., & Stark, L. (2016). Algorithmic labor and information asymmetries: A case study of Uber's drivers. International Journal of Communication, 10, 3758–3784.",
-  f:"Studies Uber's drivers and shows how information asymmetries and platform design give the company control over their work, while drivers are treated as independent.",
-  m:"The report in our object says the same thing from the Indian side: the company holds the only meter.",
+  f:"The authors study Uber's drivers and show how unequal access to information and platform design hand the company control over their work, even though the drivers are treated as independent.",
+  m:"My main report says the same thing from the Indian side. The company holds the only meter.",
   u:"https://ijoc.org/index.php/ijoc/article/view/4892"},
  {d:1,c:"s-dark",kind:"Journal article",t:"Six ways an algorithm manages you",
   cite:"Kellogg, K. C., Valentine, M. A., & Christin, A. (2020). Algorithms at work: The new contested terrain of control. Academy of Management Annals, 14(1), 366–410.",
-  f:"Reviews research on workplace algorithms and shows how they are used to direct, evaluate and discipline workers: recommending, restricting, recording, rating, replacing and rewarding.",
-  m:"Management is happening in full. There is just no manager for the law to point at.",
+  f:"The authors review research on workplace algorithms and sort the ways they direct, evaluate and discipline workers into six: recommending, restricting, recording, rating, replacing and rewarding.",
+  m:"The managing is all happening. There is just no manager for the law to point at.",
   u:"https://par.nsf.gov/biblio/10195395"},
  {d:1,c:"s-red",kind:"Law review article",t:"Your pay, set just for you",
   cite:"Dubal, V. (2023). On algorithmic wage discrimination. Columbia Law Review, 123(7).",
-  f:"Describes algorithmic wage discrimination: pay set by data, worker by worker, in ways the worker cannot see or compare.",
-  m:"If you cannot see how your pay is set, you cannot argue that it is unfair.",
+  f:"Dubal describes what she calls algorithmic wage discrimination: pay set by data, worker by worker, in ways that workers cannot see or compare.",
+  m:"You can't argue that your pay is unfair if you can't see how it was worked out.",
   u:"https://columbialawreview.org/wp-content/uploads/2023/11/Dubal-On_Algorithmic_Wage_discrimination.pdf"},
  {d:2,c:"s-black",kind:"Journal article",t:"Free to choose your hours. Tired all the same.",
   cite:"Wood, A. J., Graham, M., Lehdonvirta, V., & Hjorth, I. (2019). Good gig, bad gig: Autonomy and algorithmic control in the global gig economy. Work, Employment and Society, 33(1), 56–75.",
-  f:"Based on 107 interviews in six countries and a survey of 679 workers in Southeast Asia and Sub-Saharan Africa. Workers reported flexibility and autonomy, and also low pay, isolation, irregular hours, overwork and exhaustion.",
-  m:"Flexibility is real. So is the price of it, and the price is paid in sleep.",
+  f:"The study rests on 107 interviews in six countries and a survey of 679 workers in Southeast Asia and Sub-Saharan Africa. Workers reported flexibility and autonomy, and also low pay, isolation, irregular hours, overwork and exhaustion.",
+  m:"Workers do get flexibility. They also pay for it, mostly in sleep.",
   u:"https://research.birmingham.ac.uk/en/publications/good-gig-bad-gig-autonomy-and-algorithmic-control-in-the-global-g/"},
  {d:2,c:"s-lime",kind:"Journal article",t:"Misclassification is a health hazard",
   cite:"Bajwa, U., Gastaldo, D., Di Ruggiero, E., & Knorr, L. (2018). The health of workers in the global gig economy. Globalization and Health, 14, 124.",
-  f:"A scoping review that groups gig workers' health risks into occupational hazards, precarity, and platform issues such as misclassification, information asymmetry and surveillance.",
-  m:"Being misclassified is not just a legal problem. It sits on the list of things that make workers ill.",
+  f:"This scoping review sorts gig workers' health risks into occupational hazards, precarity, and platform issues such as misclassification, unequal information and surveillance.",
+  m:"Misclassification sounds like a paperwork problem. This review lists it among the things that make workers ill.",
   u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6299501"},
  {d:2,c:"s-dark",kind:"NGO feature report",t:"Unpaid waiting is part of the shift",
   cite:"Simet, L., & Spehn, J. (2026, May 13). Algorithms of exploitation: Rights abuses in the gig economy and the global fight for change. Human Rights Watch.",
-  f:"Across countries, workers say waiting for orders can take 30 to 50 percent of their working hours, unpaid. Injured workers described no sick pay or injury compensation because platforms classify them as independent contractors. The report cites an estimated 12 million platform workers in India.",
-  m:"The same label produces the same missing safety net everywhere. India is one entry in a global pattern.",
+  f:"Workers across countries say waiting for orders can take up 30 to 50 percent of their working hours, unpaid. Injured workers described getting no sick pay or injury compensation because platforms classify them as independent contractors. The report cites an estimated 12 million platform workers in India.",
+  m:"The same label leaves the same hole in the safety net, country after country. India is one entry on a long list.",
   u:"https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"},
- {d:2,c:"s-red",kind:"Technical report (our object)",t:"Algorithmic anxiety has a name now",
+ {d:2,c:"s-red",kind:"Technical report (Object 01)",t:"Algorithmic anxiety has a name now",
   cite:"Sanjay, S., Chami, N., Mishra, S., & T., M. (2025). There's no ghost in the machine! A field study of platform workers' experiences of algorithmic management in India. NLSIU Centre for Labour Studies and IT for Change.",
-  f:"Interviews with 26 workers and five union organisers describe what the authors call machinic dispossession, through targets, ratings and surveillance, and a second finding they call algorithmic anxiety.",
-  m:"This is Object 01. It is where the legal gap and the mental toll meet.",
+  f:"The authors interviewed 26 workers and five union organisers. They describe what they call machinic dispossession (through targets, ratings and surveillance) and a second finding, algorithmic anxiety.",
+  m:"This is Object 01, the report the rest of the exhibit leans on. It is where the legal gap and the mental toll meet.",
   u:"https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf"},
  {d:3,c:"s-dark",kind:"Journal article",t:"Why drivers sign up anyway",
   cite:"Surie, A., & Koduganti, J. (2016). The emerging nature of work in platform economy companies in Bengaluru, India: The case of Uber and Ola cab drivers. E-Journal of International and Comparative Labour Studies.",
-  f:"Based on in-depth interviews with 45 Uber and Ola drivers in Bengaluru. It finds that platforms give drivers a stable, medium-term window to build earnings, which lets them take on the risks of flexible work with more confidence.",
-  m:"A fair point for the platforms. Workers join for sensible reasons. Our argument is about the missing floor under the good days.",
+  f:"The authors interviewed 45 Uber and Ola drivers in Bengaluru in depth. They found that platforms give drivers a stable, medium-term window to build their earnings, which lets drivers take on the risks of flexible work with more confidence.",
+  m:"That is a fair point for the platforms. Workers join for sensible reasons. My argument is about the missing floor under the good days.",
   u:"https://iihs.co.in/knowledge-gateway/?p=10989"}
 ];
 
 var VIDEOS = [
- {id:"xtd1aB-iLe0",t:"Zwigato (official trailer)",m:"Feature film \u00b7 Applause Entertainment, India",p:"A food delivery rider and the app that scores him. Nandita Das's film puts the algorithm in the room."},
- {id:"1RKb-Yk3_MI",t:"Anger against 10-minute delivery: gig workers strike across India",m:"News segment \u00b7 WION",p:"A news segment on the nationwide gig workers' strike over 10-minute delivery targets."},
- {id:"9uqUQdyiEBM",t:"Are 10-minute deliveries pushing workers to the edge?",m:"Discussion \u00b7 The Indian Express",p:"A discussion with Anish Gawande on delivery targets and the gig workers' strike."},
- {id:"y30Cqxx9AEY",t:"Gig workers vs quick commerce platforms",m:"News segment \u00b7 ET Now",p:"A business-news look at the strike by gig workers against quick commerce platforms."},
- {id:"rUS4ab_qEQo",t:"Delivery workers on a two-day strike: what do they demand?",m:"Hindi report \u00b7 The Lallantop",p:"A Hindi report on the strike by Zomato, Swiggy, Blinkit and Amazon delivery workers, and their demands."},
- {id:"donk6p2atYg",t:"Why did delivery workers strike? (Kharcha Pani)",m:"Hindi explainer \u00b7 The Lallantop",p:"A Hindi explainer on why delivery workers went on strike, from The Lallantop's Kharcha Pani show."}
+ {id:"xtd1aB-iLe0",t:"Zwigato (official trailer)",m:"Feature film \u00b7 Applause Entertainment, India",p:"A food delivery rider and the app that keeps score on him. Nandita Das's film puts the algorithm in the room."},
+ {id:"N_SOmrpIpgc",t:"Sanjay: emotional story of a food delivery boy",m:"Hindi short film \u00b7 Six Sigma Films",p:"A Hindi short film, about 20 minutes long, that follows a food delivery agent through an ordinary evening."},
+ {id:"-1-Aa-BnBNM",t:"Delivery Boy",m:"Hindi short film \u00b7 Baba Films",p:"A Hindi short film called Delivery Boy, from the Baba Films channel. I went by the title and have not vetted the rest."},
+ {id:"abc-aJqvcN8",t:"Delivery Boy",m:"Hindi short film \u00b7 Owl Films",p:"Same title, different film, from the Owl Films channel. Same caveat: I went by the title."},
+ {id:"umbPG9qAev4",t:"Shukriya Kare",m:"Music video \u00b7 Swiggy with Universal Music India, 2020",p:"A thank-you anthem for delivery partners, with rap by IKKA. The platform made it, so listen with a pinch of salt. My reading is that gratitude turned up faster than rights did."},
+ {id:"akadPh7tS9k",t:"The Gig Is Up (official trailer)",m:"Documentary trailer \u00b7 Gravitas Ventures",p:"Trailer for Shannon Walsh's 88-minute documentary, which follows gig workers around the world who work for platforms like Uber, Amazon and Deliveroo. I could not confirm that India features in it."},
+ {id:"ysjwg-MnZao",t:"Sorry We Missed You (official trailer)",m:"Feature film \u00b7 Ken Loach, UK",p:"A drama about a self-employed delivery driver in England. It is not Indian, but it is the nearest thing to Zwigato's story that I know of."},
+ {url:"https://restofworld.org/2024/gig-workers-rising-video-india/",lab:"Watch on Rest of World",t:"Gig Workers Rising: women at India's Urban Company fight for rights",m:"Mini documentary \u00b7 Rest of World, July 2024",p:"Women who work through the home-services app Urban Company talk about rating pressure, account blocks and how little legal recourse they have. Directed by Duy Linh Tu and Sebastian Tuinder. It plays on Rest of World's own site."}
 ];
 
 var POSTERS = [
@@ -590,8 +608,8 @@ document.getElementById("tickerTrack").innerHTML=tt+tt;
 (function(){
   var h='';
   var counts=[0,0,0,0]; DECK.forEach(function(s){counts[s.d]++});
-  h+='<article class="slide s-black" data-slide><div class="wrap"><div class="sinner rv"><span class="tape dir">Overview</span><h3>What the thirteen sources say</h3><p style="max-width:44ch;color:var(--mute)">Four lines of argument. Three of them back our claim. One pushes back, and we kept it. Journal articles sit next to think-tank briefs, a union statement and one opinion piece.</p></div><div class="bars rv" aria-label="Sources per line of argument">';
-  DIRS.forEach(function(n,i){h+='<div class="bar"><span>'+n.split(" ").slice(0,3).join(" ")+'</span><i style="--n:'+counts[i]+'"></i><b>'+counts[i]+'</b></div>'});
+  h+='<article class="slide s-black" data-slide><div class="wrap"><div class="sinner rv"><span class="tape dir">Overview</span><h3>What the thirteen sources say</h3><p style="max-width:44ch;color:var(--mute)">Four lines of argument: three back my claim, one pushes back. The sources range from journal articles to a think-tank brief, a union statement and one opinion piece.</p></div><div class="bars rv" aria-label="Sources per line of argument">';
+  DIRS.forEach(function(n,i){h+='<div class="bar"><span>'+DSH[i]+'</span><i style="--n:'+counts[i]+'"></i><b>'+counts[i]+'</b></div>'});
   h+='</div></div></article>';
   DECK.forEach(function(s,i){
     var n=String(i+1).padStart(2,"0")+"/"+String(DECK.length).padStart(2,"0");
@@ -603,6 +621,23 @@ document.getElementById("tickerTrack").innerHTML=tt+tt;
 })();
 
 /* ---- gallery ---- */
+var FEATURE={title:"Neither Employee Nor Free",src:IMG.hero,big:IMG.heroBig||IMG.hero,
+  alt:"A protest poster in red, black and lime. A crowd of faceless workers with placards stands under the headline Neither Employee Nor Free, beside a dashed empty outline where the employer should be. Six demands run along the bottom.",
+  cap:"A protest poster drawn for this exhibit. Original artwork, made in code."};
+(function(){
+  var f='<article class="feature rv"><button class="pbtn" data-lb="f" aria-label="Enlarge the poster: '+esc(FEATURE.title)+'"><img src="'+esc(FEATURE.src)+'" alt="'+esc(FEATURE.alt)+'"></button>'
+   +'<div class="fbody"><div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><span class="tape">Centrepiece</span><span class="stamp">Employer: none</span></div>'
+   +'<h2>Neither Employee Nor Free</h2>'
+   +'<p>This one belongs to the exhibit. It is a protest poster addressed to the government and to the platforms: a crowd of workers with no faces, one empty outline where an employer should stand, and six demands along the bottom.</p>'
+   +'<p>Everything in it was drawn in code, so there are no real people, no brand logos and no borrowed photographs. The figures are flat, screen-print style cut-outs that stand in for millions of people instead of portraying anyone.</p>'
+   +'<h3>What it asks for</h3>'
+   +'<ol class="demands"><li>Recognise us as workers</li><li>A separate, enforceable law</li><li>Social security for every worker</li><li>Fair wages</li><li>A real grievance process</li><li>An end to exploitative algorithms</li></ol>'
+   +'<p class="note" style="margin:0">These echo the demands the Gig and Platform Service Workers Union listed in February 2026. You can find them on the History page and in the evidence slides.</p>'
+   +(IMG.dl4k?'<div class="fdl"><a class="btn" href="'+esc(IMG.dl4k)+'" download>Download 4K (2560 × 3840)</a><a class="btn" href="'+esc(IMG.dl8k)+'" download>Download 8K (5120 × 7680)</a></div>':'')
+   +'<p class="pc mono" style="font-size:.74rem;color:var(--mute);line-height:1.5">Credit: original artwork for this exhibit, drawn in code. Click the poster to enlarge it.</p>'
+   +'</div></article>';
+  document.getElementById("featureWrap").innerHTML=f;
+})();
 (function(){
   var h='';
   POSTERS.forEach(function(p,i){
@@ -612,20 +647,22 @@ document.getElementById("tickerTrack").innerHTML=tt+tt;
   document.getElementById("posters").innerHTML=h;
   var v='';
   VIDEOS.forEach(function(x){
-    var media=EMBED
+    var media=x.url
+      ?'<a class="vlink" href="'+esc(x.url)+'" target="_blank" rel="noopener" aria-label="'+esc(x.lab+': '+x.t)+'"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#CC2310"/><path d="M26 19l20 13-20 13z" fill="#fff"/></svg><span>'+esc(x.lab)+' \u2197</span></a>'
+      :EMBED
       ?'<div class="vframe"><iframe src="https://www.youtube-nocookie.com/embed/'+x.id+'" title="'+esc(x.t)+'" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe></div>'
       :'<a class="vlink" href="https://www.youtube.com/watch?v='+x.id+'" target="_blank" rel="noopener" aria-label="Watch '+esc(x.t)+' on YouTube"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#CC2310"/><path d="M26 19l20 13-20 13z" fill="#fff"/></svg><span>Watch on YouTube ↗</span></a>';
-    v+='<div class="vid">'+media+'<h3>'+esc(x.t)+'</h3><div class="vm">'+esc(x.m)+'</div><p>'+esc(x.p)+'</p>'+(EMBED?'<a class="vfall" href="https://www.youtube.com/watch?v='+x.id+'" target="_blank" rel="noopener">Not playing? Watch on YouTube \u2197</a>':'')+'</div>';
+    v+='<div class="vid">'+media+'<h3>'+esc(x.t)+'</h3><div class="vm">'+esc(x.m)+'</div><p>'+esc(x.p)+'</p>'+(EMBED&&x.id?'<a class="vfall" href="https://www.youtube.com/watch?v='+x.id+'" target="_blank" rel="noopener">Not playing? Watch on YouTube \u2197</a>':'')+'</div>';
   });
   document.getElementById("videos").innerHTML=v;
-  document.getElementById("vnote").textContent=(EMBED?"Videos play on this page.":"Videos open on YouTube from this preview.")+" All six are uploaded by Indian publishers or channels. If one does not play for you, use the YouTube link under it, since availability is set by the uploader and can change.";
+  document.getElementById("vnote").textContent=(EMBED?"The YouTube videos play on this page.":"The YouTube videos open on YouTube from this preview.")+" No news clips, just films, short films, a music video and two documentaries. If one will not play where you are, use the link under it. Uploaders can change availability whenever they like.";
 })();
 
 /* ---- lightbox ---- */
 var lb=document.getElementById("lb");
-function openLb(i){var p=POSTERS[i];document.getElementById("lbImg").src=p.src;document.getElementById("lbImg").alt=p.alt;document.getElementById("lbCap").textContent=p.title+". "+p.cap;lb.hidden=false;document.body.style.overflow="hidden"}
+function openLb(i){var p=(i==="f")?FEATURE:POSTERS[i];document.getElementById("lbImg").src=p.big||p.src;document.getElementById("lbImg").alt=p.alt;document.getElementById("lbCap").textContent=p.title+". "+p.cap;lb.hidden=false;document.body.style.overflow="hidden"}
 function closeLb(){lb.hidden=true;document.body.style.overflow=""}
-document.addEventListener("click",function(e){var b=e.target.closest("[data-lb]");if(b){openLb(+b.getAttribute("data-lb"));return}if(e.target.closest("[data-lbclose]")||e.target===lb)closeLb()});
+document.addEventListener("click",function(e){var b=e.target.closest("[data-lb]");if(b){var k=b.getAttribute("data-lb");openLb(k==="f"?"f":+k);return}if(e.target.closest("[data-lbclose]")||e.target===lb)closeLb()});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!lb.hidden)closeLb()});
 
 /* ---- under-construction pages ---- */
@@ -643,18 +680,18 @@ PAGES.forEach(function(p){
 var ERAS=[
  {cls:"mill",when:"1918 to 1948",t:"The mill gate",lead:"Early labour law was built around factories and a boss you could point to.",stains:'<i class="s" style="width:420px;height:420px;right:-60px;top:-40px"></i><i class="b" style="width:300px;height:300px;left:-60px;bottom:40px;opacity:.4"></i>',items:[
   {y:"1918",h:"Mill workers say enough",p:"Textile workers in Ahmedabad struck for higher pay between February and March 1918. Mohandas Gandhi and Anasuya Sarabhai backed them, and an arbitrator settled on a 35 percent rise. The welfare work around that strike fed into the Textile Labour Association, set up in 1920.",seen:"Mill hands, inside a factory, with a clear employer.",miss:"Anyone working outside the mill gate.",src:["Global Nonviolent Action Database, Swarthmore College","https://nvdatabase.swarthmore.edu/content/ahmedabad-textile-laborers-win-strike-economic-justice-1918"],st:"s"},
-  {y:"1947 to 48",h:"Rules written for factories",p:"The Industrial Disputes Act of 1947 and the Factories Act of 1948 were built around factories and formal employers. If you could name your employer, you were in the picture. If you could not, you were not.",seen:"A \u201cworkman\u201d with an employer.",miss:"The self-employed and casual worker with no one to name.",src:["A critical analysis of the definition of workman under the Industrial Disputes Act, 1947 (JGU)","https://pure.jgu.edu.in/id/eprint/1575/"],st:"b"}
+  {y:"1947 to 48",h:"Rules written for factories",p:"The Industrial Disputes Act of 1947 and the Factories Act of 1948 were written with factories and formal employers in mind. Name your employer and you were in the picture. Couldn\u2019t? You were not.",seen:"A \u201cworkman\u201d with an employer.",miss:"The self-employed and casual worker with no one to name.",src:["A critical analysis of the definition of workman under the Industrial Disputes Act, 1947 (JGU)","https://pure.jgu.edu.in/id/eprint/1575/"],st:"b"}
  ]},
  {cls:"street",when:"1972 to 2008",t:"The street",lead:"Millions worked outside any factory. They carried, sold, stitched and hauled, and the law mostly looked past them.",stains:'<i class="d" style="width:100%;height:45%;left:0;bottom:0"></i><i class="s" style="width:380px;height:380px;right:-50px;top:10px"></i>',items:[
-  {y:"1972",h:"A union with no employer",p:"Ela Bhatt and the Textile Labour Association helped women headloaders and handcart-pullers in Ahmedabad's cloth market form SEWA. It was registered as a trade union on 12 April 1972. Officials objected that there was no employer. SEWA's answer was that a union exists to unite workers and does not need an employer to justify it.",seen:"Self-employed women, as a registered union.",miss:"The employer officials kept asking for.",src:["SEWA, our history","https://www.sewa.org/about-us/history/"],img:{k:"sewa",alt:"A group of SEWA women members sitting together on steps",cap:"SEWA members. Image supplied by the project author. Photographer and source to be added.",stamp:"Employer: none"},st:"s"},
+  {y:"1972",h:"A union with no employer",p:"Ela Bhatt and the Textile Labour Association helped women headloaders and handcart-pullers in Ahmedabad's cloth market form SEWA. It was registered as a trade union on 12 April 1972. Officials objected that there was no employer. SEWA replied that a union exists to bring workers together and needs no employer to justify it.",seen:"Self-employed women, as a registered union.",miss:"The employer officials kept asking for.",src:["SEWA, our history","https://www.sewa.org/about-us/history/"],img:{k:"sewa",alt:"A group of SEWA women members sitting together on steps",cap:"SEWA members. Image supplied by the project author. Photographer and source to be added.",stamp:"Employer: none"},st:"s"},
   {y:"2008",h:"A promise for the unorganised",p:"Parliament passed the Unorganised Workers' Social Security Act in 2008, promising welfare schemes for workers outside formal jobs. Economist Ajit Ranade later pointed out that the Arjun Sengupta Committee had found about 64 percent of unorganised workers were self-employed with no identifiable employer.",seen:"\u201cUnorganised worker\u201d, a category on paper.",miss:"An employer to hold responsible.",src:["Ranade, National Herald (2026)","https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"],st:"d"}
  ]},
  {cls:"app",when:"2010 to now",t:"The app",lead:"The boss became software. The job got tracked to the second, and the law took years to find a word for it.",stains:'<i class="b" style="width:380px;height:380px;right:-80px;top:30px;opacity:.4"></i><i class="s" style="width:360px;height:360px;left:-100px;bottom:60px"></i>',items:[
-  {y:"2010s",h:"The apps arrive",p:"From about 2010, apps like Ola, Uber and Swiggy begin operating in Indian cities. Researchers Aditi Surie and Jyothi Koduganti, who interviewed 45 Uber and Ola drivers in Bengaluru, found that drivers valued a stable, medium-term window to build their earnings. The apps called them partners. The labour law books had no word for them yet.",seen:"Customers, riders and cars on a map.",miss:"A status for the person at the wheel.",src:["Surie and Koduganti (2016), IIHS","https://iihs.co.in/knowledge-gateway/?p=10989"],st:"s"},
+  {y:"2010s",h:"The apps arrive",p:"From about 2010, apps like Ola, Uber and Swiggy started operating in Indian cities. Aditi Surie and Jyothi Koduganti interviewed 45 Uber and Ola drivers in Bengaluru and found that drivers valued a stable, medium-term window to build their earnings. The apps called them partners. Labour law had no word for them yet.",seen:"Customers, riders and cars on a map.",miss:"A status for the person at the wheel.",src:["Surie and Koduganti (2016), IIHS","https://iihs.co.in/knowledge-gateway/?p=10989"],st:"s"},
   {y:"2020",h:"The law says the words",p:"The Code on Social Security, 2020 recognises gig workers and platform workers as a category for the first time. Ajit Ranade argues it still falls short on minimum wages, working hours, collective bargaining and protection from arbitrary deactivation.",seen:"A named category.",miss:"The wage, hours and deactivation rules.",src:["Ranade, National Herald (2026)","https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"],st:"b"},
   {y:"2022",h:"Counting millions",p:"In June 2022, NITI Aayog estimated 77 lakh gig workers in 2020-21 and projected 2.35 crore by 2029-30. It recommended that platforms offer paid sick leave, accident insurance, pensions and income support.",seen:"A fast-growing headcount.",miss:"A duty to provide cover, rather than a recommendation.",src:["NITI Aayog policy brief (June 2022)","https://www.niti.gov.in/sites/default/files/2022-06/Policy_Brief_India%27s_Booming_Gig_and_Platform_Economy_27062022.pdf"],st:"s"},
   {y:"Nov 2022",h:"Kolkata asks for a living wage",p:"On 22 November 2022, food-delivery workers marched in Kolkata with hand-painted placards in English and Bengali, demanding a decent living wage. Human Rights Watch later published the photograph.",seen:"A delivery partner.",miss:"A wage floor.",src:["Human Rights Watch, Algorithms of Exploitation (2026)","https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"],img:{k:"p2",alt:"Delivery workers in orange shirts with placards reading Ensure decent living wage",cap:"\u00a9 2022 Sankhadeep Banerjee/NurPhoto via Reuters, as published by Human Rights Watch.",stamp:"Filed as: partner"},st:"b"},
-  {y:"2023",h:"Rajasthan goes first",p:"On 24 July 2023, Rajasthan's assembly passed a law to register platform gig workers and set up a welfare board and fund. The report we use as Object 01 notes that the law does not touch algorithmic decision making.",seen:"Registration and a welfare board.",miss:"A say over the algorithm.",src:["Drishti IAS summary","https://www.drishtiias.com/state-pcs-current-affairs/rajasthan-becomes-1st-state-to-pass-bill-for-welfare-of-online-platfor-based-gig-workers/print_manually"],st:"d"},
+  {y:"2023",h:"Rajasthan goes first",p:"On 24 July 2023, Rajasthan's assembly passed a law to register platform gig workers and set up a welfare board and fund. Object 01, the report behind this exhibit, points out that the law says nothing about algorithmic decision making.",seen:"Registration and a welfare board.",miss:"A say over the algorithm.",src:["Drishti IAS summary","https://www.drishtiias.com/state-pcs-current-affairs/rajasthan-becomes-1st-state-to-pass-bill-for-welfare-of-online-platfor-based-gig-workers/print_manually"],st:"d"},
   {y:"Feb 2025",h:"ID cards and health cover",p:"The Union Budget of 1 February 2025 announced identity cards, e-Shram registration and PM-JAY health cover for nearly one crore gig workers.",seen:"A card and a registry entry.",miss:"The details. They were promised for later.",src:["exchange4media, Budget 2025","https://www.exchange4media.com/announcements-news/budget-2025-gig-workers-to-get-identity-cards-140555.html"],st:"s"},
   {y:"May 2025",h:"Karnataka adds a cess and a board",p:"A Karnataka ordinance of 27 May 2025 let the state charge aggregators a welfare cess of 1 to 5 percent of each gig worker's payout, form a welfare board, and bar termination without 14 days' notice and written reasons. It later became an Act.",seen:"A cess, a board and notice before termination.",miss:"A right to challenge an algorithmic decision, says the report.",src:["Deccan Herald","https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fkarnataka-ordinance-promulgated-for-welfare-of-gig-workers-3559689"],st:"b"},
   {y:"Nov 2025",h:"The codes come into force",p:"The four labour codes, including the Code on Social Security, came into force nationally on 21 November 2025. An analysis from the Institute of South Asian Studies noted that benefit and contribution details depended on rules and boards still to be notified.",seen:"Gig workers named in a law now in force.",miss:"The details, still to be written at the time.",src:["Institute of South Asian Studies, Insights 773 (Dec 2025)","https://www.isas.nus.edu.sg/wp-content/uploads/2025/12/Insights-773HK.pdf"],st:"d"},
@@ -667,8 +704,8 @@ var ERAS=[
    +'<div class="wrap hh"><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center"><span class="tape">History</span><span class="stamp">Not on the list</span></div>'
    +'<svg class="ghostbg" style="right:6%;top:46px;width:min(26vw,250px)" aria-hidden="true"><use href="#ghost"/></svg>'
    +'<h1>A history of being left off the list</h1>'
-   +'<p>Gig work looks new. Being unseen by the law is not. For over a century, India\u2019s labour rules have been written around the worker with a boss to point at. This page follows that thread, from the mill gate to the app, using published sources.</p>'
-   +'<p class="mono" style="font-size:.76rem;color:var(--mute)">Tap or hover a black bar to read what was left out. Everything here is a secondary source, linked on each card.</p></div>';
+   +'<p>Gig work looks brand new. Being invisible to the law is not. For more than a century, India\u2019s labour rules were written for workers who had a boss to point at. This page follows that thread from the mill gate to the app, using published sources.</p>'
+   +'<p class="mono" style="font-size:.76rem;color:var(--mute)">Tap or hover over a black bar to read what was left out. Everything here is a secondary source, and each card links to it.</p></div>';
   ERAS.forEach(function(er){
     h+='<section class="era era-'+er.cls+'"><div class="dirt">'+er.stains+'</div><div class="wrap"><div class="era-h"><span class="when">'+er.when+'</span><h2>'+esc(er.t)+'</h2><p>'+esc(er.lead)+'</p></div><div class="thread">';
     er.items.forEach(function(it){
@@ -678,7 +715,7 @@ var ERAS=[
     });
     h+='</div></div></section>';
   });
-  h+='<section class="wrap hend"><span class="stamp" style="width:fit-content">Counted as: partner</span><h2>Named at last. Protected, still pending.</h2><p>\u201cThe law saw\u201d and \u201cLeft out\u201d are our reading of the sources on each card, not a quotation from them. The pattern across a hundred years is the exhibit\u2019s argument: protection followed the employer, and the gig worker is a worker whose employer is an app.</p><div class="cta"><button class="btn solid" data-nav="gallery">See the gallery</button><button class="btn" data-nav="home">Back to home</button></div></section></div>';
+  h+='<section class="wrap hend"><span class="stamp" style="width:fit-content">Counted as: partner</span><h2>Named at last. Protection still pending.</h2><p>\u201cThe law saw\u201d and \u201cLeft out\u201d are my own reading of each card\u2019s source, not quotes from it. Line up a hundred years of cards and the pattern is the argument of this exhibit: protection followed the employer, and a gig worker\u2019s employer is an app that says it isn\u2019t one.</p><div class="cta"><button class="btn solid" data-nav="gallery">See the gallery</button><button class="btn" data-nav="home">Back to home</button></div></section></div>';
   sec.innerHTML=h;
 })();
 
@@ -770,27 +807,34 @@ function drawWorker(cx,k,t,col,acc){
 }
 function flow(cv){
   if(!cv||!cv.getContext) return;
-  var cx=cv.getContext("2d"),W=0,H=0,G=56,ag=[],ws=[],raf=0,tick=0;
+  var cx=cv.getContext("2d"),W=0,H=0,G=56,ag=[],ws=[],raf=0,tick=0,L=[],roam=cv.classList.contains("roam");
   function size(){var r=cv.getBoundingClientRect(),d=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;if(W<2)return;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0);init()}
   function init(){
-    ag=[];var n=Math.max(5,Math.min(26,Math.round(W*H/48000)));
+    ag=[];var n=roam?0:Math.max(5,Math.min(26,Math.round(W*H/48000)));
     for(var i=0;i<n;i++){
       var gx=Math.floor(Math.random()*(W/G)),gy=Math.floor(Math.random()*(H/G));
       var a={x:gx*G,y:gy*G,dx:Math.random()<.5?1:0,dy:0,s:.5+Math.random()*1.1,tr:[],flag:Math.random()<.18,age:Math.random()*400};
       if(!a.dx)a.dy=1; if(Math.random()<.5){a.dx*=-1;a.dy*=-1}
       ag.push(a);
     }
-    ws=[];var lanes=Math.max(1,Math.floor(H/G)),m=Math.max(4,Math.min(12,Math.round(W*H/90000)));
-    for(var j=0;j<m;j++){ws.push({k:j%6,x:Math.random()*W,y:(1+Math.floor(Math.random()*lanes))*G-4,v:(.45+Math.random()*.9)*(Math.random()<.5?1:-1),ph:Math.random()*100})}
+    ws=[];L=[];
+    if(roam){for(var yy=90;yy<=H-50;yy+=52)L.push(yy)}else{var nl=Math.max(1,Math.floor(H/G));for(var l=1;l<=nl;l++)L.push(l*G-4)}
+    for(var q=L.length-1;q>0;q--){var r=Math.floor(Math.random()*(q+1)),tmp=L[q];L[q]=L[r];L[r]=tmp}
+    var m=roam?Math.max(5,Math.min(9,Math.round(W/170))):Math.max(4,Math.min(12,Math.round(W*H/90000)));
+    m=Math.min(m,L.length);
+    for(var j=0;j<m;j++){ws.push({k:j%6,x:Math.random()*W,y:L[j],v:(.45+Math.random()*.9)*(Math.random()<.5?1:-1),ph:Math.random()*100})}
   }
+  /* one worker per lane, lanes at least 52px apart: icons can never touch */
+  function freeLane(w){var c=L.filter(function(y){return !ws.some(function(o){return o!==w&&o.y===y})});return c.length?c[Math.floor(Math.random()*c.length)]:w.y}
   function draw(){
     if(W<2){size();if(W<2)return}
     var ink=css("--ink"),red=css("--red"),green=css("--green"),bg=css("--bg"),light=/^#[c-f]/i.test(bg),acc=light?css("--redf"):css("--yellow");
     cx.clearRect(0,0,W,H);
     cx.strokeStyle=ink;cx.globalAlpha=.1;cx.lineWidth=1;cx.beginPath();
-    for(var x=0;x<=W;x+=G){cx.moveTo(x+.5,0);cx.lineTo(x+.5,H)}
-    for(var y=0;y<=H;y+=G){cx.moveTo(0,y+.5);cx.lineTo(W,y+.5)}
-    cx.stroke();cx.globalAlpha=1;
+    if(!roam){for(var x=0;x<=W;x+=G){cx.moveTo(x+.5,0);cx.lineTo(x+.5,H)}
+    for(var y=0;y<=H;y+=G){cx.moveTo(0,y+.5);cx.lineTo(W,y+.5)}}
+    if(roam)cx.clearRect(0,0,W,H);else{cx.stroke();cx.globalAlpha=1;}
+    cx.globalAlpha=1;
     ag.forEach(function(a){
       a.tr.push([a.x,a.y]);if(a.tr.length>22)a.tr.shift();
       for(var i=1;i<a.tr.length;i++){cx.globalAlpha=i/a.tr.length*.7;cx.strokeStyle=red;cx.lineWidth=2;cx.beginPath();cx.moveTo(a.tr[i-1][0],a.tr[i-1][1]);cx.lineTo(a.tr[i][0],a.tr[i][1]);cx.stroke()}
@@ -811,7 +855,7 @@ function flow(cv){
       cx.save();cx.translate(w.x,w.y+bob);cx.scale(dir*1.35,1.35);drawWorker(cx,w.k,tt,ink,acc);cx.restore();
       /* ping dot above head */
       cx.fillStyle=red;cx.globalAlpha=.5+.5*Math.sin(tt*.12);cx.beginPath();cx.arc(w.x,w.y-22,2,0,6.283);cx.fill();cx.globalAlpha=1;
-      w.x+=w.v;if(w.v>0&&w.x>W+30)w.x=-30;if(w.v<0&&w.x<-30)w.x=W+30;
+      w.x+=w.v;if(w.v>0&&w.x>W+40){w.x=-40;if(roam)w.y=freeLane(w)}if(w.v<0&&w.x<-40){w.x=W+40;if(roam)w.y=freeLane(w)}
     });
   }
   function loop(){draw();raf=requestAnimationFrame(loop)}
@@ -822,6 +866,13 @@ function flow(cv){
   var rt;addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(size,150)});
 }
 document.querySelectorAll("canvas.flow,#map").forEach(flow);
+if(!reduce){var rc=document.createElement("canvas");rc.className="roam";rc.setAttribute("aria-hidden","true");document.body.appendChild(rc);flow(rc);
+  /* fade with scroll so text stays readable: bright at the top, faint while reading, fainter still while moving */
+  var st,sc=false;
+  function fade(){var y=scrollY,base=Math.max(.25,.85-y/700);rc.style.opacity=sc?Math.min(base,.14):base}
+  addEventListener("scroll",function(){sc=true;fade();clearTimeout(st);st=setTimeout(function(){sc=false;fade()},350)},{passive:true});
+  fade();
+}
 
 show((location.hash||"#home").slice(1),true);
 })();
