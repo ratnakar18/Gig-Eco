@@ -321,6 +321,139 @@ main,footer,.pstrip{position:relative;z-index:1}
 
 @media(max-width:560px){.bar{grid-template-columns:96px 1fr 22px;font-size:.7rem}.hero-in{padding-block:40px 28px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker div,.hazard{animation:none}.rv.in,.in .bar i{animation:none}}
+
+/* ---- Your Path + Gig Worker pages ---- */
+.pg{position:relative;overflow:hidden}
+.pg>*{position:relative;z-index:1}
+.pg>.dirt{position:absolute;z-index:0}
+.pg>canvas.flow{position:absolute;inset:0 0 auto 0;height:640px;z-index:0;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.pgh{padding-block:64px 34px;display:grid;gap:18px;position:relative}
+.pgh h1{font-size:clamp(3.1rem,11vw,8.2rem);line-height:.86;max-width:13ch}
+.pgh p{max-width:60ch;font-size:1.1rem}
+.updline{font-family:var(--f-mono);font-size:.76rem;color:var(--mute);max-width:70ch}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.jump a{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border:2px solid var(--ink);padding:6px 11px;background:var(--bg)}
+.jump a:hover{background:var(--ink);color:var(--bg)}
+.pgs{padding-block:46px 8px;border-top:2px solid var(--ink)}
+.pgs h2{font-size:clamp(2.2rem,6vw,4.2rem);max-width:17ch}
+.pgs .lead{max-width:60ch;color:var(--mute);margin-top:12px}
+.srcl{font-family:var(--f-mono);font-size:.7rem;color:var(--mute);line-height:1.65}
+.srcl a{color:var(--green-ink)}
+.pg .patch{max-width:none}
+
+/* role cards */
+.roles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-block:6px 34px}
+.role{position:relative;text-align:left;border:2px solid var(--ink);background:var(--cloth);color:var(--ink);padding:20px 20px 22px;cursor:pointer;display:grid;gap:10px;align-content:start;font:inherit;min-height:200px;transition:transform .15s,box-shadow .15s}
+.role:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--redf)}
+.role .seat{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:8px}
+.role b{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:clamp(1.9rem,4vw,2.6rem);line-height:.95}
+.role .sub{font-size:.96rem;line-height:1.45}
+.role .pick{margin-top:auto;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:underline;text-underline-offset:3px}
+.role[aria-pressed="true"]{background:var(--redf);border-color:var(--redf);color:var(--on-red)}
+.role[aria-pressed="true"] .seat{color:var(--on-red)}
+.role[aria-pressed="true"] .pick::after{content:" (showing)"}
+
+/* result panel */
+.rpanel{display:grid;gap:28px;margin-bottom:46px;animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
+.rpanel[hidden]{display:none}
+.rhead{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.rpanel>h2{font-size:clamp(2.2rem,6vw,4.4rem);max-width:19ch}
+.rcols{display:grid;gap:30px}
+@media(min-width:920px){.rcols{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:52px;align-items:start}}
+.blk h3{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:0 0 12px;font-weight:600;line-height:1.3}
+.blk>p{max-width:60ch;margin-bottom:13px}
+.blk .catch{border-left:6px solid var(--redf);padding-left:14px}
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:16px;counter-reset:t}
+.todo li{counter-increment:t;display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;align-items:baseline}
+.todo li::before{content:counter(t);font-family:var(--f-display);font-weight:900;font-size:2rem;line-height:1;color:var(--red)}
+.todo li p{max-width:58ch}
+.todo li .srcl{display:block;margin-top:4px}
+.rq{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.qc{display:grid;gap:12px;align-content:start}
+.qc .where{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green-ink)}
+.qc blockquote{margin:0;padding-left:14px;border-left:6px solid var(--redf);font-style:italic;font-size:1.04rem;line-height:1.5}
+.qc blockquote cite{display:block;font-style:normal;font-family:var(--f-mono);font-size:.7rem;color:var(--mute);margin-top:6px}
+.qc .take{font-size:.98rem}
+.qc .take b{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:2px}
+.gonext{display:flex;flex-wrap:wrap;gap:12px}
+
+/* three seats, one rule */
+.cmp{display:grid;gap:0;border:2px solid var(--ink);background:var(--cloth);margin-top:22px}
+.cmp>div{display:grid;gap:4px;padding:14px 16px;border-top:1px solid var(--line)}
+.cmp>div:first-child{border-top:0;background:var(--redf);color:var(--on-red)}
+.cmp b{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.cmp>div:first-child b,.cmp>div:first-child span{color:var(--on-red)}
+@media(min-width:820px){.cmp{grid-template-columns:repeat(3,1fr)}.cmp>div{border-top:0;border-left:1px solid var(--line)}.cmp>div:first-child{grid-column:1/-1;border-left:0}.cmp>div:nth-child(2){border-left:0}}
+
+/* ledger */
+.ledger{display:grid;gap:24px;margin-top:22px}
+@media(min-width:920px){.ledger{grid-template-columns:1fr 1fr;align-items:start}}
+.lcol{border:2px solid var(--ink);background:var(--cloth)}
+.lcol h3{font-size:1.9rem;padding:12px 16px;background:var(--green);color:var(--on-green)}
+.lcol.no h3{background:var(--redf);color:var(--on-red)}
+.lcol ul{list-style:none;margin:0;padding:0}
+.lcol li{padding:15px 16px;border-top:1px solid var(--line);display:grid;gap:5px}
+.lcol li b{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.4rem;line-height:1.02}
+.lcol li p{font-size:.96rem;max-width:56ch}
+.lcol .hint{font-family:var(--f-mono);font-size:.7rem;color:var(--mute);padding:10px 16px;border-top:1px solid var(--line)}
+
+/* states */
+.sbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.sbtn{font-family:var(--f-mono);font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;border:2px solid var(--ink);background:var(--bg);color:var(--ink);padding:9px 14px;cursor:pointer}
+.sbtn:hover{border-color:var(--green-ink)}
+.sbtn[aria-pressed="true"]{background:var(--redf);border-color:var(--redf);color:var(--on-red)}
+.scard{margin-top:18px;display:grid;gap:14px}
+.scard h3{font-size:clamp(1.8rem,4vw,2.8rem)}
+.scard .st2{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scard .law{font-family:var(--f-mono);font-size:.76rem;color:var(--mute);max-width:70ch}
+.scard ul{margin:0;padding-left:20px;display:grid;gap:7px;max-width:64ch}
+.scard .sm2{max-width:64ch}
+
+/* stats strip */
+.pgstats{margin-top:26px}
+.pgstats .stat b{font-size:2.3rem}
+
+/* organising timeline */
+.org{display:grid;gap:0;margin-top:22px;border:2px solid var(--ink);background:var(--cloth)}
+.org>div{display:grid;gap:5px;padding:16px 18px;border-top:1px solid var(--line)}
+.org>div:first-child{border-top:0}
+.org .when{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.7rem;line-height:1;color:var(--red)}
+.org p{max-width:70ch}
+@media(min-width:820px){.org>div{grid-template-columns:230px minmax(0,1fr);gap:22px;align-items:start}}
+.orgnote{margin-top:16px;font-size:1.02rem;max-width:62ch}
+
+/* checklist */
+.chk{display:grid;gap:0;margin-top:22px;border:2px solid var(--ink);background:var(--cloth)}
+.chk label{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:15px 16px;border-top:1px solid var(--line);cursor:pointer;align-items:start}
+.chk label:first-child{border-top:0}
+.chk input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--redf);cursor:pointer}
+.chk label:has(input:checked) b{text-decoration:line-through;text-decoration-thickness:2px;opacity:.7}
+.chk b{display:block;font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.35rem;line-height:1.05}
+.chk span.d{display:block;font-size:.95rem;max-width:62ch;margin-top:3px}
+.chkprog{display:flex;gap:14px;align-items:center;margin-top:14px;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.chkprog i{display:block;height:10px;flex:1;max-width:320px;background:var(--line);position:relative}
+.chkprog i::after{content:"";position:absolute;inset:0;width:var(--p,0%);background:var(--green);transition:width .3s}
+
+/* help + sources */
+.helpbox{margin-top:26px;border:2px solid var(--ink);background:var(--bg2);padding:18px 20px;display:grid;gap:8px;max-width:760px}
+.helpbox h3{font-size:1.7rem}
+.helpbox p{max-width:60ch}
+.srcgrid{display:grid;gap:22px;margin-top:18px}
+@media(min-width:860px){.srcgrid{grid-template-columns:1fr 1fr;gap:40px}}
+.srcgrid h3{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;font-weight:600;line-height:1.3}
+.srcgrid ul{margin:0;padding-left:18px;display:grid;gap:7px;font-size:.88rem;line-height:1.5}
+.srcgrid a{color:var(--green-ink)}
+.pgend{padding-block:44px 76px;display:grid;gap:16px;border-top:2px solid var(--ink)}
+.pgend h2{font-size:clamp(2.1rem,6vw,3.8rem);max-width:17ch}
+.pgend p{max-width:58ch;color:var(--mute)}
+@media(prefers-reduced-motion:reduce){.rpanel{animation:none}.role:hover{transform:none}}
+
+.scols{display:grid;gap:22px}
+@media(min-width:920px){.scols{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:44px;align-items:start}}
+.scr{display:grid;gap:12px;align-content:start}
+.scard .sm2{max-width:none}
+
+.pgs,#gw-sources>.pgs{scroll-margin-top:calc(var(--hh,64px) + 8px)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -480,15 +613,13 @@ var IMG = {p1:"assets/posters/poster-1.jpg",p2:"assets/posters/poster-2.jpg",p3:
 var PAGES = [
   {id:"home", label:"Home", note:"Live", live:1},
   {id:"history", label:"History", note:"Live", live:1},
-  {id:"your-path", label:"Your Path", note:"Under construction"},
-  {id:"gig-worker", label:"Gig Worker", note:"Under construction"},
+  {id:"your-path", label:"Your Path", note:"Live", live:1},
+  {id:"gig-worker", label:"Gig Worker", note:"Live", live:1},
   {id:"mental-health", label:"Mental Health", note:"Under construction"},
   {id:"gallery", label:"Gallery", note:"Updated 8 Oct 2026", live:1},
   {id:"resources", label:"Resources", note:"Under construction"}
 ];
 var UC = {
-  "your-path":"Say who you are, and I'll show you where to start.",
-  "gig-worker":"What gig workers are owed, minus the legalese.",
   "mental-health":"What it does to your head when an algorithm is your manager.",
   "resources":"Free places to read, learn and get help, each one checked before it goes up."
 };
@@ -882,6 +1013,276 @@ function flow(cv){
   }
   var rt;addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(size,150)});
 }
+/* ---- Your Path + Gig Worker ---- */
+function T(s){return esc(s).replace(/&lt;&lt;/g,"“").replace(/>>/g,"”").replace(/'/g,"’")}
+var PS={
+ dissent:["Dubal, Digital Piecework, Dissent (2020)","https://dissentmagazine.org/article/digital-piecework/"],
+ c4e:["Dubal, The Time Politics of Home-Based Digital Piecework (2020)","https://repository.uclawsf.edu/faculty_scholarship/1818"],
+ woodcock:["Woodcock, The algorithmic panopticon at Deliveroo (2020)","https://core.ac.uk/download/424570995.pdf"],
+ borghi:["Borghi and Murgia, Struggling for alternative social imaginaries (2022)","https://doi.org/10.3240/104669"],
+ fw:["Fairwork India Ratings 2024","https://fair.work/india"],
+ impri:["IMPRI on the Social Security (Central) Rules, 2026","https://www.impriindia.com/insights/policy-update/welfare-governance-for-gig-workers-under-the-social-security-central-rules-2026/"],
+ l500:["Legal500 on the Social Security (Central) Rules, 2026","https://www.legal500.com/intelligence/india/employment-and-hr/notified-social-security-code-(central)-rules-2026-what-employers-need-to-know"],
+ k4c:["key4comply on the 90 and 120 day thresholds","https://www.key4comply.com/blogposts/the-algorithmic-punch-card-tracking-the-90-120-day-gig-worker-thresholds-under-indias-new-social-security-framework"],
+ livelaw:["LiveLaw on the Karnataka High Court interim order (3 July 2026)","https://www.livelaw.in/high-court/karnataka-high-court/karnataka-high-court-interim-order-challenge-platform-gig-workers-act-539865"],
+ ksk:["Khaitan and Co (KS&K) on the Telangana Act, 2026","https://ksandk.com/newsletter/telangana-legislative-assembly-passed-telangana-platform-based-gig-workers-registration-social-security-and-welfare-act-2026-passed-on-march-29-2026/"],
+ dc:["Deccan Chronicle on the Telangana Assembly vote","https://www.deccanchronicle.com/southern-states/telangana/telangana-assembly-passes-bill-for-welfare-social-security-of-gig-workers-1947300"],
+ dh:["Deccan Herald on the Karnataka ordinance","https://www.deccanherald.com/amp/story/india%2Fkarnataka%2Fkarnataka-ordinance-promulgated-for-welfare-of-gig-workers-3559689"],
+ ranade:["Ranade, National Herald (2026)","https://www.nationalheraldindia.com/opinion/the-lives-of-indias-employer-less-gig-workers"],
+ drishti:["Drishti IAS on the Rajasthan Act","https://www.drishtiias.com/state-pcs-current-affairs/rajasthan-becomes-1st-state-to-pass-bill-for-welfare-of-online-platfor-based-gig-workers/print_manually"],
+ exch:["exchange4media on Budget 2025","https://www.exchange4media.com/announcements-news/budget-2025-gig-workers-to-get-identity-cards-140555.html"],
+ mnama:["MediaNama on the Jharkhand bill (Sept 2025)","https://www.medianama.com/2025/09/223-iamai-provisions-jharkhand-gig-workers-bill/"],
+ cc:["Countercurrents, by GIPSWU (4 Feb 2026)","https://countercurrents.org/2026/02/nationwide-protest-led-by-women-gig-workers-across-the-country/"],
+ tm:["Tele-MANAS, Government of India","https://telemanas.mohfw.gov.in/"]
+};
+function PL(k){var s=PS[k];return '<a href="'+esc(s[1])+'" target="_blank" rel="noopener">'+T(s[0])+'</a>'}
+function PSRC(ks){return '<span class="srcl">Source: '+ks.map(PL).join('; ')+'</span>'}
+function pgDirt(a){return '<div class="dirt"><i class="'+a[0]+'" style="'+a[1]+'"></i><i class="'+a[2]+'" style="'+a[3]+'"></i></div>'}
+function pgHead(tag,stamp,h1,ps,upd,jumps){
+  var j=jumps?'<div class="jump">'+jumps.map(function(x){return '<a href="#'+x[2]+'" data-scroll="'+x[0]+'">'+T(x[1])+'</a>'}).join('')+'</div>':'';
+  return '<div class="wrap pgh"><div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center"><span class="tape">'+T(tag)+'</span><span class="stamp">'+T(stamp)+'</span></div>'
+   +'<svg class="ghostbg" style="right:6%;top:46px;width:min(24vw,230px)" aria-hidden="true"><use href="#ghost"/></svg>'
+   +'<h1>'+T(h1)+'</h1>'+ps.map(function(p){return '<p>'+T(p)+'</p>'}).join('')
+   +'<p class="updline">'+T(upd)+'</p>'+j+'</div>';
+}
+function srcGrid(){
+  var A=["dissent","c4e","woodcock","borghi"], B=["impri","l500","k4c","livelaw","ksk","dc","mnama","dh","drishti","ranade","exch","cc","fw"];
+  return '<section class="wrap pgs" style="padding-bottom:40px"><h2>Sources</h2><p class="lead">Every claim on this page traces back to something here. Where a line says <<one analysis>>, that is because I could only find one.</p>'
+   +'<div class="srcgrid"><div><h3>Research I read in full</h3><ul>'+A.map(function(k){return '<li>'+PL(k)+'</li>'}).join('')+'</ul></div>'
+   +'<div><h3>Law, policy and reporting</h3><ul>'+B.map(function(k){return '<li>'+PL(k)+'</li>'}).join('')+'</ul></div></div></section>';
+}
+
+/* Your Path page */
+var ROLES={
+ worker:{seat:"Seat 1",t:"I do gig work",sub:"Rider, driver, home-service partner, or anyone whose boss is an app. Start here if the rating, the block or the pay-out is your daily weather.",
+  h:"Start with your head and your paper trail.",
+  intro:"You already know most of this from the inside. What the research adds is that what you feel is a pattern, not a personal failing. A driver in California said it. A rider in London said it. Rider activists in Milan said it too. So here's what's worth doing with that.",
+  todo:[
+   ["Get on e-Shram, and check you're still live there.","It's free. You need Aadhaar, and you get a Universal Account Number and a digital card. Since the Social Security (Central) Rules, 2026 came in, platforms are supposed to upload their workers to the portal and keep joinings and exits updated. One analysis warns that a worker whose details go stale can lose eligibility. So log in and look.",["impri","l500"]],
+   ["Keep your own record.","Screenshot each day's earnings, your hours on the app, and any message about a penalty, a rating or a block. In Woodcock's study, riders got emails showing how far they were from an average, never the real numbers. And under the new rules a day counts toward benefits only if you earned that day: 90 days with one platform, or 120 across several. Your log is the one record the platform didn't write.",["woodcock","k4c"]],
+   ["Learn your state's deactivation rule.","Telangana's Act, passed in March 2026, asks for valid written reasons and seven days' notice before a worker is terminated, and sets up a grievance officer who has to decide within 30 days. Karnataka's law also asks for notice and reasons. If you're in neither state, you mostly have the platform's own appeal channel, so use it and keep the receipts. The state details are on the Gig Worker page.",["ksk","dh"]],
+   ["Find your people before you need them.","Dubal's drivers kept a group text to warn each other about false surges. Woodcock's riders met at waiting zones and ended up in WhatsApp groups, and a few days of logging out in 2016 made Deliveroo back off a pay change. In Italy, rider groups pulled off a national strike across more than twenty cities on 30 October 2020. None of it needed the platform's permission.",["dissent","woodcock","borghi"]]
+  ],
+  catch:"None of this fixes the pay. Fairwork India scored 11 platforms in 2024. Only two earned the first Fair Pay point, a minimum wage after costs. Nobody earned the second.",catchSrc:["fw"],
+  q:[
+   {w:"California, interviews with ride-hail drivers",q:"No matter how many hours I work, I don't make what they make. I don't know what I am doing wrong.",c:"Adil, Uber driver, in Dubal (2020)",tk:"Dubal's point is that when the pay doesn't add up, the app makes it feel like a personal failure. It isn't one. The price per piece is set by a system the driver can't see."},
+   {w:"London, riders for Deliveroo",q:"obscurity is part of the motivating thing, like if you don't really know then you just have to keep going faster.",c:"Fred, Deliveroo rider, in Woodcock (2020)",tk:"If nobody tells you the target, you can never be done. That part wears people down, and it's the part a rule could fix."}
+  ]},
+ platform:{seat:"Seat 2",t:"I work at a platform",sub:"Product, ops, policy or founder. The algorithm is partly yours, so some of this is yours to fix.",
+  h:"You built it, so you can also change it.",
+  intro:"I'm not going to pretend every platform is a villain. Fairwork India found that some have done real things, and I've counted those below. This seat is narrow on purpose. It's about the parts of the system workers say hurt the most, which are the parts they can't see.",
+  todo:[
+   ["Tell workers the target.","A rider in Woodcock's study said the platform never told him the average he was measured against, only whether he was achieving. His reading was that the obscurity is part of what keeps people moving faster. Publish the metric, the threshold and what it's used for. If a number can get someone blocked, they should be able to read it.",["woodcock"]],
+   ["Put a human at the end of every deactivation.","This isn't exotic. In Fairwork India 2024, seven of the 11 platforms earned the first Fair Management point for due process and real appeal channels, including a human in several regional languages for workers who've been deactivated. Four of them also had regular external audits of their allocation systems for bias. Woodcock found London riders at the time had no way to dispute a deactivation at all.",["fw","woodcock"]],
+   ["Show how you set prices and incentives.","Five platforms in the Fairwork sample earned the second Fair Contracts point, which includes naming the variables behind dynamic pricing and giving notice before changing terms. Dubal's drivers tell the opposite story: surges that weren't there, rewards that seemed to land just as they headed home. You don't have to publish the code. You do have to be able to say what the rules are.",["fw","dissent"]],
+   ["Plan for the paperwork. It's already law.","The new rules make you register workers and report joinings and exits in real time or daily. The Fund contribution is 1 to 2 percent of annual turnover, capped at 5 percent of what you pay gig workers, though the rate and start date weren't notified when I checked. In Karnataka the welfare fee is live and platforms are in court over it. Whichever way that goes, record-keeping is now a legal duty.",["impri","livelaw"]]
+  ],
+  catch:"The widest gap in the Fairwork sample is representation. None of the 11 platforms earned even the first point, which needs a written willingness to recognise or negotiate with an independent body of workers. That's where there's the most room.",catchSrc:["fw"],
+  q:[
+   {w:"Italy, a recruitment banner and a ranking system",q:"You will receive delivery proposals, but it is always up to you to decide which to accept and which not to accept",c:"Deliveroo Italy website, quoted in Borghi and Murgia (2022)",tk:"The authors note the ranking system required riders to accept orders as fast as possible, and to take as many as possible, to keep getting work. A promise of choice and a rule that punishes using it can't both be true."},
+   {w:"London, riders for Deliveroo",q:"it's the algorithm that's the boss",c:"Mumit, Deliveroo rider, in Woodcock (2020)",tk:"If workers say the algorithm is the boss, then it needs a boss's accountability. That's the thread behind every appeal and transparency ask on this page."}
+  ]},
+ state:{seat:"Seat 3",t:"I make or enforce rules",sub:"Official, legislator, board member, union leader or policy researcher. Start here for what the laws leave out.",
+  h:"A rule only works if someone enforces it.",
+  intro:"India now has a central code and at least three states with laws of their own, all moving at different speeds. The research is pretty consistent about what laws like these leave out. It's not usually registration.",
+  todo:[
+   ["Close the gap between the label and the control.","In a union survey of 158 London couriers, 87.1 percent said <<self-employed>> didn't describe their work, and 92 percent felt it got them treated unfairly compared with an employee. Italy tried another route. Its 2019 food-delivery law pushed platforms to sign agreements with the most representative unions. When the platforms' association signed one with a friendly union that kept piecework, the Labour Ministry objected and the Court of Bologna declared it illegal in July 2021. A law with a loophole gets used.",["woodcock","borghi"]],
+   ["Write the algorithm into the law, not just the wage.","Ranade argues the Code still falls short on protection from arbitrary deactivation. Object 01, the report behind this exhibit, points out that Rajasthan's law says nothing about algorithmic decision-making, and that Karnataka's gives no right to challenge one. Telangana's Act goes further on process, with a grievance officer, a 30-day clock and an internal dispute committee for larger platforms, though the summaries I found don't spell out what its algorithmic transparency duty requires.",["ranade","drishti","ksk"]],
+   ["Notify the missing pieces.","One policy analysis found that by mid-2026 no gig-worker scheme had been notified under Section 114, and the contribution rate and start date were still pending. That means a registered worker has a card and, for now, no claim to make. It also said it wasn't publicly visible whether the National Social Security Board had met. That's the cheapest fix on this list, and I'd start there.",["impri"]],
+   ["Make room for a collective voice.","Fairwork India found that, despite many protests and strikes, platforms refuse to formally recognise or negotiate with worker collectives. Borghi and Murgia found unions, grassroots groups and cooperatives each pushing a different idea of what platform work should be, and only sometimes working together. I think a body that includes all of them, with a legal duty to be heard, would answer more than one of these problems at once.",["fw","borghi"]]
+  ],
+  catch:"The central code and the state laws now overlap. One analysis says how central contributions and state levies like Karnataka's fit together is unresolved, and Karnataka's Act is being challenged in the High Court. On 3 July 2026 the court refused to stay it and told platforms to deposit the fee with the registry.",catchSrc:["impri","livelaw"],
+  q:[
+   {w:"Italy, 42 interviews and fieldwork in Milan",q:"alternative scenarios are always possible, even when power relations are totally unbalanced",c:"Borghi and Murgia (2022), conclusion",tk:"They also admit the power balance between platforms and worker groups stays lopsided, and that the platforms found a way around the law once. Both halves are true."},
+   {w:"London, a finding about Deliveroo riders",q:"there is no way to dispute a deactivation or challenge the data that has been collected.",c:"Woodcock (2020)",tk:"Written about London riders, but it's the exact problem the grievance routes in Karnataka and Telangana are trying to solve."}
+  ]},
+ curious:{seat:"Seat 4",t:"I'm just trying to understand",sub:"Student, journalist, customer. You order, you ride, and you've started wondering what's on the other end.",
+  h:"You don't have to be inside this to care.",
+  intro:"If you've ordered dinner or booked a cab this week, you're a customer of this system. Here's the short version, and a few small things you can do about it. Some of the suggestions are mine, and I mark those.",
+  todo:[
+   ["Read one slide, not all thirteen.","The research deck on the Home page covers 13 sources. Start with the first slide, which is about the label that strips workers of their protections. The rest makes more sense after that.",[]],
+   ["Rate fairly. This one's my suggestion.","In the research, ratings aren't a polite gesture. A rider organiser in Milan described a rating system that <<determines every single action>> riders take. So don't mark a worker down for things they don't control, like a slow kitchen or traffic.",["borghi"]],
+   ["Look at the scores.","Fairwork India rates platforms out of 10 on pay, conditions, contracts, management and representation. In 2024 it scored 11 of them. It's one independent yardstick you can check before you pick a service.",["fw"]],
+   ["Remember it isn't one story.","Woodcock's riders also valued the freedom of working outside a formal workplace. His catch is that the freedom is partly an illusion, because there was no way to dispute a deactivation. Both are true, which is why the argument isn't simply <<ban the apps>>.",["woodcock"]]
+  ],
+  catch:"I did no fieldwork for this exhibit. Everything here comes from published studies and law, and I link each one. That's a limit, so check the sources before you quote me.",catchSrc:[],
+  q:[
+   {w:"Los Angeles, interviews with ride-hail drivers",q:"When I hear the sound of a ride request, it's like winning the jackpot.",c:"John, ride-hail driver, in Dubal (2020)",tk:"Dubal's argument is that these apps borrow from gambling design. Pings that sound like a win, rewards that arrive at random. That's a design choice, not an accident of technology."},
+   {w:"London, riders for Deliveroo",q:"I feel alone with the company, you feel like you are a self-employed because you don't have bosses but at the same time Deliveroo is your boss",c:"Alejandro, Deliveroo rider, in Woodcock (2020)",tk:"The customer sees a person on a bike. He sees a boss that never shows up. That's what <<no employer to name>> feels like from the inside."}
+  ]}
+};
+var ROLE_ORDER=["worker","platform","state","curious"];
+
+(function(){
+  var sec=document.querySelector('[data-page="your-path"]'); if(!sec) return;
+  var h='<div class="pg"><canvas class="flow" aria-hidden="true"></canvas>'
+   +pgDirt(["b","width:560px;height:560px;right:-160px;top:-120px;transform:rotate(25deg);opacity:.4","s","width:460px;height:460px;left:-140px;top:60px"])
+   +pgHead("Your Path","Pick a seat","Where do you start?",
+     ["I don't know who you are. You probably don't want to read everything either. So pick the seat you sit in, and the page rebuilds around it.","Every card says where it came from. Some of it is law, some is research from other countries, and I say which is which."],
+     "Legal details checked in November 2026. Gig law is moving fast and I'm a student, not a lawyer, so treat this as a map and not as advice.",null)
+   +'<div class="wrap"><div class="roles" role="group" aria-label="Pick your seat">';
+  ROLE_ORDER.forEach(function(k){var r=ROLES[k];
+    h+='<button type="button" class="role" data-role="'+k+'" aria-pressed="false" aria-controls="rpanel"><span class="seat">'+T(r.seat)+'</span><b>'+T(r.t)+'</b><span class="sub">'+T(r.sub)+'</span><span class="pick">Show me</span></button>';
+  });
+  h+='</div><p class="note" id="rhint" style="margin-top:-14px;margin-bottom:34px">Nothing picked yet. Take any seat, and swap whenever you like.</p>'
+   +'<div class="rpanel" id="rpanel" hidden aria-live="polite"></div></div>'
+   +'<section class="wrap pgs" id="onerule"><h2>One rule, three seats</h2><p class="lead">Read enough of this and the same ask keeps coming back, from drivers, riders, auditors and organisers. Seven of the 11 platforms Fairwork scored already do the appeal part. So I don\u2019t think it\u2019s a lot to ask.</p>'
+   +'<div class="cmp"><div><b>The rule</b><span>No decision about a worker’s pay or account without a reason they can read and a person they can appeal to.</span></div>'
+   +'<div><b>Worker</b><span>Ask for the reason in writing. Keep your own record. Use the appeal channel, even when it’s slow.</span></div>'
+   +'<div><b>Platform</b><span>Publish the metric. Put a human at the end of the appeal. Explain how pricing and incentives work.</span></div>'
+   +'<div><b>Rule-maker</b><span>Write algorithmic decisions into the law, notify the missing rules, and enforce them.</span></div></div>'
+   +'<div class="patch" style="margin-top:34px;max-width:760px"><i class="st d"></i><div class="ptxt"><h3>What this page is, and isn’t</h3>'
+   +'<p>'+T("I haven't interviewed anyone. This page pulls together three published studies (I read one of them in two versions) and a pile of law and policy reporting. All three studies come from outside India: the US, London and Milan. I lean on them because the mechanisms are the ones Indian platforms use too, which are pay by the piece, scores you can't see into, and an account that can vanish. The India evidence is the Fairwork India 2024 report and the law itself.")+'</p>'
+   +'<p>'+T("The suggestions for each seat are my reading of those sources. They are not legal advice.")+'</p></div></div></section>'
+   +srcGrid()
+   +'<section class="wrap pgend"><span class="stamp" style="width:fit-content">Next</span><h2>Now see what the law says you’re owed.</h2><p>The Gig Worker page lays out the rights on paper, state by state, and what’s still missing.</p><div class="cta"><button class="btn solid" data-nav="gig-worker">Gig Worker page</button><button class="btn" data-nav="history">Read the history</button></div></section></div>';
+  sec.innerHTML=h;
+
+  var panel=sec.querySelector("#rpanel"), hint=sec.querySelector("#rhint");
+  function render(k){
+    var r=ROLES[k];
+    var todo=r.todo.map(function(x){return '<li><div><p><b>'+T(x[0])+'</b> '+T(x[1])+'</p>'+(x[2].length?PSRC(x[2]):'')+'</div></li>'}).join('');
+    var qs=r.q.map(function(x){return '<div class="patch qc" style="padding:20px"><i class="st s"></i><span class="where">'+T(x.w)+'</span><blockquote>“'+T(x.q)+'”<cite>'+T(x.c)+'</cite></blockquote><p class="take"><b>My reading</b>'+T(x.tk)+'</p></div>'}).join('');
+    panel.innerHTML='<div class="rhead"><span class="tape">'+T(r.seat)+': '+T(r.t)+'</span></div><h2>'+T(r.h)+'</h2>'
+     +'<div class="rcols"><div class="blk"><h3>Do these first</h3><p>'+T(r.intro)+'</p><ol class="todo" style="margin-top:18px">'+todo+'</ol></div>'
+     +'<div class="blk"><h3>What the research found</h3><div class="rq">'+qs+'</div>'
+     +'<div class="blk" style="margin-top:26px"><h3>The catch</h3><p class="catch">'+T(r.catch)+'</p>'+(r.catchSrc.length?PSRC(r.catchSrc):'')+'</div></div></div>'
+     +'<div class="gonext"><button class="btn solid" data-nav="gig-worker">What you’re owed</button><button class="btn" data-nav="home">Back to the research</button></div>';
+  }
+  sec.querySelector(".roles").addEventListener("click",function(e){
+    var b=e.target.closest(".role"); if(!b) return;
+    var k=b.getAttribute("data-role");
+    [].forEach.call(sec.querySelectorAll(".role"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+    render(k); panel.hidden=false; hint.hidden=true;
+    panel.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+  });
+})();
+
+/* Gig Worker page */
+var OWED_YES=[
+ ["A name in law","The Code on Social Security, 2020 recognises <<gig worker>> and <<platform worker>> as categories. The four labour codes, this one included, came into force on 21 November 2025.",["impri"]],
+ ["A way in","Anyone 16 or older can self-register on e-Shram with Aadhaar and get a Universal Account Number and a digital card. Platforms must also upload and update their workers on the government portal, under the Social Security (Central) Rules, 2026, notified on 8 May 2026.",["impri","l500"]],
+ ["A path to benefits","To be eligible you need 90 days with one platform, or 120 days across several, in the previous financial year. Any day you earned counts, and the days don't have to be back to back. You earn eligibility again every year.",["impri","k4c"]],
+ ["A paying party, in principle","Platforms owe the Social Security Fund 1 to 2 percent of annual turnover, capped at 5 percent of what they pay gig and platform workers (Section 114(4)).",["impri"]],
+ ["A state law, if you live in one","Rajasthan (2023), Karnataka (2025) and Telangana (2026) have passed Acts of their own. The next section has the details.",[]]
+];
+var OWED_NO=[
+ ["A wage floor","Ranade argues the Code still falls short on minimum wages and working hours. Fairwork India 2024 found only two of 11 platforms had a policy to pay at least the local minimum wage after costs, and none a living wage.",["ranade","fw"]],
+ ["A scheme to claim from","One policy analysis says that by mid-2026 no gig-worker scheme had been notified under Section 114, and the contribution rate and start date were pending. So a registered worker has a card and, for now, no claim.",["impri"]],
+ ["A say over the algorithm","Ranade says protection from arbitrary deactivation is missing. Object 01, the report behind this exhibit, notes that Rajasthan's law is silent on algorithmic decision-making.",["ranade","drishti"]],
+ ["A union the platform has to talk to","In Fairwork India 2024, not one of the 11 platforms showed a written willingness to recognise or negotiate with an independent body of workers.",["fw"]],
+ ["A national complaint route","The same policy analysis found the central Rules don't describe a grievance mechanism for gig workers. Karnataka's and Telangana's Acts do.",["impri"]]
+];
+var STATES=[
+ {k:"ka",n:"Karnataka",law:"Karnataka Platform-Based Gig Workers (Social Security and Welfare) Act, 2025",st:"In force, and in court",
+  pts:["It began as an ordinance on 27 May 2025 and later became an Act.","Platforms pay a welfare fee on each transaction into a welfare fund. One report puts it at 1 percent per ride, with per-ride caps. Check the notification before you rely on the figure.","It asks for notice and written reasons before a worker is terminated.","There's an internal grievance committee, with an appeal to the Board.","IAMAI and several platforms challenged it in the Karnataka High Court. On 3 July 2026 the court refused to stay the Act, told platforms to deposit the fee with the court registry within three weeks, and said no coercive steps would be taken against them. It was listed again for 14 August."],
+  seen:"A fee, a board and a grievance route.",miss:"A right to challenge an algorithmic decision, says Object 01. And the final word now sits with the court.",src:["dh","livelaw","impri"]},
+ {k:"tg",n:"Telangana",law:"Telangana Platform Based Gig Workers (Registration, Social Security and Welfare) Act, 2026",st:"Passed 29 March 2026. Start date unconfirmed",
+  pts:["Platforms register with a state welfare board and pay a transaction-based welfare fee on payouts.","Termination needs valid written reasons and seven days' notice (Section 14).","A grievance officer has to decide within 30 days, and you can appeal within 90 days (Section 22).","Platforms with 100 or more workers need an internal dispute committee that settles complaints within 30 days (Section 24).","Fines start at Rs 50,000 for a first breach.","Reports in mid-2026 said the guidelines were still being finalised. I couldn't confirm the Act has actually started, so check before you rely on it."],
+  seen:"The most worked-out complaint process of the three.",miss:"The sources I found don't spell out what algorithmic transparency means in practice.",src:["ksk","dc"]},
+ {k:"rj",n:"Rajasthan",law:"Rajasthan Platform Based Gig Workers (Registration and Welfare) Act, 2023",st:"Passed 24 July 2023",
+  pts:["The first state in India to pass a gig workers law.","It registers platform gig workers and sets up a welfare board and fund."],
+  seen:"Registration, a board and a fund.",miss:"Any mention of algorithmic decision-making, according to Object 01.",src:["drishti"]},
+ {k:"jh",n:"Jharkhand",law:"Jharkhand's gig workers bill",st:"Cleared the Assembly in August 2025. Status unclear",
+  pts:["Fairwork India's 2024 report discusses it as proposed legislation, alongside Karnataka's.","Summaries I found disagree on whether it has become an Act, and I couldn't find a notification. Treat it as a bill until you see one."],
+  seen:"A bill that has cleared the Assembly.",miss:"Clear confirmation that it's in force.",src:["fw","mnama"]},
+ {k:"ot",n:"Anywhere else",law:"The central Code and Rules",st:"Applies to everyone",
+  pts:["Register on e-Shram, keep your day count, and check your platform has uploaded you.","Use the platform's own appeal channel and keep the reference number.","In Fairwork India 2024, seven of 11 platforms had appeal channels with a human. If yours is one of them, the route exists, so use it."],
+  seen:"The central code and its 2026 rules.",miss:"A state board to complain to.",src:["fw","impri"]}
+];
+var TOLL=[
+ {st:"s",pl:"US, interviews",h:"Time you can't count",
+  p:"Veena Dubal talked to people who do piece-paid data work on Amazon Mechanical Turk. They said the hours spent hunting for tasks, or redoing work that got rejected, never get paid, so the real hourly wage sinks far below what the screen suggests. One worker she calls Janey said that on a good day, working 12 to 16 hours, she'd make maybe $5 an hour. Dubal cites a 2018 study that put the platform's average at about $2 an hour. The uncertainty follows people to bed: workers described waking in the night to check for tasks, and feeling guilty when they stopped.",
+  q:"you wonder if you should spend that time turking, because what if you come up short the next day or the next week. Is it okay to stop?",c:"Dawn, in Dubal (2020)",
+  f:"Pay by the piece makes income impossible to predict, and the worker carries the anxiety.",r:"A driver waiting for the next ping is doing the same unpaid searching, just in a car or on a bike.",src:["c4e","dissent"]},
+ {st:"s",pl:"US, interviews",h:"The slot machine in your pocket",
+  p:"Dubal's ride-hail drivers described pings that sound like a slot machine, personal promotions and badges, and good fares that seemed to land right as they headed home. Several were sure the app had worked out how much they needed to earn and was making that harder to reach. Her argument is that platforms borrow from gambling design, and that workers end up feeling every shortfall as a personal failure.",
+  q:"I have had too many ‘good’ things happen to me right when I start heading home. The sense is that the system knows my routine and keeps intervening in all sorts of ways to get the most out of me.",c:"Ivri, ride-hail driver, in Dubal (2020)",
+  f:"Irregular rewards keep people driving past the point they planned to stop.",r:"If the apps you work on send streak or bonus nudges, this is the pattern to watch for. I haven't tested it in India, so take it as a question and not a finding.",src:["dissent"]},
+ {st:"s",pl:"London, 10 interviews and a 158-response survey",h:"Told you're fine, never told the target",
+  p:"Jamie Woodcock followed Deliveroo riders in London. Riders got performance emails showing how far they were from an average and whether they'd met the criteria, but never the real numbers or the target. Deactivation arrived as a message, and there was no way to dispute it. In the survey, 87.1 percent said the self-employed label didn't reflect their work, and 97.8 percent wanted more employment rights.",
+  q:"obscurity is part of the motivating thing, like if you don't really know then you just have to keep going faster.",c:"Fred, Deliveroo rider, in Woodcock (2020)",
+  f:"Hidden targets and unexplained blocks keep people running faster, with nobody to appeal to.",r:"This is where the idea of a reason you can read comes from. It's the cheapest rule to write, and the one people ask for first.",src:["woodcock"]},
+ {st:"s",pl:"Milan, 42 interviews and fieldwork",h:"The score that decides everything",
+  p:"Paolo Borghi and Annalisa Murgia spent 2018 to 2021 with unions, a rider collective and a cooperative in Italy. A union officer said platforms tell a story of students earning pocket money, while on the street he meets migrants and people who lost their jobs. A rider organiser described how hard it is to reach people who are always racing the rating system for slots. The platforms' pitch, to be your own boss, put all the success and failure on the individual.",
+  q:"If they run all the time competing for getting a job, if the rating system of the platform determines every single action they are doing, how can you expect attention by these workers?",c:"Member of Deliverance Milano, in Borghi and Murgia (2022)",
+  f:"Rating systems that hand out work turn every minute into a competition, which leaves little room to organise.",r:"That's hard for any organiser, and it may be why so much starts in a group chat. Dubal and Woodcock both describe the same thing.",src:["borghi"]}
+];
+var ORG=[
+ ["2016, London","Deliveroo riders answer a change in pay terms by logging out of the app. The strike spreads over a few days. Deliveroo backs off its original plan and trials the new rate in one zone instead. Woodcock reads it as precarity cutting both ways: the same thing that makes riders easy to drop makes strikes spread fast.",["woodcock"]],
+ ["2016 to 2019, Italy","By one co-founder's account, grassroots rider groups were organising in Turin and Milan before the big unions took an interest. By 2019 Italy had a national food-delivery law, Act 128/2019, which pushed platforms to sign collective agreements with the most representative unions.",["borghi"]],
+ ["30 October 2020, Italy","Riders in more than twenty cities strike, and in Milan it runs five days. The target is an agreement between the platforms' association and a right-wing union that aimed to keep piecework. The Labour Ministry contests it, and the Court of Bologna declares it illegal in July 2021. The Court of Milan also throws out a separate contract a platform signed with a union set up for the purpose.",["borghi"]],
+ ["3 February 2026, Delhi","Women-led gig workers rally at Jantar Mantar and their union reports protests in other cities. They ask for a separate, enforceable law, recognition as workers, social security, fair wages and an end to exploitative algorithmic practices. The History page has the photograph.",["cc"]],
+ ["Where it stalled","Fairwork India found that, despite many protests and strikes, platforms in India refuse to formally recognise or negotiate with workers' collectives. Not one of the 11 platforms earned even the first Fair Representation point in 2024. Borghi and Murgia also call the power imbalance an open issue.",["fw","borghi"]]
+];
+var CHK=[
+ ["Register on e-Shram, or check your card is live","You'll need Aadhaar. You get a Universal Account Number and a digital card. Check your platform has you on the portal too."],
+ ["Start a day log","Date, hours on the app, earnings, and a screenshot of any penalty, rating or block message. A note on your phone works."],
+ ["Count your days","The rules look at the previous financial year (April to March): 90 days with one platform, or 120 across several. A day counts if you earned something."],
+ ["Save the platform's terms and any change notice","Fairwork gives credit to platforms that tell workers before changing terms. If yours doesn't, your saved copy is the only proof of what you agreed to."],
+ ["Find your state's law and your complaint route","Karnataka and Telangana have grievance routes written into their Acts. Elsewhere, start with the platform's appeal channel and keep the reference number."]
+];
+
+(function(){
+  var sec=document.querySelector('[data-page="gig-worker"]'); if(!sec) return;
+  function ledgerList(a){return a.map(function(x){return '<li><b>'+T(x[0])+'</b><p>'+T(x[1])+'</p>'+(x[2].length?PSRC(x[2]):'')+'</li>'}).join('')}
+  var h='<div class="pg"><canvas class="flow" aria-hidden="true"></canvas>'
+   +pgDirt(["s","width:520px;height:520px;right:-120px;top:-80px","b","width:420px;height:420px;left:-120px;top:380px;opacity:.35"])
+   +pgHead("Gig Worker","Plain words","What you’re owed",
+     ["Short version: less than you'd hope and more than you've been told. Below is a plain-language map of what Indian law gives a platform worker as of November 2026, what it doesn't, and what researchers elsewhere found it costs when nobody is accountable.","I'm not a lawyer. Where I couldn't confirm something, I say so."],
+     "Law checked in November 2026 against the published rules and reporting by law firms and policy analysts. Rules and court cases here are still moving.",
+     [["gw-owed","What you're owed","gw-owed"],["gw-states","By state","gw-states"],["gw-toll","The toll","gw-toll"],["gw-organise","Organising","gw-organise"],["gw-check","Checklist","gw-check"],["gw-sources","Sources","gw-sources"]])
+   +'<div class="wrap"><div class="stats pgstats"><div class="stat"><b data-count="11">0</b><span>platforms scored by Fairwork India in 2024</span></div><div class="stat"><b data-count="2">0</b><span>earned the minimum-wage point</span></div><div class="stat"><b data-count="0">0</b><span>earned the living-wage point</span></div><div class="stat"><b data-count="0">0</b><span>earned even the first representation point</span></div></div><p class="srcl" style="margin-top:10px">'+PSRC(["fw"]).replace('<span class="srcl">','<span>')+'</p></div>'
+
+   +'<section class="wrap pgs" id="gw-owed"><h2>What the law gives you now</h2><p class="lead">Two columns. The left is on paper and in force. The right is what is still missing or still pending.</p>'
+   +'<div class="ledger"><div class="lcol"><h3>You do have</h3><ul>'+ledgerList(OWED_YES)+'</ul></div><div class="lcol no"><h3>You don’t have yet</h3><ul>'+ledgerList(OWED_NO)+'</ul><p class="hint">'+T("Where a line says <<one policy analysis>>, I could only find one source for it.")+'</p></div></div></section>'
+
+   +'<section class="wrap pgs" id="gw-states"><h2>Your state changes the answer</h2><p class="lead">Three states have passed laws of their own, and a fourth has a bill. Pick yours.</p>'
+   +'<div class="sbar" role="group" aria-label="Pick a state">'+STATES.map(function(s,i){return '<button type="button" class="sbtn" data-st="'+s.k+'" aria-pressed="'+(i===0?'true':'false')+'">'+T(s.n)+'</button>'}).join('')+'</div>'
+   +'<div class="patch scard" id="scard" style="padding:24px;margin-top:18px" aria-live="polite"><i class="st s"></i></div></section>'
+
+   +'<section class="wrap pgs" id="gw-toll"><h2>What it does to people when nobody’s accountable</h2><p class="lead">'+T("Three studies, three countries, four findings. None of the studies is Indian, and I want you to know that up front. I used them because the mechanisms match: pay by the piece, scores you can't see into, an account that can disappear. The Indian numbers are in the Fairwork report and the law above.")+'</p>'
+   +'<div class="rq" style="margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))">'+TOLL.map(function(x){
+      return '<article class="patch" style="padding:24px"><i class="st '+x.st+'"></i><div class="ptxt"><span class="stamp sm" style="width:fit-content">'+T(x.pl)+'</span><h3>'+T(x.h)+'</h3><p>'+T(x.p)+'</p>'
+       +'<div class="qc"><blockquote>“'+T(x.q)+'”<cite>'+T(x.c)+'</cite></blockquote></div>'
+       +'<div class="sm2"><div class="seen"><b>Found</b><span>'+T(x.f)+'</span></div><div class="miss"><b>My reading</b><span>'+T(x.r)+'</span></div></div>'+PSRC(x.src)+'</div></article>'}).join('')+'</div>'
+   +'<p class="note">The Mental Health page goes further into this once it opens.</p></section>'
+
+   +'<section class="wrap pgs" id="gw-organise"><h2>What organising has won, and where it stalled</h2><p class="lead">Mostly it has won attention, and sometimes a court ruling. Rarely has it won a seat at the table.</p>'
+   +'<div class="org">'+ORG.map(function(x){return '<div><span class="when">'+T(x[0])+'</span><div><p>'+T(x[1])+'</p>'+PSRC(x[2])+'</div></div>'}).join('')+'</div>'
+   +'<p class="orgnote">'+T("What I take from this: organising wins when it finds a legal hook, like Italy's 2019 law, or a pressure point, like the log-out. It stalls when nobody has a duty to listen.")+'</p></section>'
+
+   +'<section class="wrap pgs" id="gw-check"><h2>Five things to do this month</h2><p class="lead">'+T("My suggestions, built from the sources above. Tick them off. Your ticks stay in this browser and go nowhere else.")+'</p>'
+   +'<div class="chk" id="chk">'+CHK.map(function(x,i){return '<label><input type="checkbox" data-i="'+i+'"><span><b>'+T(x[0])+'</b><span class="d">'+T(x[1])+'</span></span></label>'}).join('')+'</div>'
+   +'<div class="chkprog"><span id="chkn">0 of 5 done</span><i id="chkbar"></i></div>'
+   +'<div class="helpbox"><h3>If it’s getting to you</h3><p>'+T("Tele-MANAS is a free, 24x7 mental health helpline run by the government of India: 14416. For free legal advice, the National Legal Services Authority helpline is 15100. The e-Shram helpline is 14434.")+'</p><p class="srcl">'+PL("tm")+'</p></div></section>'
+
+   +'<div id="gw-sources">'+srcGrid()+'</div>'
+   +'<section class="wrap pgend"><span class="stamp" style="width:fit-content">Counted as: partner</span><h2>Named on paper. Waiting on the rest.</h2><p>Pick a seat on the Your Path page if you want the short version of what to do next.</p><div class="cta"><button class="btn solid" data-nav="your-path">Your Path</button><button class="btn" data-nav="home">Back to the research</button></div></section></div>';
+  sec.innerHTML=h;
+
+  var scard=sec.querySelector("#scard");
+  function showState(k){
+    var s=STATES.filter(function(x){return x.k===k})[0]; if(!s) return;
+    scard.innerHTML='<i class="st s"></i><div class="st2"><span class="tape">'+T(s.st)+'</span></div><h3>'+T(s.n)+'</h3><p class="law">'+T(s.law)+'</p>'
+     +'<div class="scols"><ul>'+s.pts.map(function(p){return '<li>'+T(p)+'</li>'}).join('')+'</ul>'
+     +'<div class="scr"><div class="sm2"><div class="seen"><b>On paper</b><span>'+T(s.seen)+'</span></div><div class="miss"><b>Missing</b><span>'+T(s.miss)+'</span></div></div>'+PSRC(s.src)+'</div></div>';
+  }
+  showState("ka");
+  sec.querySelector(".sbar").addEventListener("click",function(e){
+    var b=e.target.closest(".sbtn"); if(!b) return;
+    [].forEach.call(sec.querySelectorAll(".sbtn"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+    showState(b.getAttribute("data-st"));
+  });
+
+  var KEY="gw-check-v1", st=[0,0,0,0,0];
+  try{var raw=localStorage.getItem(KEY); if(raw){var a=JSON.parse(raw); if(a&&a.length===5) st=a}}catch(e){}
+  var boxes=[].slice.call(sec.querySelectorAll("#chk input"));
+  function paint(){var n=st.reduce(function(a,b){return a+(b?1:0)},0);sec.querySelector("#chkn").textContent=n+" of 5 done";sec.querySelector("#chkbar").style.setProperty("--p",(n*20)+"%")}
+  boxes.forEach(function(b){b.checked=!!st[+b.getAttribute("data-i")];b.addEventListener("change",function(){st[+b.getAttribute("data-i")]=b.checked?1:0;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}paint()})});
+  paint();
+})();
+
 document.querySelectorAll("canvas.flow,#map").forEach(flow);
 if(!reduce){var rc=document.createElement("canvas");rc.className="roam";rc.setAttribute("aria-hidden","true");document.body.appendChild(rc);flow(rc);
   /* fade with scroll so text stays readable: bright at the top, faint while reading, fainter still while moving */
