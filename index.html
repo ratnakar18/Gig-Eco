@@ -454,6 +454,106 @@ main,footer,.pstrip{position:relative;z-index:1}
 .scard .sm2{max-width:none}
 
 .pgs,#gw-sources>.pgs{scroll-margin-top:calc(var(--hh,64px) + 8px)}
+
+/* ===== Mental Health + Resources ===== */
+.mhstats{margin-top:26px}
+.mhstats .stat b{font-size:2.5rem}
+.mhnote{margin-top:10px}
+
+.five{display:grid;gap:18px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.five .patch{padding:24px}
+.five .ptxt,.rq .ptxt{align-content:start}
+.five .closer{margin:0;align-self:center}
+.five .no{font-family:var(--f-display);font-weight:900;font-size:3.4rem;line-height:.8;color:var(--red)}
+.five blockquote{margin:0;padding-left:14px;border-left:6px solid var(--redf);font-style:italic;font-size:1.02rem;line-height:1.5}
+.five blockquote cite{display:block;font-style:normal;font-family:var(--f-mono);font-size:.7rem;color:var(--mute);margin-top:6px}
+.closer{margin-top:22px;max-width:66ch;font-size:1.06rem;border-left:6px solid var(--redf);padding-left:16px}
+
+.essay{display:grid;gap:14px;margin-top:20px;max-width:64ch;font-size:1.06rem}
+.essay p{max-width:none}
+
+.crisis{margin-top:24px;border:2px solid var(--redf);background:var(--bg2);padding:18px 20px;display:grid;gap:8px;max-width:820px}
+.crisis b{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.7rem;line-height:1}
+.crisis p{max-width:62ch}
+.hlgrid{display:grid;gap:14px;margin-top:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr))}
+.hlc{border:2px solid var(--ink);background:var(--cloth);padding:16px 18px 18px;display:grid;gap:6px;align-content:start}
+.hlc .num{font-family:var(--f-display);font-weight:900;font-size:clamp(2.1rem,5vw,2.9rem);line-height:1;color:var(--red);text-decoration:none;overflow-wrap:anywhere}
+.hlc .num:hover{text-decoration:underline;text-underline-offset:4px}
+.hlc .nm{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
+.hlc p{font-size:.93rem;line-height:1.5}
+.hlc .srcl{margin-top:2px}
+.mine{margin-top:26px;border:2px solid var(--ink);background:var(--bg2);padding:18px 20px;max-width:820px;display:grid;gap:10px}
+.mine h3{font-size:1.7rem}
+.mine ol{margin:0;padding-left:22px;display:grid;gap:8px;max-width:62ch}
+
+/* ----- resources ----- */
+.tri{display:grid;gap:10px;margin-top:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,215px),1fr))}
+.tbtn{text-align:left;font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.35rem;line-height:1.02;border:2px solid var(--ink);background:var(--cloth);color:var(--ink);padding:14px 14px 14px 16px;cursor:pointer;min-height:76px;display:flex;align-items:flex-end;transition:transform .15s,box-shadow .15s}
+.tbtn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--redf)}
+.tbtn[aria-pressed="true"]{background:var(--redf);border-color:var(--redf);color:var(--on-red)}
+.fm{margin-top:16px;border:2px solid var(--ink);background:var(--bg2);padding:20px 22px;display:grid;gap:12px;animation:rise .5s cubic-bezier(.2,.8,.2,1) both}
+.fm[hidden]{display:none}
+.fm h3{font-size:clamp(1.6rem,4vw,2.3rem)}
+.fm p{max-width:66ch}
+.fm .tag2{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.fm .row{display:flex;flex-wrap:wrap;gap:10px}
+
+.dirbar{display:grid;gap:14px;margin-top:22px}
+.dsearch{width:100%;max-width:520px;font:inherit;font-family:var(--f-mono);font-size:.9rem;padding:11px 14px;border:2px solid var(--ink);background:var(--bg);color:var(--ink)}
+.dsearch::placeholder{color:var(--mute)}
+.dsearch:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.fgroup{display:grid;gap:7px}
+.fgroup>span{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.fchips{display:flex;flex-wrap:wrap;gap:7px}
+.fchip{font-family:var(--f-mono);font-weight:600;font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;border:2px solid var(--ink);background:var(--bg);color:var(--ink);padding:7px 11px;cursor:pointer}
+.fchip:hover{border-color:var(--green-ink)}
+.fchip[aria-pressed="true"]{background:var(--redf);border-color:var(--redf);color:var(--on-red)}
+.dcount{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+.dcount button{font:inherit;letter-spacing:inherit;text-transform:inherit;background:none;border:0;color:var(--green-ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}
+
+.rgrid{display:grid;gap:16px;margin-top:20px;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
+.rcard{position:relative;border:2px solid var(--ink);background:var(--cloth);padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.rcard::before{content:"";position:absolute;inset:6px;border:2px dashed var(--stitch);pointer-events:none}
+.rcard>*{position:relative}
+.rcard .tags{display:flex;flex-wrap:wrap;gap:6px}
+.rtag{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;border:1px solid var(--ink);padding:2px 7px;background:var(--bg)}
+.rtag.k{background:var(--yellow);color:var(--on-yellow);border-color:var(--yellow);font-weight:600}
+.rcard h3{font-size:clamp(1.55rem,3.4vw,2.05rem);line-height:.98}
+.rcard p{font-size:.95rem;line-height:1.5}
+.rcard .reach{display:grid;gap:4px;border-top:2px solid var(--ink);padding-top:10px}
+.rcard .reach a{font-family:var(--f-mono);font-size:.82rem;font-weight:600;color:var(--green-ink);overflow-wrap:anywhere}
+.rcard .reach a.tel{font-family:var(--f-display);font-weight:900;font-size:1.7rem;line-height:1;color:var(--red);text-decoration:none}
+.rcard .reach a.tel:hover{text-decoration:underline;text-underline-offset:4px}
+.rcard .reach span{font-family:var(--f-mono);font-size:.74rem;color:var(--mute);line-height:1.5}
+.rcard .rmeta{display:grid;gap:3px;font-size:.86rem}
+.rcard .rmeta b{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-right:6px}
+.rcard .caveat{font-size:.86rem;border-left:5px solid var(--redf);padding-left:10px}
+.rcard .chk2{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;border-top:1px solid var(--line);padding-top:9px}
+.vchip{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;border:2px solid;padding:2px 6px;font-weight:600;white-space:nowrap}
+.v-gov{color:var(--green-ink);border-color:var(--green-ink)}
+.v-own{color:var(--ink);border-color:var(--ink)}
+.v-press{color:var(--red);border-color:var(--red)}
+.dempty{margin-top:22px;border:2px dashed var(--ink);padding:26px 22px;display:grid;gap:10px;max-width:640px}
+.dempty[hidden]{display:none}
+.ready{display:grid;gap:0;margin-top:22px;border:2px solid var(--ink);background:var(--cloth);max-width:820px}
+.ready>div{display:grid;gap:3px;padding:14px 16px;border-top:1px solid var(--line)}
+.ready>div:first-child{border-top:0}
+.ready b{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.3rem;line-height:1.05}
+.ready span{font-size:.94rem;max-width:62ch}
+@media(prefers-reduced-motion:reduce){.fm{animation:none}.tbtn:hover{transform:none}}
+
+/* ===== Contributions + Recommendations ===== */
+.recgrid{display:grid;gap:18px;margin-top:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));align-items:start}
+.recp{border:2px solid var(--ink);background:var(--cloth);padding:22px 22px 20px;display:grid;gap:12px;align-content:start;min-width:0}
+.recp h3{font-size:clamp(1.7rem,3.6vw,2.3rem);line-height:.98}
+.recp ol{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:0;counter-reset:rc}
+.recp li{counter-increment:rc;display:grid;gap:5px;padding:14px 0 12px;border-top:1px solid var(--line)}
+.recp li:first-child{border-top:2px solid var(--ink)}
+.recp li b{font-family:var(--f-display);font-weight:900;text-transform:uppercase;font-size:1.28rem;line-height:1.05}
+.recp li b::before{content:counter(rc) ". ";color:var(--red)}
+.recp li p{font-size:.95rem;line-height:1.55;max-width:none}
+.recp li .srcl{margin-top:2px}
+#mc-trust .mine{margin-top:0}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -592,6 +692,7 @@ main,footer,.pstrip{position:relative;z-index:1}
 <section data-page="your-path" hidden></section>
 <section data-page="gig-worker" hidden></section>
 <section data-page="mental-health" hidden></section>
+<section data-page="contributions" hidden></section>
 <section data-page="resources" hidden></section>
 
 </main>
@@ -615,14 +716,12 @@ var PAGES = [
   {id:"history", label:"History", note:"Live", live:1},
   {id:"your-path", label:"Your Path", note:"Live", live:1},
   {id:"gig-worker", label:"Gig Worker", note:"Live", live:1},
-  {id:"mental-health", label:"Mental Health", note:"Under construction"},
+  {id:"mental-health", label:"Mental Health", note:"Live", live:1},
+  {id:"contributions", label:"Contributions", note:"Live", live:1},
   {id:"gallery", label:"Gallery", note:"Updated 8 Oct 2026", live:1},
-  {id:"resources", label:"Resources", note:"Under construction"}
+  {id:"resources", label:"Resources", note:"Live", live:1}
 ];
-var UC = {
-  "mental-health":"What it does to your head when an algorithm is your manager.",
-  "resources":"Free places to read, learn and get help, each one checked before it goes up."
-};
+var UC = {};
 
 /* ---- research slides ---- */
 var DIRS = ["Filed as nobody","Control without an employer","The cost lands on the worker","A fair counterpoint"];
@@ -1246,7 +1345,7 @@ var CHK=[
       return '<article class="patch" style="padding:24px"><i class="st '+x.st+'"></i><div class="ptxt"><span class="stamp sm" style="width:fit-content">'+T(x.pl)+'</span><h3>'+T(x.h)+'</h3><p>'+T(x.p)+'</p>'
        +'<div class="qc"><blockquote>“'+T(x.q)+'”<cite>'+T(x.c)+'</cite></blockquote></div>'
        +'<div class="sm2"><div class="seen"><b>Found</b><span>'+T(x.f)+'</span></div><div class="miss"><b>My reading</b><span>'+T(x.r)+'</span></div></div>'+PSRC(x.src)+'</div></article>'}).join('')+'</div>'
-   +'<p class="note">The Mental Health page goes further into this once it opens.</p></section>'
+   +'<p class="note">The <a href="#mental-health" data-nav="mental-health">Mental Health page</a> goes further into this.</p></section>'
 
    +'<section class="wrap pgs" id="gw-organise"><h2>What organising has won, and where it stalled</h2><p class="lead">Mostly it has won attention, and sometimes a court ruling. Rarely has it won a seat at the table.</p>'
    +'<div class="org">'+ORG.map(function(x){return '<div><span class="when">'+T(x[0])+'</span><div><p>'+T(x[1])+'</p>'+PSRC(x[2])+'</div></div>'}).join('')+'</div>'
@@ -1255,7 +1354,7 @@ var CHK=[
    +'<section class="wrap pgs" id="gw-check"><h2>Five things to do this month</h2><p class="lead">'+T("My suggestions, built from the sources above. Tick them off. Your ticks stay in this browser and go nowhere else.")+'</p>'
    +'<div class="chk" id="chk">'+CHK.map(function(x,i){return '<label><input type="checkbox" data-i="'+i+'"><span><b>'+T(x[0])+'</b><span class="d">'+T(x[1])+'</span></span></label>'}).join('')+'</div>'
    +'<div class="chkprog"><span id="chkn">0 of 5 done</span><i id="chkbar"></i></div>'
-   +'<div class="helpbox"><h3>If it’s getting to you</h3><p>'+T("Tele-MANAS is a free, 24x7 mental health helpline run by the government of India: 14416. For free legal advice, the National Legal Services Authority helpline is 15100. The e-Shram helpline is 14434.")+'</p><p class="srcl">'+PL("tm")+'</p></div></section>'
+   +'<div class="helpbox"><h3>If it’s getting to you</h3><p>'+T("Tele-MANAS is a free, 24x7 mental health helpline run by the government of India: 14416. For free legal advice, the National Legal Services Authority helpline is 15100. The e-Shram helpline is 14434.")+'</p><p class="srcl">'+PL("tm")+'</p><p><a href="#resources" data-nav="resources">More helplines, and who to call for what, are on the Resources page.</a></p></div></section>'
 
    +'<div id="gw-sources">'+srcGrid()+'</div>'
    +'<section class="wrap pgend"><span class="stamp" style="width:fit-content">Counted as: partner</span><h2>Named on paper. Waiting on the rest.</h2><p>Pick a seat on the Your Path page if you want the short version of what to do next.</p><div class="cta"><button class="btn solid" data-nav="your-path">Your Path</button><button class="btn" data-nav="home">Back to the research</button></div></section></div>';
@@ -1281,6 +1380,560 @@ var CHK=[
   function paint(){var n=st.reduce(function(a,b){return a+(b?1:0)},0);sec.querySelector("#chkn").textContent=n+" of 5 done";sec.querySelector("#chkbar").style.setProperty("--p",(n*20)+"%")}
   boxes.forEach(function(b){b.checked=!!st[+b.getAttribute("data-i")];b.addEventListener("change",function(){st[+b.getAttribute("data-i")]=b.checked?1:0;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}paint()})});
   paint();
+})();
+
+/* ---- Mental Health + Resources ---- */
+Object.assign(PS,{
+ o1:["Sanjay et al., There's no ghost in the machine (IT for Change and NLSIU, 2025)","https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf"],
+ hrw:["Human Rights Watch, Algorithms of exploitation (May 2026)","https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"],
+ kellogg:["Kellogg, Valentine and Christin, Algorithms at work (2020)","https://par.nsf.gov/biblio/10195395"],
+ rosenblat:["Rosenblat and Stark, Algorithmic labor and information asymmetries (2016)","https://ijoc.org/index.php/ijoc/article/view/4892"],
+ bajwa:["Bajwa et al., The health of workers in the global gig economy (2018)","https://pmc.ncbi.nlm.nih.gov/articles/PMC6299501"],
+ wood:["Wood et al., Good gig, bad gig (2019)","https://research.birmingham.ac.uk/en/publications/good-gig-bad-gig-autonomy-and-algorithmic-control-in-the-global-g/"],
+ surie:["Surie and Koduganti, Uber and Ola drivers in Bengaluru (2016)","https://ejcls.adapt.it/index.php/ejcls_adapt/article/view/224"],
+ samal:["Samal et al., Anxiety, depression and burnout among app-based food delivery riders in Tamil Nadu (2025)","https://pmc.ncbi.nlm.nih.gov/articles/PMC12318562/"],
+ khera:["Khera et al., Musculoskeletal health and mental well-being of two-wheeler delivery drivers, Mumbai region (2026)","https://ijmr.org.in/musculoskeletal-health-and-mental-well-being-of-occupational-two-wheeler-delivery-drivers-from-mumbai-metropolitan-region/"],
+ kari:["Kariveliparambil et al., Invisible burdens of platform work (2026)","https://pmc.ncbi.nlm.nih.gov/articles/PMC12990256/"],
+ mhca:["The Mental Healthcare Act, 2017 (bare act text)","https://www.legalauthority.in/bare-act/mental-healthcare-act-2017"],
+ pibtm:["PIB on Tele-MANAS (29 May 2024)","https://pib.gov.in/PressReleasePage.aspx?PRID=2022057"],
+ tml:["Medical Dialogues on the Tele-MANAS launch (Oct 2022)","https://medicaldialogues.in/news/health/world-mental-health-day-govt-launches-tele-manas-for-free-247-mental-health-services-100456"],
+ pibkiran:["PIB on the KIRAN helpline","https://pib.gov.in/PressReleasePage.aspx?PRID=1652240"],
+ icall:["iCall, TISS (its own page)","https://icallhelpline.org/?p=72"],
+ vand:["YourStory on the Vandrevala Foundation helpline (2023)","https://yourstory.com/socialstory/2023/03/vandrevala-foundations-free-helpline-11-languages-mental-health-accessible-india"],
+ vdir:["Find a Helpline, Vandrevala Foundation listing","https://findahelpline.com/organizations/vandrevala-foundation-crisis-intervention-helpline"],
+ nhrcfaq:["NHRC, Frequently asked questions","https://nhrc.nic.in/faq"],
+ pibncw:["PIB factsheet on the NCW helpline 14490 and SHe-Box","https://pib.gov.in/FactsheetDetails.aspx?Id=150678"],
+ i112:["112 India (Government of India)","https://112.gov.in/about"],
+ nalsa:["NALSA, official site","https://nalsa.gov.in/promoting-inclusive-legal-system/"],
+ dslsa:["Delhi State Legal Services Authority on who is eligible","https://dslsa.org/wd/wings/legal-aid-wing-2/providing-legal-aid-benificiaries/"],
+ telelaw:["Tele-Law FAQ (official portal)","https://tele-law.in/faq"],
+ teleorg:["Organiser on Tele-Law 14454 (16 Sept 2026)","https://organiser.org/2026/09/16/381067/bharat/tele-law-14454-get-free-government-legal-advice-from-panel-lawyers-check-app-csc-and-helpline-details/"],
+ pibesh:["PIB on e-Shram and platform workers (17 Sept 2024)","https://labour.gov.in/sites/default/files/pib2055512.pdf"],
+ cdot:["Short code 14434 allotted to the Ministry of Labour and Employment","https://dotws.cdot.in/sites/default/files/short%20code%2014434%20to%20Ministry%20of%20Labour.pdf?download=1"],
+ pibjay:["PIB on platform workers and AB-PMJAY (8 March 2025)","https://labour.gov.in/sites/default/files/pib2109421.pdf"],
+ tribjay:["Tribune on the Labour Secretary's interview (25 March 2025)","https://www.tribuneindia.com/news/business/gig-workers-to-be-covered-under-ayushman-bharat-preparations-for-scheme-rollout-almost-complete-labour-secretary"],
+ sip:["Sights in Plus on the e-Shram aggregator module and PM-JAY mapping (30 Jan 2026)","https://sightsinplus.com/news/labour-law/gig-workers-to-get-insurance-and-pension-under-new-2026-rules"],
+ indpol:["India Policy Hub, Ayushman Bharat for gig workers (June 2026)","https://indiapolicyhub.in/2026/06/12/gig-workers-ayushman-bharat-enrollment-guide-2026/"],
+ bankins:["A bank's PMSBY and PMJJBY scheme page","https://tirururban.bank.in/services/insurance"],
+ pibsym:["PIB on PM-SYM (March 2025)","https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/mar/doc202534512301.pdf"],
+ tgpwu:["TGPWU, about the union (its own site)","https://tgpwu.org/?p=101"],
+ sewa:["SEWA, membership page (its own site)","https://www.sewa.org/membership-and-affiliations/"],
+ aigwu:["All India Gig Workers' Union policy brief, via CIS (Jan 2024)","https://cis-india.org/raw/your-econonomy-our-livelihoods-a-policy-brief-by-the-all-india-gigi-workers-union"],
+ bhrrc:["Business and Human Rights Resource Centre on the 31 Dec 2025 log-off","https://www.business-humanrights.org/en/latest-news/india-over-two-hundred-thousand-gig-workers-stage-nationwide-new-years-eve-log-off-protest-against-exploitative-platform-work/"],
+ theprint:["ThePrint on GIPSWU","https://theprint.in/india/indias-first-women-gig-workers-union-calls-for-digital-silence-on-diwali-want-voice-to-reach-govt/2335977"],
+ vidhi:["Vidhi Centre for Legal Policy, Reimagining Platform-Work","https://vidhilegalpolicy.in/impact/reimagining-platform-work/"],
+ itfc:["IT for Change, Centring Rights in the Platform Workplace","https://itforchange.net/node/2491"],
+ cyber:["YourStory guide to the National Cyber Crime Reporting Portal and 1930","https://yourstory.com/2023/08/national-cyber-crime-reporting-portal-guide"],
+ scc:["SCC Online on the DPDP Rules, 2025","https://www.scconline.com/blog/post/2025/12/26/digital-personal-data-protection-rules-2025-key-highlights/"],
+ iifl:["IIFL on filing a delayed-payment complaint on MSME Samadhaan","https://www.iifl.com/blogs/other/msme-samadhan-portal-how-to-file-delayed-payment-complaints"],
+ mel:["Lata, Copolov and Azizi, The Everyday Lives of Gig Workers (University of Melbourne, 2024)","https://doi.org/10.26188/28397225.v2"]
+});
+function srcGridX(a,b,ha,hb,lead){
+  return '<section class="wrap pgs" style="padding-bottom:40px"><h2>Sources</h2><p class="lead">'+T(lead)+'</p>'
+   +'<div class="srcgrid"><div><h3>'+T(ha)+'</h3><ul>'+a.map(function(k){return '<li>'+PL(k)+'</li>'}).join('')+'</ul></div>'
+   +'<div><h3>'+T(hb)+'</h3><ul>'+b.map(function(k){return '<li>'+PL(k)+'</li>'}).join('')+'</ul></div></div></section>';
+}
+
+/* ===== Mental Health ===== */
+var MH_STATS=[
+ ["42.3%","of 111 riders near Mumbai scored as psychologically distressed on a standard screening questionnaire"],
+ ["16.2%","of 425 riders in Tamil Nadu screened as moderately severe or severe for depression"],
+ ["12.5%","of the same Tamil Nadu riders screened as moderately severe or severe for anxiety"],
+ ["87.3%","of the Mumbai-area riders had muscle or joint trouble in the past year"]
+];
+var MH_STUDIES=[
+ {pl:"Tamil Nadu, 425 riders",h:"Anxiety and low mood, counted",
+  p:"Janmejaya Samal and colleagues screened 425 men who deliver food through apps in Chennai, Coimbatore, Villupuram and Cuddalore. They used one standard tool each for anxiety, depression and burnout, and handed them out at company offices before the shift. Riders with a history of clinical anxiety or depression were left out. Even so, 12.5 percent screened as moderately severe or severe for anxiety, 16.2 percent for depression, and 10.8 percent as highly burnt out. The problems travelled together: riders who screened as severely depressed were far more likely to screen as anxious too.",
+  f:"Anxiety, depression and burnout turned up in the same riders, in a group that had already excluded people with a clinical history.",
+  r:"One oddity. Riders earning Rs 25,000 or more a month had higher odds of anxiety than lower earners, and the study never measured working hours. My guess is that more money means longer days, but it's only a guess. A snapshot like this also can't tell you what the job did and what was already there.",
+  src:["samal"]},
+ {pl:"Mumbai region, 111 riders",h:"The body and the mind keep the same hours",
+  p:"Khera, Lokras, Krishnaja and Gitte studied 111 food and ration delivery riders aged 18 to 40 in Panvel, near Mumbai. They asked about pain, and used the GHQ-12, a short questionnaire for psychological distress. 47 riders, or 42.3 percent, scored at or above the distress cut-off. Distress went up with longer working days, longer distances, heavier loads and pain in more parts of the body. And 87.3 percent had some muscle or joint trouble in the past year, most often in the lower back.",
+  f:"Longer daily hours went with more distress, and so did every extra part of the body that hurt.",
+  r:"A rider carrying weight for ten hours hurts and feels worse. Nobody needs a study for that. What I like is that the authors treat it as one problem and ask for screening and employer support, which is the part platforms say isn't theirs. It's a small, exploratory study from one block, so I'm not making big claims from it.",
+  src:["khera"]},
+ {pl:"South India, 10 riders",h:"Ten riders, in their own words",
+  p:"Ashifa Kariveliparambil and colleagues interviewed ten Swiggy and Zomato riders in Tamil, for an hour or more each, in 2024. Nine were men and one was a woman, aged 24 to 35. The riders described days of 8 to 13 hours, incomes of Rs 11,000 to 16,000 a month that moved with deliveries, incentives and penalty deductions, and nights when some skipped sleep to hit a quota. The authors grouped what they heard into themes like surviving precarity, embodied exhaustion and emotional discipline under surveillance. Riders talked about mental drain, self-blame and pulling away from people.",
+  q:"I was mentally drained. That day, I really thought of quitting. I felt completely alone.",c:"Rider P3, in Kariveliparambil et al. (2026)",
+  f:"Riders described mental drain, self-blame and pulling away from people, alongside app-driven targets and opaque penalties.",
+  r:"Ten people can't speak for a country, and the authors say so. But what they describe matches what the other studies on this site describe, and the tone is the part a questionnaire can't capture.",
+  src:["kari"]}
+];
+var MH_FIVE=[
+ {h:"Pay you can't predict",
+  p:"Piece rates mean your income depends on the next ping, and nobody can tell you when it's coming. Veena Dubal's interviewees on Amazon Mechanical Turk, a US platform where people do online tasks for pay, lay awake wondering whether it was okay to stop for the night. In Object 01, Amazon warehouse workers said work slots are released at random, with no notice.",
+  q:"It's not uncommon to go four to five days without getting a single slot. This slot distribution follows no discernible schedule or fairness, hence we are kept in perpetual uncertainty about our livelihood.",
+  c:"Amazon warehouse worker, in Sanjay et al. (2025)",src:["o1","c4e"]},
+ {h:"Time nobody pays for",
+  p:"Waiting for the next order is work. It just never shows up on the payslip. Human Rights Watch heard from workers in several countries that waiting can take 30 to 50 percent of their hours, unpaid. Dubal's Mechanical Turk workers described hunting for tasks, or redoing rejected ones, until a long day paid a few dollars an hour. In the Mumbai-area study, longer days went with more distress.",
+  q:"There's no time for leisure.",c:"Rider P2, in Kariveliparambil et al. (2026)",src:["hrw","c4e","khera","kari"]},
+ {h:"A score that decides everything",
+  p:"Ratings and tiers decide who gets work, and the rules are secret. Urban Company workers in Object 01 couldn't tell why a good rating helped one week and did nothing the next, only that a bad one always hurt. Rosenblat and Stark found Uber drivers in the US felt they needed a rating of around 4.6 out of 5 to stay active. An organiser in Milan asked how anyone could expect riders to organise when the rating decides every move they make.",
+  q:"Nobody knows how exactly the system works – it is often very irrational: sometimes we benefit from good ratings, and sometimes we don’t and we don’t know how the same thing can have different results.",
+  c:"Urban Company worker, in Sanjay et al. (2025)",src:["o1","rosenblat","borghi"]},
+ {h:"A block, and nobody to ask",
+  p:"When something goes wrong, the way to a human often runs through yet another app. One Amazon warehouse worker in Object 01 said grievances go through an app called My Voice, and that HR can hide complaints that criticise managers. The Object 01 authors also found that even when a human is in the loop, the manager often defers to the algorithm. Woodcock's London riders were deactivated by message, with no way to dispute it.",
+  q:"How can I accept a job without being informed of its availability?",c:"Urban Company worker, in Sanjay et al. (2025)",src:["o1","woodcock"]},
+ {h:"Watched all day, alone all night",
+  p:"Kellogg and colleagues list recording and rating among the six ways algorithms control work. Object 01 describes surveillance that reaches down to idle time, and says it makes it harder for workers to organise. Woodcock's riders said they felt alone with the company. So did the Indian rider who thought about quitting.",
+  q:"I feel alone with the company, you feel like you are a self-employed because you don't have bosses but at the same time Deliveroo is your boss",c:"Alejandro, Deliveroo rider, in Woodcock (2020)",src:["kellogg","o1","woodcock"]}
+];
+var MH_HELP=[
+ {num:"14416",tel:"14416",nm:"Tele-MANAS",p:"The government's free tele mental health line. Pick a language, talk to a trained counsellor and ask for a call-back. You can also dial 1-800-891-4416.",tel2:["1-800-891-4416","18008914416"],src:["pibtm","tml"],lab:"Official release, plus launch coverage for the 24-hour claim"},
+ {num:"1800-599-0019",tel:"18005990019",nm:"KIRAN",p:"A 24-hour line from the Ministry of Social Justice and Empowerment, in 13 languages. First-stage advice, counselling and referrals for stress, anxiety and low mood. Works from any phone.",src:["pibkiran"],lab:"Official release"},
+ {num:"9999 666 555",tel:"+919999666555",nm:"Vandrevala Foundation",p:"A nonprofit's free counselling and crisis line. It's listed as open 24 hours and in 11 languages. Handy as a second number when the first is busy.",src:["vand","vdir"],lab:"Press report and a helpline directory"},
+ {num:"9152 987 821",tel:"+919152987821",nm:"iCall, TISS",p:"Free counselling by phone and email from the Tata Institute of Social Sciences, Monday to Saturday, 8 a.m. to 9 p.m. on its own page. Older listings give different hours, so check first.",src:["icall"],lab:"The organisation's own page"}
+];
+var MH_RIGHTS=[
+ ["Section 18","Every person has the right to access mental healthcare and treatment from mental health services run or funded by the government.",["mhca"]],
+ ["Section 21(4)","Every insurer has to provide medical insurance for treating mental illness on the same basis as physical illness. So if a bank, a platform or a broker offers you health cover, you can ask whether it treats the mind on the same terms as the body.",["mhca"]],
+ ["Section 23","A person with mental illness has the right to confidentiality about their mental health, care and treatment, and health professionals have a duty to keep what they learn confidential.",["mhca"]],
+ ["PM-JAY, with a catch","Budget 2025 promised registered platform workers health cover of Rs 5 lakh per family per year for hospital care. I couldn't confirm it is live for gig workers yet. The Resources page has the details and says what I could and couldn't check.",["pibjay","sip"]]
+];
+
+(function(){
+  var sec=document.querySelector('[data-page="mental-health"]'); if(!sec) return;
+  var h='<div class="pg"><canvas class="flow" aria-hidden="true"></canvas>'
+   +pgDirt(["s","width:520px;height:520px;right:-120px;top:-80px","b","width:420px;height:420px;left:-120px;top:380px;opacity:.35"])
+   +pgHead("Mental Health","Not just stress","What the app does to your head",
+     ["My argument so far fits in two sentences. The law calls a gig worker a partner, so nobody has to answer for what the app does. And what the app does mostly can't be seen, which is how it ends up inside people's heads.",
+      "This page is about that second sentence. I read three Indian studies on delivery riders, one field report covering warehouse, delivery and home-service workers, and the research from abroad that came before them. I'm a student and not a clinician, so I describe what the studies found. I don't diagnose anyone, and nothing here replaces talking to a professional."],
+     "Studies and helplines checked in November 2026. The three Indian rider studies are small and local, and I say how small.",
+     [["mh-numbers","The numbers","mh-numbers"],["mh-five","Five pressures","mh-five"],["mh-counter","A fair counterpoint","mh-counter"],["mh-label","The legal label","mh-label"],["mh-help","If it's getting to you","mh-help"],["mh-rights","Your rights","mh-rights"],["mh-sources","Sources","mh-sources"]])
+
+   +'<section class="wrap pgs" id="mh-numbers"><h2>What Indian researchers have counted</h2><p class="lead">'+T("Not much, honestly. I found only a handful of peer-reviewed studies on Indian riders' mental health, and they are small, local and mostly about food delivery. They are still the only Indian numbers I could trust, so here they are with their limits attached.")+'</p>'
+   +'<div class="stats mhstats">'+MH_STATS.map(function(s){return '<div class="stat"><b>'+T(s[0])+'</b><span>'+T(s[1])+'</span></div>'}).join('')+'</div>'
+   +'<p class="srcl mhnote">'+T("A screening score is not a diagnosis. These come from questionnaires, not clinical interviews. Sources: ")+PL("samal")+'; '+PL("khera")+'</p>'
+   +'<div class="rq" style="margin-top:26px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">'+MH_STUDIES.map(function(x){
+      return '<article class="patch" style="padding:24px"><i class="st s"></i><div class="ptxt"><span class="stamp sm" style="width:fit-content">'+T(x.pl)+'</span><h3>'+T(x.h)+'</h3><p>'+T(x.p)+'</p>'
+       +(x.q?'<div class="qc"><blockquote>“'+T(x.q)+'”<cite>'+T(x.c)+'</cite></blockquote></div>':'')
+       +'<div class="sm2"><div class="seen"><b>Found</b><span>'+T(x.f)+'</span></div><div class="miss"><b>My reading</b><span>'+T(x.r)+'</span></div></div>'+PSRC(x.src)+'</div></article>'}).join('')+'</div></section>'
+
+   +'<section class="wrap pgs" id="mh-five"><h2>Five pressures, one pattern</h2><p class="lead">'+T("Put the Indian studies, the Object 01 field report and the research from abroad side by side and the same five pressures keep turning up. I gave each a plain name.")+'</p>'
+   +'<div class="five">'+MH_FIVE.map(function(x,i){
+      return '<article class="patch"><i class="st s"></i><div class="ptxt"><span class="no">0'+(i+1)+'</span><h3>'+T(x.h)+'</h3><p>'+T(x.p)+'</p><blockquote>“'+T(x.q)+'”<cite>'+T(x.c)+'</cite></blockquote>'+PSRC(x.src)+'</div></article>'}).join('')
+   +'<p class="closer">'+T("None of this is a personal flaw. Each one is a design decision or a gap in the rules, and the Object 01 authors say so directly: the harm to workers' rights and well-being <<cannot be wished away as mistakes or errors in otherwise rational systems>>.")+' '+PSRC(["o1"])+'</p></div></section>'
+
+   +'<section class="wrap pgs" id="mh-counter"><h2>The part that complicates my argument</h2>'
+   +'<div class="essay"><p>'+T("People take this work for sensible reasons, and a few of the studies say so. Wood and colleagues found that algorithmic management tends to give workers high flexibility, autonomy and task variety. The same systems come with low pay, isolation, irregular hours and exhaustion. In Bengaluru, the cab drivers Surie and Koduganti interviewed said the platforms let them earn up to Rs 1.2 lakh a month, far above what they made before, though they expected nothing from the companies in the way of benefits.")+'</p>'
+   +'<p>'+T("Then there's the Tamil Nadu screening study, which found higher odds of anxiety, not lower, among riders earning Rs 25,000 or more. So money alone isn't the cure either.")+'</p>'
+   +'<p>'+T("I'm not arguing that platform work is worse than what came before. I'm arguing about the missing floor under the good months, and the missing person to ask when a month goes bad.")+'</p>'+PSRC(["wood","surie","samal"])+'</div></section>'
+
+   +'<section class="wrap pgs" id="mh-label"><h2>Why I keep coming back to the legal label</h2>'
+   +'<div class="essay"><p>'+T("A public health paper by Bajwa and colleagues sorts gig workers' health risks into three groups: hazards of the job, like traffic accidents; precarity, meaning short-term work with no health insurance; and what they call platform-based vulnerabilities. Misclassification, information gaps and <<the culture of surveillance>> all sit in that third group. I read that as a team of public health researchers saying the contract label is itself a health risk.")+'</p>'
+   +'<p>'+T("Now put Object 01 next to it. Workers there could often work out roughly how the algorithm behaves. What wore them down was that they couldn't challenge it, and that even the humans in the loop deferred to the machine. That's what <<partner>> means in practice: a decision with nobody behind it.")+'</p>'
+   +'<p>'+T("So the fix isn't only a helpline, though I'll give you the helplines. It starts with a reason you can read and a person you can appeal to. Seven of the 11 platforms Fairwork India scored already do that part, so I don't think it's a wild ask. The Object 01 authors go further. Explanations alone aren't enough, they say, if workers can't also contest a decision, correct it or act together.")+'</p>'+PSRC(["bajwa","o1","fw"])+'</div></section>'
+
+   +'<section class="wrap pgs" id="mh-help"><h2>If it’s getting to you</h2><p class="lead">'+T("Feeling worn down by this work isn't weakness, and it isn't rare. These are free helplines run by the government of India and by nonprofits. I checked each against an official page or the organisation's own, and the label on each card says which. If one doesn't pick up, try the next.")+'</p>'
+   +'<div class="crisis" role="note"><b>In danger right now?</b><p>'+T("If you are in danger, or thinking about ending your life, please call 112 or one of the 24-hour lines below now. You don't have to be sure it's serious enough to deserve the call.")+'</p><p class="srcl">'+PL("i112")+'</p></div>'
+   +'<div class="hlgrid">'+MH_HELP.map(function(x){
+      return '<div class="hlc"><span class="nm">'+T(x.nm)+'</span><a class="num" href="tel:'+esc(x.tel)+'">'+T(x.num)+'</a><p>'+T(x.p)+'</p>'+PSRC(x.src)+'<span class="srcl">Checked against: '+T(x.lab)+'</span></div>'}).join('')+'</div>'
+   +'<div class="mine"><h3>Small things I’d try</h3><ol>'
+   +'<li>'+T("Keep a short log of bad days: what the app did, what it cost you, how you felt. On a rough night it shows you a pattern instead of a verdict. It also doubles as evidence.")+'</li>'
+   +'<li>'+T("Tell one person, even badly. Dubal and Woodcock both describe riders' group chats as the place people first said it out loud.")+'</li>'
+   +'<li>'+T("Check the body as well as the head. The Mumbai-area study linked pain and distress, and they tended to rise together.")+'</li>'
+   +'<li>'+T("Look for your people. A union or even a local riders' group can turn <<it's me>> into <<it's the system>>. The Resources page lists some.")+'</li></ol>'
+   +'<p class="srcl">'+T("These are my suggestions, drawn from what I read. They are not clinical advice.")+'</p></div></section>'
+
+   +'<section class="wrap pgs" id="mh-rights"><h2>What the law says about your mental health care</h2><p class="lead">'+T("I'm quoting the Act, not interpreting it for your case. If a provider or an insurer refuses you, free legal aid is where I'd start, and the Resources page tells you how.")+'</p>'
+   +'<div class="org">'+MH_RIGHTS.map(function(x){return '<div><span class="when">'+T(x[0])+'</span><div><p>'+T(x[1])+'</p>'+PSRC(x[2])+'</div></div>'}).join('')+'</div></section>'
+
+   +'<div id="mh-sources">'+srcGridX(["samal","khera","kari","o1","c4e","dissent","woodcock","borghi","wood","surie","bajwa","kellogg","rosenblat","hrw","fw"],["pibtm","tml","pibkiran","icall","vand","vdir","i112","mhca","pibjay","sip"],"Research and reporting","Helplines and law","Every claim on this page traces back to something here. The helplines were checked on 13 November 2026, and hours and numbers can change.")+'</div>'
+   +'<section class="wrap pgend"><span class="stamp" style="width:fit-content">Next</span><h2>The numbers to call, and the places to go.</h2><p>The Resources page gathers helplines, legal aid, unions, schemes and reading in one place, with a note on how I checked each one.</p><div class="cta"><button class="btn solid" data-nav="resources">Open Resources</button><button class="btn" data-nav="gig-worker">What you’re owed</button></div></section></div>';
+  sec.innerHTML=h;
+})();
+
+/* ===== Resources ===== */
+var TOPIC={mental:"Mental health",wages:"Wages & work",rights:"Human rights & safety",legal:"Legal aid",social:"Social security & health",union:"Unions & collectives",digital:"Data, scams & online",learn:"Learn & research"};
+var TOPIC_ORDER=["mental","wages","rights","legal","social","union","digital","learn"];
+var WTYPE={all:"Any kind of gig work",del:"Delivery & logistics",ride:"Ride-hail & driving",home:"Home services",wh:"Warehouse & fulfilment",on:"Online & freelance",wom:"Women"};
+var WT_ORDER=["all","del","ride","home","wh","on","wom"];
+var VL={gov:"Official page",own:"The organisation's own page",press:"Press, explainer or other secondary source"};
+var RES=[
+ {id:"tm",n:"Tele-MANAS",cat:["mental"],ty:["all"],k:"Helpline",
+  d:"The government's free tele mental health line. You pick a language, talk to a trained counsellor, and can ask for a call-back. It also links you to existing mental health services. Nothing has to be a crisis for you to ring.",
+  reach:[{t:"14416",tel:"14416"},{t:"1-800-891-4416",tel:"18008914416"}],cost:"Free. Open 24 hours, according to the launch coverage.",
+  cv:"I confirmed the numbers and services on a 2024 government release. The 24-hour claim comes from the 2022 launch coverage. If it doesn't pick up at night, try KIRAN.",v:"gov",src:["pibtm","tml"]},
+ {id:"kiran",n:"KIRAN",cat:["mental"],ty:["all"],k:"Helpline",
+  d:"A 24-hour helpline from the Ministry of Social Justice and Empowerment, in 13 languages. It gives first-stage advice and counselling and points you to professionals, for things like stress, anxiety and low mood.",
+  reach:[{t:"1800-599-0019",tel:"18005990019"}],cost:"Free, 24 hours, from any phone on any network.",v:"gov",src:["pibkiran"]},
+ {id:"icall",n:"iCall (TISS)",cat:["mental"],ty:["all"],k:"Helpline",
+  d:"Free counselling by phone and email from the Tata Institute of Social Sciences. It isn't a 24-hour line, so use it when you can plan a call, and use a 24-hour line like Tele-MANAS or KIRAN at 2 a.m.",
+  reach:[{t:"+91 9152987821",tel:"+919152987821"},{t:"icall@tiss.ac.in",m:"icall@tiss.ac.in"}],cost:"Free. Monday to Saturday, 8 a.m. to 9 p.m. on its own page.",
+  cv:"Other listings give different hours, so check before you rely on it.",v:"own",src:["icall"]},
+ {id:"vand",n:"Vandrevala Foundation helpline",cat:["mental"],ty:["all"],k:"Helpline",
+  d:"A nonprofit's free counselling and crisis line, reported to run in 11 languages. Good to have as a second number for when one line is busy.",
+  reach:[{t:"+91 9999666555",tel:"+919999666555"}],cost:"Free. Listed as open 24 hours.",v:"press",src:["vand","vdir"]},
+ {id:"mhca",n:"Mental Healthcare Act, 2017",cat:["mental","rights"],ty:["all"],k:"Law",
+  d:"The law behind your mental health rights. Section 18 gives everyone the right to mental healthcare from government-run or funded services. Section 21(4) says insurers must cover mental illness on the same basis as physical illness. Section 23 protects confidentiality.",
+  reach:[{t:"Read the Act",h:"https://www.legalauthority.in/bare-act/mental-healthcare-act-2017"}],cost:"Free to read.",v:"press",src:["mhca"]},
+ {id:"i112",n:"112, the emergency number",cat:["rights"],ty:["all"],k:"Helpline",
+  d:"India's single emergency number for police, fire and health. There's also a 112 India app with a button that sends your location. Use it for danger right now, like an accident, a threat or an assault. For anything that can wait, the calmer doors are below.",
+  reach:[{t:"112",tel:"112"},{t:"112 India app and portal",h:"https://112.gov.in/about"}],v:"gov",src:["i112"]},
+ {id:"eshram",n:"e-Shram and its helpline",cat:["social","wages"],ty:["all"],k:"Portal",
+  d:"The government's registry for unorganised workers, and your way in to anything a platform worker can claim. Register with Aadhaar and you get a Universal Account Number and a digital card. Platforms are also supposed to upload their workers, so check that you're on it.",
+  reach:[{t:"14434",tel:"14434"},{t:"register.eshram.gov.in",h:"https://register.eshram.gov.in"}],cost:"Free. The helpline gives information, guides registration and fixes technical problems.",
+  cv:"Registration is the first step, and it doesn't guarantee a benefit. The Gig Worker page says what is still pending.",v:"gov",src:["pibesh","cdot","impri"]},
+ {id:"appeal",n:"Your platform's own appeal channel",cat:["wages"],ty:["all"],k:"First step",
+  d:"Boring, and important. Raise the problem in writing through the app or the platform's grievance contact, and get a reference number. Every other door on this page asks for a paper trail, and in Karnataka and Telangana the Acts build on this route.",
+  reach:[{s:"Inside your app, under help or support"}],cost:"Free. Fairwork India 2024 found seven of the 11 platforms it scored had an appeal route with a human on the other end.",v:"own",src:["fw"]},
+ {id:"ka",n:"Karnataka's grievance route",cat:["wages","legal"],ty:["all"],k:"State law",
+  d:"Karnataka's 2025 Act asks platforms for notice and written reasons before terminating a worker, and sets up an internal grievance committee with an appeal to the state Board. Platforms challenged the Act in the High Court, which in July 2026 refused to stay it.",
+  reach:[{s:"Start with the platform's grievance committee, then the state Board."}],
+  cv:"I couldn't find a direct contact for the Board, so ask a union near you for the current address.",v:"press",src:["livelaw","impri"]},
+ {id:"tg",n:"Telangana's grievance officer",cat:["wages","legal"],ty:["all"],k:"State law",
+  d:"Telangana's 2026 Act promises a grievance officer who must decide within 30 days, an appeal within 90 days, and an internal dispute committee for platforms with 100 or more workers. Fines start at Rs 50,000.",
+  reach:[{s:"Through the platform, then the grievance officer."}],
+  cv:"The Act passed on 29 March 2026. I couldn't confirm it is in force yet, so treat this as coming, not here.",v:"press",src:["ksk","dc"]},
+ {id:"fw",n:"Fairwork India ratings",cat:["wages","learn"],ty:["all"],k:"Reading",
+  d:"An independent team scores platforms out of 10 on pay, conditions, contracts, management and representation. In 2024 it scored 11 platforms. It's the quickest way to see who does what before you sign up or complain.",
+  reach:[{t:"fair.work/india",h:"https://fair.work/india"}],cost:"Free to read.",v:"own",src:["fw"]},
+ {id:"msme",n:"MSME Samadhaan, for unpaid invoices",cat:["wages","digital"],ty:["on"],k:"Portal",
+  d:"If you do online or freelance work and a client won't pay, this is a real option. If your work is registered on Udyam as a micro or small service enterprise, you can file a delayed-payment complaint. The payment limit is 45 days with a written agreement and 15 without. A facilitation council tries conciliation first, then arbitration.",
+  reach:[{t:"samadhaan.msme.gov.in",h:"https://samadhaan.msme.gov.in"}],
+  cv:"This is for businesses billing other businesses, not for app payouts, and the registration needs to exist before the invoice date. I read about it in an explainer, not on the portal.",v:"press",src:["iifl"]},
+ {id:"nhrc",n:"National Human Rights Commission",cat:["rights"],ty:["all"],k:"Complaints body",
+  d:"For serious rights violations, especially by police and public authorities. Its own FAQ lists police conduct, bonded labour, and sexual harassment and exploitation of women among the things it takes up. You can file online, by post or at a Common Service Centre.",
+  reach:[{t:"14433",tel:"14433"},{t:"File online (HRCNet)",h:"https://hrcnet.nic.in/HRCNet/public/webcomplaint.aspx"}],cost:"No fee.",
+  cv:"It ordinarily won't take events older than a year, matters already in court, or vague and anonymous complaints. Its FAQ doesn't say whether it handles complaints about private companies, so a dispute with a platform may not be its job.",v:"gov",src:["nhrcfaq"]},
+ {id:"ncw",n:"NCW Women Helpline",cat:["rights"],ty:["wom"],k:"Helpline",
+  d:"A 24-hour helpline from the National Commission for Women. Any woman or girl above 18 can call. It registers complaints about violence, offers counselling, refers you onward and tells you about government schemes. It's linked to the older NCW number, 7827170170.",
+  reach:[{t:"14490",tel:"14490"}],cost:"24 hours.",v:"gov",src:["pibncw"]},
+ {id:"shebox",n:"SHe-Box",cat:["rights","legal"],ty:["wom"],k:"Portal",
+  d:"The government's online complaint system for workplace sexual harassment.",
+  reach:[{t:"shebox.wcd.gov.in",h:"https://shebox.wcd.gov.in"}],
+  cv:"A platform worker has no employer on paper, so I couldn't confirm whether a complaint from you falls inside its reach. Try it, and also ask legal aid. The PIB page I read links to the portal but doesn't give its address in text.",v:"gov",src:["pibncw"]},
+ {id:"nalsa",n:"NALSA free legal aid",cat:["legal"],ty:["all"],k:"Helpline",
+  d:"The National Legal Services Authority runs free legal aid through legal services authorities in every district. Eligible groups include women, children, SC and ST members, people with disabilities and industrial workmen. Many places also set an income ceiling (Delhi's is under Rs 3 lakh a year). Whether you qualify depends on your state and income, so ask the office near you.",
+  reach:[{t:"15100",tel:"15100"},{t:"nalsa.gov.in",h:"https://nalsa.gov.in"}],cost:"Free for those who qualify. Apply through the nearest Legal Services Institution, or the Legal Aid Application on NALSA's e-services menu.",v:"gov",src:["nalsa","dslsa"]},
+ {id:"telelaw",n:"Tele-Law",cat:["legal"],ty:["all"],k:"Helpline",
+  d:"Free legal advice from panel lawyers by phone or video, usually through a Common Service Centre at your gram panchayat. There's an app too. The advice is free. A court case isn't, so ask the legal services authority about that next.",
+  reach:[{t:"14454",tel:"14454"},{t:"tele-law.in",h:"https://tele-law.in"}],cost:"Free advice. The portal says all citizens are eligible.",v:"gov",src:["telelaw","teleorg"]},
+ {id:"pmjay",n:"Ayushman Bharat PM-JAY for platform workers",cat:["social"],ty:["all"],k:"Scheme",
+  d:"Budget 2025 promised registered platform workers health cover of Rs 5 lakh per family per year for hospital stays, at over 31,000 empanelled hospitals. The first step the labour ministry asked for is registering on e-Shram.",
+  reach:[{t:"pmjay.gov.in",h:"https://pmjay.gov.in"},{s:"Helpline 14555, as listed by a policy explainer. I couldn't check it against an official page."}],cost:"Free to the worker. The government pays.",
+  cv:"I couldn't confirm the scheme is live for gig workers as of November 2026. In March 2025 the Labour Secretary said it was expected soon, and a January 2026 report says data-mapping tools linking e-Shram and PM-JAY are in place. Check before you count on it.",v:"gov",src:["pibjay","tribjay","sip","indpol"]},
+ {id:"pmsby",n:"Accident and life cover through your bank (PMSBY and PMJJBY)",cat:["social"],ty:["all"],k:"Scheme",
+  d:"Two government-backed insurance schemes you can join through a bank or post office account. PMSBY costs Rs 20 a year and pays Rs 2 lakh for accidental death or total permanent disability, and Rs 1 lakh for partial permanent disability. PMJJBY costs Rs 436 a year and pays Rs 2 lakh on death from any cause. If you ride all day, the Rs 20 one is the obvious first call.",
+  reach:[{s:"Ask at your bank or post office branch."}],cost:"Rs 20 and Rs 436 a year, auto-debited. PMSBY is for ages 18 to 70. PMJJBY is for ages 18 to 50, with cover to 55 if you renew on time.",
+  cv:"Both are one-year policies you have to renew. Check the current premium with your bank, since it can change.",v:"press",src:["bankins"]},
+ {id:"pmsym",n:"PM-SYM pension (Maandhan)",cat:["social"],ty:["all"],k:"Scheme",
+  d:"A government pension for unorganised workers. You pay Rs 55 to Rs 200 a month depending on the age you join, the government matches it, and you get at least Rs 3,000 a month for life after 60. You must be 18 to 40, earn Rs 15,000 a month or less, and not be in EPF, ESIC or NPS.",
+  reach:[{t:"maandhan.in",h:"https://maandhan.in"}],cost:"Rs 55 at age 18 up to Rs 200 at age 40, matched by the government.",
+  cv:"The official page I read doesn't say whether new enrolment is open, so confirm at a Common Service Centre or on the portal.",v:"gov",src:["pibsym"]},
+ {id:"boards",n:"State welfare boards: Rajasthan, Karnataka, Telangana",cat:["social","wages"],ty:["all"],k:"State law",
+  d:"Three states have laws that set up a welfare board and fund for platform workers. They differ a lot in what they promise and in whether they're in force. I put the state-by-state version on the Gig Worker page so I don't repeat myself.",
+  reach:[{t:"Open the Gig Worker page",nav:"gig-worker"}],v:"press",src:["impri","ksk","drishti"]},
+ {id:"ifat",n:"IFAT, the Indian Federation of App-based Transport Workers",cat:["union"],ty:["ride","del"],k:"Union",
+  d:"A national federation of app-based transport workers' unions. With GIPSWU it called the 31 December 2025 log-off, and its demands included removing the 10-minute delivery system and legal recognition as workers, not partners. In 2022 it also asked the Vidhi Centre to convene the roundtable that led to a model law.",
+  reach:[{s:"I couldn't find an official contact page for it."}],cv:"Reports put the log-off at between one and three lakh workers. Unions claimed more than two lakh.",v:"press",src:["bhrrc","vidhi"]},
+ {id:"gipswu",n:"GIPSWU, the Gig and Platform Service Workers Union",cat:["union"],ty:["all"],k:"Union",
+  d:"Formed in 2023 and described by ThePrint as India's first women-led gig workers' union, with mostly women members. It has called nationwide app switch-offs and protests, and called the 31 December 2025 log-off alongside IFAT. Its demands include recognition as employees, minimum wages, a grievance mechanism, and social security such as provident fund, pension and insurance.",
+  reach:[{s:"I couldn't find a public contact page. Its statements appear on Countercurrents and in news reports."}],v:"press",src:["theprint","bhrrc","cc"]},
+ {id:"tgpwu",n:"TGPWU, the Telangana Gig and Platform Workers Union",cat:["union","legal"],ty:["ride","del"],k:"Union",
+  d:"A union for gig, platform and informal workers in transport and delivery, based in Telangana. Its stated aims include legal assistance to members over work-related matters, and help in case of sickness, accident or a member's death.",
+  reach:[{t:"tgpwu.org",h:"https://tgpwu.org"},{t:"tgapwu@gmail.com",m:"tgapwu@gmail.com"}],cost:"The site doesn't say how to join, so write and ask.",v:"own",src:["tgpwu"]},
+ {id:"aigwu",n:"AIGWU, the All India Gig Workers' Union",cat:["union"],ty:["del","home","wh"],k:"Union",
+  d:"A registered trade union for food delivery, logistics and service workers. In January 2024 it published a policy brief answering NITI Aayog's report. The brief argues that gig workers should be recognised as employees, with a clear legal test of employment.",
+  reach:[{t:"contactaigwu@gmail.com",m:"contactaigwu@gmail.com"}],v:"press",src:["aigwu"]},
+ {id:"sewa",n:"SEWA, the Self Employed Women's Association",cat:["union","social"],ty:["wom","home"],k:"Union",
+  d:"In its own words, the only national union of women workers from the informal economy in India. If you're a woman doing home-based or home-service work, it's the oldest door on this list. The History page tells how it started in 1972.",
+  reach:[{t:"sewa.org",h:"https://www.sewa.org"}],cost:"The site doesn't spell out how to join, so write to them or ask at an office near you.",v:"own",src:["sewa"]},
+ {id:"cyber",n:"Cyber crime helpline and national portal",cat:["digital","legal"],ty:["all","on"],k:"Helpline",
+  d:"For online fraud, fake job offers and task scams, UPI fraud and online harassment. The portal belongs to the Ministry of Home Affairs, it takes complaints at any hour, and you can file anonymously. Keep your screenshots, the account or number the money went to, and the date and time ready.",
+  reach:[{t:"1930",tel:"1930"},{t:"cybercrime.gov.in",h:"https://cybercrime.gov.in"}],
+  cv:"The explainer I read doesn't print the portal address, and I couldn't open the portal from here. cybercrime.gov.in is the address as widely published.",v:"press",src:["cyber"]},
+ {id:"dpdp",n:"Your data rights, coming soon",cat:["digital","learn"],ty:["all"],k:"Law",
+  d:"The Digital Personal Data Protection Rules were notified on 14 November 2025. The rights to access, correct and erase your data, and to have a grievance heard, are due to start 18 months later. That matters to gig workers, because platforms run on your data.",
+  reach:[{s:"Not usable yet."}],cv:"The 18 months works out to around May 2027 by my own arithmetic, not a date I found in print. Check the Gazette.",v:"press",src:["scc"]},
+ {id:"o1",n:"There's no ghost in the machine (Object 01)",cat:["learn","mental"],ty:["all"],k:"Reading",
+  d:"The report this exhibit started from. Researchers at NLSIU's Centre for Labour Studies and IT for Change interviewed 26 workers and five union organisers between November 2024 and February 2025, and wrote up what algorithmic management does to people in India.",
+  reach:[{t:"Read the PDF",h:"https://itforchange.net/sites/default/files/2760/There%27s_no%20_ghost_in_the_machine.pdf"}],cost:"Free to read.",v:"own",src:["o1"]},
+ {id:"itfc",n:"Centring Rights in the Platform Workplace",cat:["learn"],ty:["all"],k:"Reading",
+  d:"A study by IT for Change with the Centre for Labour Studies at NLSIU, combining legal analysis across countries with worker interviews. It argues for core worker rights, sector-specific rules for food delivery, a model law and collective bargaining.",
+  reach:[{t:"Open the study",h:"https://itforchange.net/node/2491"}],v:"own",src:["itfc"]},
+ {id:"vidhi",n:"Vidhi's Model Law for Platform-Based Gig Workers",cat:["learn"],ty:["all"],k:"Reading",
+  d:"The legal think tank Vidhi built a model law after IFAT asked it to convene a roundtable in 2022. It covers algorithmic accountability, fair contracts, human-led grievance redressal and recognising gig workers as a group with rights of its own. Vidhi says it has informed laws and bills in Karnataka, Rajasthan, Telangana and Jharkhand.",
+  reach:[{t:"Reimagining Platform-Work",h:"https://vidhilegalpolicy.in/impact/reimagining-platform-work/"}],v:"own",src:["vidhi"]},
+ {id:"hrw",n:"Algorithms of Exploitation (Human Rights Watch, 2026)",cat:["learn","rights"],ty:["all"],k:"Reading",
+  d:"A May 2026 feature report on rights abuses in the gig economy across several countries, with the account of an Indian rider who worked 18-hour shifts. It asks for a presumption of employment.",
+  reach:[{t:"Read the report",h:"https://www.hrw.org/feature/2026/05/13/algorithms-of-exploitation/rights-abuses-in-the-gig-economy-and-the-global-fight"}],cost:"Free to read.",v:"own",src:["hrw"]},
+ {id:"dubal",n:"Veena Dubal, Digital Piecework (2020)",cat:["learn"],ty:["on","ride"],k:"Reading",
+  d:"An essay and a longer paper on what happens to people who do piece-paid platform work, built on interviews with Mechanical Turk workers and ride-hail drivers. Several quotes on this site come from it.",
+  reach:[{t:"The essay in Dissent",h:"https://dissentmagazine.org/article/digital-piecework/"},{t:"The longer paper",h:"https://repository.uclawsf.edu/faculty_scholarship/1818"}],cost:"Free to read.",v:"own",src:["dissent","c4e"]},
+ {id:"studies",n:"The three Indian rider studies",cat:["learn","mental"],ty:["del"],k:"Reading",
+  d:"Samal et al. in Tamil Nadu, Khera et al. in the Mumbai region and Kariveliparambil et al. in South India. They are free to read. The Mental Health page sums them up and says how small each one is.",
+  reach:[{t:"Samal et al.",h:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12318562/"},{t:"Khera et al.",h:"https://ijmr.org.in/musculoskeletal-health-and-mental-well-being-of-occupational-two-wheeler-delivery-drivers-from-mumbai-metropolitan-region/"},{t:"Kariveliparambil et al.",h:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12990256/"},{t:"Mental Health page",nav:"mental-health"}],v:"own",src:["samal","khera","kari"]},
+ {id:"mel",n:"The Everyday Lives of Gig Workers, a photo exhibition",cat:["learn"],ty:["del"],k:"Reading",
+  d:"Delivery workers in Melbourne took these photographs in 2023 and 2024. It's from another country, and the faces are familiar anyway. The full PDF is on the Gallery page.",
+  reach:[{t:"Open the Gallery",nav:"gallery"},{t:"University of Melbourne repository",h:"https://doi.org/10.26188/28397225.v2"}],v:"own",src:["mel"]}
+];
+RES.forEach(function(r){
+  r.hay=(r.n+" "+r.d+" "+r.k+" "+r.cat.map(function(c){return TOPIC[c]}).join(" ")+" "+r.reach.map(function(x){return (x.t||x.s||"")}).join(" ")+" "+(r.cost||"")).toLowerCase();
+});
+var TRIAGE=[
+ {k:"unpaid",l:"I haven't been paid",cats:["wages","legal","union"],h:"Money first, then a paper trail.",
+  p:"Screenshot the order, the amount and the date before anything changes. Then write to the platform's support or grievance channel and keep the reference number. If that goes nowhere, a union can often push harder than one person can, and free legal advice is the next door. I couldn't find a central complaint portal built for gig pay, and I'd rather tell you that than invent one."},
+ {k:"blocked",l:"My account was blocked",cats:["wages","legal","union"],h:"Ask for the reason in writing.",
+  p:"Use the platform's appeal channel even if it's slow, and keep every message. Seven of the 11 platforms Fairwork India scored have a human on the other end of the appeal, so the route may exist for you. In Karnataka and Telangana the Acts also write in a grievance route. The Gig Worker page says where each one stands."},
+ {k:"hurt",l:"I got hurt",cats:["rights","social","legal"],h:"Get help first. Paperwork second.",
+  p:"If it's an emergency, call 112. After that, keep every bill and the details of the accident, and ask your platform in writing whether you're covered by an accident policy, and for a copy of it. If you took the Rs 20 accident cover through your bank, that's a claim to start."},
+ {k:"low",l:"I feel low or anxious",cats:["mental"],h:"You can ring, and it doesn't have to be a crisis.",
+  p:"Tele-MANAS on 14416 is free and answers in your language. If one line is busy, try the next one down. The Mental Health page explains what the studies say about why this work wears people down, so you know it isn't just you."},
+ {k:"harassed",l:"I'm being harassed or threatened",cats:["rights","legal"],h:"Safety first, evidence second.",
+  p:"If you're in danger, call 112. Women can call the NCW helpline on 14490, any hour. Screenshot threats and note names, dates and places. For police conduct, the NHRC takes complaints, and its card spells out what it can't take."},
+ {k:"join",l:"I want to join others",cats:["union"],h:"Find the union nearest to your kind of work.",
+  p:"The unions here organise different workers in different places, so start with the one closest to you and ask what it has actually done for members. A local riders' group chat is a start too. Dubal and Woodcock both describe group chats as where organising begins."},
+ {k:"scam",l:"I got scammed or tricked",cats:["digital"],h:"Call 1930, and do it quickly.",
+  p:"File on the national cyber crime portal as well. Keep screenshots, the account or number the money went to, and the chat. For fake task and job scams this is the door."},
+ {k:"learn",l:"I want to understand my rights",cats:["learn","social"],h:"Start with the law in plain words.",
+  p:"The Gig Worker page on this site lays out what Indian law gives you and what it doesn't. After that, pick one report from the reading list below. The Fairwork India ratings are the quickest way to compare platforms."}
+];
+var READY=[
+ ["Your IDs","Aadhaar, the phone number linked to it, your platform partner ID, and your e-Shram UAN if you have one."],
+ ["The paper trail","Screenshots of the order, the amount, and any penalty or block message, with dates. A note on your phone is fine."],
+ ["Your story in three lines","What happened, when, and what you want to happen next. Lines get busy, and short beats perfect."],
+ ["A reference number","Write down the ticket or complaint number every time, and who you spoke to."]
+];
+var GAPS=[
+ ["State labour departments","Every state has one, and they're the likely door for unpaid wages. I couldn't confirm a contact route that works for platform workers, so I left them off instead of guessing."],
+ ["Lines for caste, disability and transgender workers","Legal aid's eligible groups cover these, and the NHRC takes some complaints, but I haven't verified a dedicated line, so none is listed."],
+ ["Other mental health lines","Aasra is the one I'd have added, but I couldn't open its own page, so I skipped it."],
+ ["Local and regional groups","I did desk research. A worker group in your own city will know more than this page does."],
+ ["Platform chat groups","Telegram and WhatsApp groups of riders are real and useful, and I can't vouch for any of them."]
+];
+
+(function(){
+  var sec=document.querySelector('[data-page="resources"]'); if(!sec) return;
+  var S={q:"",topics:[],wt:"all",tri:""};
+  var h='<div class="pg"><canvas class="flow" aria-hidden="true"></canvas>'
+   +pgDirt(["b","width:520px;height:520px;right:-140px;top:-60px;opacity:.4","s","width:460px;height:460px;left:-140px;top:420px"])
+   +pgHead("Resources","Checked 13 Nov 2026","Who to call, where to go, what to read",
+     ["Sooner or later every gig worker hits the same wall. Something is wrong, you can feel it, and you have no idea who to call. This page is my attempt at a list of doors, for riders, drivers, home-service partners, warehouse workers and people who do tasks online.",
+      "I only listed what I could check, and each card says where I checked it. Numbers change and websites move, so if one doesn't connect, move on to the next door. None of this is legal advice."],
+     "Everything here was checked on 13 November 2026. Where a fact was unclear, the card says so.",
+     [["rs-find","Find your door","rs-find"],["rs-list","The full list","rs-list"],["rs-ready","Before you call","rs-ready"],["rs-gaps","What's missing","rs-gaps"],["rs-sources","Sources","rs-sources"]])
+
+   +'<section class="wrap pgs" id="rs-find"><h2>Start with what’s wrong</h2><p class="lead">'+T("Pick the closest one. I'll tell you what I'd do first and show you the matching doors.")+'</p>'
+   +'<div class="tri" role="group" aria-label="What is wrong">'+TRIAGE.map(function(t){return '<button type="button" class="tbtn" data-tri="'+t.k+'" aria-pressed="false">'+T(t.l)+'</button>'}).join('')+'</div>'
+   +'<div class="fm" id="fm" hidden aria-live="polite"></div></section>'
+
+   +'<section class="wrap pgs" id="rs-list"><h2>The full list</h2><p class="lead">'+T("Filter by topic, by the kind of work you do, or just search. With nothing filtered, the helplines for how you feel come first. Save one in your phone before you need it.")+'</p>'
+   +'<div class="dirbar"><input class="dsearch" id="dsearch" type="search" placeholder="Search: unpaid, helpline, pension, union..." aria-label="Search the resources" autocomplete="off">'
+   +'<div class="fgroup"><span>Topic</span><div class="fchips" id="ftopics"><button type="button" class="fchip" data-topic="" aria-pressed="true">All</button>'+TOPIC_ORDER.map(function(k){return '<button type="button" class="fchip" data-topic="'+k+'" aria-pressed="false">'+T(TOPIC[k])+'</button>'}).join('')+'</div></div>'
+   +'<div class="fgroup"><span>Your kind of work</span><div class="fchips" id="fwt">'+WT_ORDER.map(function(k){return '<button type="button" class="fchip" data-wt="'+k+'" aria-pressed="'+(k==="all"?'true':'false')+'">'+T(WTYPE[k])+'</button>'}).join('')+'</div></div>'
+   +'<div class="dcount" aria-live="polite"><span id="dcount"></span><button type="button" id="dreset" hidden>Clear filters</button></div></div>'
+   +'<p class="srcl" style="margin-top:12px">'+T("How I checked: ")+'<span class="vchip v-gov">Official page</span> a government site or release. <span class="vchip v-own">Own page</span> the organisation’s own site. <span class="vchip v-press">Secondary</span> a news report, law-firm note or explainer.</p>'
+   +'<div class="rgrid" id="rgrid"></div>'
+   +'<div class="dempty" id="dempty" hidden><b class="tape" style="width:fit-content">Nothing matched</b><p>'+T("Try fewer words, or clear the filters. If it's an emergency, call 112.")+'</p></div></section>'
+
+   +'<section class="wrap pgs" id="rs-ready"><h2>Before you call</h2><p class="lead">'+T("Four things to have within reach. These are my suggestions, not rules from any of the bodies above.")+'</p>'
+   +'<div class="ready">'+READY.map(function(x){return '<div><b>'+T(x[0])+'</b><span>'+T(x[1])+'</span></div>'}).join('')+'</div></section>'
+
+   +'<section class="wrap pgs" id="rs-gaps"><h2>What’s missing, and why</h2><p class="lead">'+T("A list that claims to be complete is lying. Here is what I left out on purpose.")+'</p>'
+   +'<div class="org">'+GAPS.map(function(x){return '<div><span class="when">'+T(x[0])+'</span><div><p>'+T(x[1])+'</p></div></div>'}).join('')+'</div></section>'
+
+   +'<div id="rs-sources">'+srcGridX(["pibtm","tml","pibkiran","icall","vand","vdir","i112","nhrcfaq","pibncw","nalsa","dslsa","telelaw","teleorg","pibesh","cdot","cyber"],["pibjay","tribjay","sip","indpol","bankins","pibsym","scc","iifl","tgpwu","sewa","aigwu","bhrrc","theprint","vidhi","itfc","o1","hrw","mhca"],"Helplines, legal aid and rights","Schemes, unions and reading","Every card above links to its own sources. This is the full list in one place, as it stood on 13 November 2026.")+'</div>'
+   +'<section class="wrap pgend"><span class="stamp" style="width:fit-content">Next</span><h2>Know what you’re owed, then ask for it.</h2><p>The Gig Worker page sets out what Indian law gives a platform worker, state by state. The Mental Health page covers what this work does to people.</p><div class="cta"><button class="btn solid" data-nav="gig-worker">Gig Worker</button><button class="btn" data-nav="mental-health">Mental Health</button></div></section></div>';
+  sec.innerHTML=h;
+
+  var grid=sec.querySelector("#rgrid"), cnt=sec.querySelector("#dcount"), emp=sec.querySelector("#dempty"), rst=sec.querySelector("#dreset"), fm=sec.querySelector("#fm"), srch=sec.querySelector("#dsearch");
+  function tyLabel(r){return r.ty.indexOf("all")>-1?WTYPE.all:r.ty.map(function(k){return WTYPE[k]}).join(", ")}
+  function reachHtml(r){
+    return r.reach.map(function(x){
+      if(x.tel) return '<a class="tel" href="tel:'+esc(x.tel)+'">'+T(x.t)+'</a>';
+      if(x.m) return '<a href="mailto:'+esc(x.m)+'">'+T(x.t)+'</a>';
+      if(x.nav) return '<a href="#'+x.nav+'" data-nav="'+x.nav+'">'+T(x.t)+'</a>';
+      if(x.h) return '<a href="'+esc(x.h)+'" target="_blank" rel="noopener">'+T(x.t)+'</a>';
+      return '<span>'+T(x.s)+'</span>';
+    }).join('');
+  }
+  function card(r){
+    return '<article class="rcard" id="r-'+r.id+'"><div class="tags"><span class="rtag k">'+T(r.k)+'</span>'+r.cat.map(function(c){return '<span class="rtag">'+T(TOPIC[c])+'</span>'}).join('')+'</div>'
+     +'<h3>'+T(r.n)+'</h3><p>'+T(r.d)+'</p>'
+     +'<div class="reach">'+reachHtml(r)+'</div>'
+     +'<div class="rmeta">'+(r.cost?'<div><b>Cost and hours</b>'+T(r.cost)+'</div>':'')+(r.ty.indexOf("all")>-1?'':'<div><b>For</b>'+T(tyLabel(r))+'</div>')+'</div>'
+     +(r.cv?'<p class="caveat">'+T(r.cv)+'</p>':'')
+     +'<div class="chk2"><span class="vchip v-'+r.v+'" title="'+esc(VL[r.v])+'">'+T(r.v==="gov"?"Official page":r.v==="own"?"Own page":"Secondary")+'</span>'+PSRC(r.src)+'</div></article>';
+  }
+  function ok(r){
+    if(S.topics.length && !r.cat.some(function(c){return S.topics.indexOf(c)>-1})) return false;
+    if(S.wt!=="all" && r.ty.indexOf("all")<0 && r.ty.indexOf(S.wt)<0) return false;
+    if(S.q){var ws=S.q.toLowerCase().split(/\s+/).filter(Boolean); for(var i=0;i<ws.length;i++){ if(r.hay.indexOf(ws[i])<0) return false } }
+    return true;
+  }
+  function paint(){
+    var list=RES.filter(ok);
+    grid.innerHTML=list.map(card).join('');
+    cnt.textContent="Showing "+list.length+" of "+RES.length;
+    emp.hidden=list.length>0;
+    var dirty=!!(S.q||S.topics.length||S.wt!=="all");
+    rst.hidden=!dirty;
+    [].forEach.call(sec.querySelectorAll("#ftopics .fchip"),function(b){
+      var k=b.getAttribute("data-topic");
+      b.setAttribute("aria-pressed",k===""?String(S.topics.length===0):String(S.topics.indexOf(k)>-1));
+    });
+    [].forEach.call(sec.querySelectorAll("#fwt .fchip"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-wt")===S.wt))});
+    [].forEach.call(sec.querySelectorAll(".tbtn"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-tri")===S.tri))});
+  }
+  function showFm(k){
+    var t=TRIAGE.filter(function(x){return x.k===k})[0];
+    if(!t){fm.hidden=true;return}
+    fm.innerHTML='<span class="tag2">'+T(t.l)+'</span><h3>'+T(t.h)+'</h3><p>'+T(t.p)+'</p><div class="row"><button type="button" class="btn solid" data-scroll="rs-list">See the matching doors</button><button type="button" class="btn" data-clear="1">Clear</button></div>';
+    fm.hidden=false;
+  }
+  sec.addEventListener("click",function(e){
+    var tb=e.target.closest(".tbtn");
+    if(tb){
+      var k=tb.getAttribute("data-tri");
+      if(S.tri===k){S.tri="";S.topics=[];fm.hidden=true}
+      else{S.tri=k;var t=TRIAGE.filter(function(x){return x.k===k})[0];S.topics=t.cats.slice();S.wt="all";S.q="";srch.value="";showFm(k)}
+      paint(); return;
+    }
+    var cl=e.target.closest("[data-clear]");
+    if(cl){S.tri="";S.topics=[];fm.hidden=true;paint();return}
+    var tc=e.target.closest("#ftopics .fchip");
+    if(tc){
+      var tk=tc.getAttribute("data-topic"); S.tri=""; fm.hidden=true;
+      if(tk==="") S.topics=[]; else if(S.topics.length===1&&S.topics[0]===tk) S.topics=[]; else S.topics=[tk];
+      paint(); return;
+    }
+    var wc=e.target.closest("#fwt .fchip");
+    if(wc){S.wt=wc.getAttribute("data-wt");paint();return}
+    if(e.target.closest("#dreset")){S.q="";S.topics=[];S.wt="all";S.tri="";srch.value="";fm.hidden=true;paint();return}
+  });
+  srch.addEventListener("input",function(){S.q=srch.value.trim();paint()});
+  paint();
+})();
+
+/* ---- Contributions + Recommendations ---- */
+Object.assign(PS,{
+ niti:["NITI Aayog, India's booming gig and platform economy (PIB release, 27 June 2022)","https://pib.gov.in/PressReleasePage.aspx?PRID=1837277"],
+ es26:["Business Today on the Economic Survey 2025-26 (29 Jan 2026)","https://www.businesstoday.in/union-budget/story/india-has-12-million-gig-workers-2-of-total-workforce-economic-survey-513429-2026-01-29"],
+ pcirc:["Policy Circle, Budget 2026 counts gig workers, but stops short of protection","https://www.policycircle.org/opinion/budget-2026-gig-workers/"],
+ redseer:["Redseer, India gig workers 2026","https://redseer.com/digests/india-gig-workers-2026-market-growth-insights/"],
+ idi:["IDinsight, The changing landscape of work: India's delivery platform gig workforce","https://www.idinsight.org/article/the-changing-landscape-of-work-insights-into-indias-delivery-platform-gig-workforce/"],
+ asia:["The Asia Foundation, India's Emerging Gig Economy: The Future of Work for Women (2020)","https://asiafoundation.org/wp-content/uploads/2020/07/Indias-Emerging-Gig-Economy_The-Future-of-Work-for-Women_update7.24.20.pdf"],
+ ilo193:["Human Rights Watch on the adoption of ILO Convention No. 193 (12 June 2026)","https://www.hrw.org/news/2026/06/12/ilo-adopts-landmark-treaty-on-gig-work"],
+ pibcode:["PIB document on gig and platform workers under the labour codes (Dec 2025)","https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/dec/doc2025129723601.pdf"],
+ cis20:["CIS, From health and harassment to income security and loans, India's gig workers need support (30 April 2020)","https://cis-india.org/raw/gig-workers-need-support"],
+ bt18:["Business Today on a PayPal report about Indian freelancers (9 Jan 2018)","https://www.businesstoday.in/amp/latest/economy-politics/story/gig-work-india-contributes-1-in-4-freelancers-99765-2018-01-09"]
+});
+
+var CB_STATS=[
+ ["7.7 million","gig workers in 2020-21, according to NITI Aayog's estimate"],
+ ["12 million","in 2024-25, about 2 percent of the workforce, according to the Economic Survey 2025-26"],
+ ["23.5 million","NITI Aayog's projection for 2029-30, about 4.1 percent of all livelihoods"],
+ ["40%","of gig workers report earning under Rs 15,000 a month, per the Economic Survey"]
+];
+
+var CB_GIVE=[
+ {pl:"Delivery and quick commerce",h:"The dinner, the medicine, the late charger",
+  p:"Redseer counts about 2.4 million delivery workers and expects 5 to 7 million by 2030. In the 2020 lockdown, most state governments treated food and groceries as essential services, so delivery carried on while the rest of us stayed home. CIS wrote at the time that many workers got no protective gear, and that some days paid Rs 150 to 300.",
+  f:"They kept food, groceries and other essentials moving when the country was told to stay indoors.",
+  r:"They did the part of the lockdown that involved going outside. It's the clearest case I know of an essential service with no employer on the hook for the people providing it.",
+  src:["redseer","cis20"]},
+ {pl:"Ride-hail and driving",h:"Getting you there",
+  p:"Redseer puts ride-hail at 3.4 million workers, the biggest group in its count, with full-time net earnings of Rs 37,000 to 39,000 a month. In 2016, cab drivers in Bengaluru told researchers the platforms let them earn up to Rs 1.2 lakh a month, far above what they made before, though they expected nothing from the companies in the way of benefits.",
+  f:"Door-to-door transport for millions of riders and, for some drivers, the best income they had known.",
+  r:"Some drivers really did better, and I don't want to write that out of the story. But a good month with no floor under it is the pattern of this whole site.",
+  src:["redseer","surie"]},
+ {pl:"Home services",h:"Fixing, cleaning, grooming, at home",
+  p:"A 2020 Asia Foundation study of women working through Urban Company found that 60 percent said gig income was their family's main income. They earned about Rs 1,552 a day, more than the Rs 8,000 to 10,000 a month a salon job paid, and 85 percent were satisfied with flexible hours around unpaid care work. Redseer puts full-time net earnings in home services at Rs 70,000 to 80,000, though for only about 100,000 workers. One catch: the Asia Foundation sample was 88 women, on one platform, in Delhi NCR and Mumbai.",
+  f:"A paid route into work for women who needed hours they could bend around care, at pay above the job they would otherwise have had.",
+  r:"This is the clearest case I found of gig work opening a door that wasn't there. It's also where the complaints were sharpest. 98 percent were paid per task and 81 percent were unhappy about the lack of maternity benefits. It's one small sample, so I hold it loosely.",
+  src:["asia","redseer"]},
+ {pl:"Online and freelance",h:"Selling skills across borders",
+  p:"NITI Aayog's 2022 estimate put about 22 percent of gig workers in high-skilled work, 47 percent in medium-skilled and 31 percent in low-skilled, so this isn't only a delivery story. A 2018 PayPal survey of 500 freelancers, as Business Today reported it, said one in every four freelancers is from India. That is old and comes from a payments company, so I treat it as a hint and not a fact.",
+  f:"Indian skills, from web development to data entry, sold into a worldwide market from a laptop at home.",
+  r:"This is the group I know least about, and the research I found on it is mostly from the US and UK. Dubal's Mechanical Turk workers show the other side: hunting for tasks, redoing rejected work, and never quite sure it was okay to stop for the night.",
+  src:["niti","bt18","c4e"]},
+ {pl:"Warehouse and fulfilment",h:"The people behind the parcel",
+  p:"Object 01, the field report by IT for Change and NLSIU, covers Amazon warehouse workers in India, and it is mostly about their conditions, like work slots handed out at random. I could not find a trustworthy headcount for warehouse and fulfilment workers.",
+  f:"The picking, packing and sorting that happens long before any rider is called.",
+  r:"I'd rather leave a hole than put in a number I can't stand behind. It's on my list of things I couldn't find.",
+  src:["o1"]},
+ {pl:"Across sectors",h:"A first job, and a bridge between jobs",
+  p:"Redseer says 54 percent of gig workers had no paid employment before joining a platform and 70 percent say it improved their future employability. It also estimates gig work could bridge close to 70 percent of India's annual non-farm job gap of about 8 million through 2030. IDinsight's study of delivery workers found the average worker is 28, half are migrants, 23 percent are also in school, and 57 percent joined to meet household needs. About 45 percent had held a formal full-time job before, and most went back to one after leaving. Redseer is a consultancy and I couldn't confirm who paid for its report, so I read its numbers as the industry's best case.",
+  f:"A first rung for people with no paid job, and a place to wait between jobs.",
+  r:"Two pictures, both true: a first job for some, a bridge for others. I found almost nobody describing it as a plan. That's why I care more about the floor under it than the ceiling.",
+  src:["redseer","idi"]}
+];
+
+var CB_RECS=[
+ {k:"gov",aud:"Central and state governments",sub:"The ones who write and fund the rules.",items:[
+  ["Count gig workers properly.","NITI Aayog itself recommended a separate enumeration, and identifying gig workers inside the Periodic Labour Force Survey. Right now the count runs from about 6 million to 12 million depending on who you ask, and you can't fund a scheme for a number nobody agrees on.",["niti","redseer","es26"]],
+  ["Fund the promise, then publish the books.","Policy Circle points out that the Code's provisions on insurance, minimum earnings and grievance redress lack enforceability and assured funding. Aggregators are meant to pay 1 to 2 percent of annual turnover, capped at 5 percent of what they pay workers, into a Social Security Fund. I'd publish every year what has come in and what has gone out.",["pcirc","pibcode"]],
+  ["Make the health cover real before it's a headline.","Budget 2025 promised registered platform workers Rs 5 lakh of hospital cover per family through PM-JAY. I couldn't confirm it is live for them. Publishing enrolment numbers, state by state, would settle it.",["pibjay","sip"]],
+  ["Ratify ILO Convention 193 and write it into Indian law.","The International Labour Conference adopted it on 12 June 2026, by 406 votes to 8 with 36 abstentions. It asks for disclosure of automated systems, a written explanation and human review for big decisions like non-payment and deactivation, and clear information on pay and deductions. Human Rights Watch says governments should ratify promptly and involve workers' organisations in carrying it out. I couldn't find whether India has said it will.",["ilo193"]],
+  ["Stop protections ending at the state border.","Rajasthan, Karnataka and Telangana each have their own law, and Policy Circle describes state schemes as a patchwork with no national fiscal anchor. IDinsight found that about half the delivery workers it studied were migrants, so the person most likely to cross a state line is the one who loses the protection when they do.",["pcirc","idi"]],
+  ["Open the door wider for women.","The Asia Foundation asks for gig-specific legislation that goes beyond registering service providers, stronger skills training and more women-friendly policies. It also notes there has been little research on women's experience of gig work, which is a gap a state could fund.",["asia"]]
+ ]},
+ {k:"reg",aud:"Regulators, labour departments and welfare boards",sub:"The ones who enforce the rules.",items:[
+  ["Make a written reason the rule everywhere.","Telangana's 2026 Act asks for valid written reasons and seven days' notice before a worker is terminated, and sets up a grievance officer who has to decide within 30 days. Karnataka's law asks for notice and written reasons too, with an appeal to the state Board. Those are the right shapes, and every other state could copy them.",["ksk","dh"]],
+  ["Audit the algorithm as well as the paperwork.","The Economic Survey says algorithmic transparency will be crucial. Human Rights Watch asks for clear explanations of how automated systems set pay, hand out tasks and deactivate workers, and the ILO convention asks for the same kind of disclosure. A regulator who only checks registration will miss all of it.",["es26","hrw","ilo193"]],
+  ["Turn Fairwork-style scoring into routine reporting.","Fairwork India scored 11 platforms in 2024. Only two earned the first Fair Pay point, a minimum wage after costs, and none earned the second. A regulator could ask every platform to report the same things each year, so the scorecard doesn't depend on a research team.",["fw"]],
+  ["Put the 10-minute rule in writing.","Human Rights Watch reports that in January 2026, after nationwide protests, the government moved to restrict 10-minute delivery guarantees. I couldn't tell how binding that move was. A published rule, with a look at the penalties riders face, would settle it.",["hrw"]],
+  ["Test whether data rights work for riders.","India's data protection rules came out in 2025. I couldn't find any case of a rider using them to get their own ratings or incentive data from a platform, so I don't know if that route works. A regulator could test it with a sample request.",["scc"]]
+ ]},
+ {k:"co",aud:"Platforms and the companies that use them",sub:"The ones who set the terms.",items:[
+  ["Show the pay, per order and per hour, after costs.","Only two of the 11 platforms Fairwork India scored earned the first Fair Pay point. The ILO convention asks for clear information on pay and deductions, paid on time. The Asia Foundation adds that platforms should give written contracts and think about the nature of the work when they set earnings.",["fw","ilo193","asia"]],
+  ["Pay for the waiting.","Human Rights Watch says pay should cover all working time, including travel to a pick-up, and heard from workers in several countries that waiting can take 30 to 50 percent of their hours. Dubal's Mechanical Turk workers describe the same thing, hunting for tasks that never show up on a payslip.",["hrw","c4e"]],
+  ["Put a human behind every block.","Fairwork found seven of the 11 platforms already have an appeal route with a human on the other end, so this isn't a wild ask. Object 01's authors say explanations alone aren't enough if workers can't also contest and correct a decision.",["fw","o1"]],
+  ["Do your side of the Code.","Platforms are meant to register their workers on e-Shram and to pay into the Social Security Fund. A worker shouldn't have to chase the platform for either.",["impri","pibcode"]],
+  ["Have a crisis plan before the crisis.","In April 2020, CIS asked platforms for free protective gear, health cover that covers illness and not only accidents, and income support for workers who had logged in recently. Those asks are still a good checklist for the next shock, whether that's a lockdown, a flood or a long outage.",["cis20"]],
+  ["Put help where riders already are.","The Mumbai-area authors asked for screening and employer support, and Woodcock describes riders gathering at waiting zones. A counselling hour or a health check where riders already wait is a small thing to try.",["khera","woodcock"]],
+  ["Give workers a seat at the table.","Human Rights Watch says workers should be able to organise and bargain without fear of losing access to work, and the Asia Foundation notes that the chances to convene are currently missing.",["hrw","asia"]]
+ ]},
+ {k:"pub",aud:"The rest of us",sub:"The ones who press the button.",items:[
+  ["Rate like someone's livelihood depends on it, because it does.","Ratings decide who gets work. Rosenblat and Stark found Uber drivers in the US felt they needed about 4.6 out of 5 to stay active, and Object 01's workers couldn't tell why a good rating helped one week and did nothing the next. My rule: a normal delivery gets a 5, and lower scores are for real problems, never for the traffic, the restaurant or the app.",["rosenblat","o1"]],
+  ["Don't blame the person at your door for the company's clock.","A delivery worker told Human Rights Watch what the speed promise means for him: <<Deliver in ten minutes or your earnings will be cut, your incentives taken away, and you'll get fined.>> If an app offers a slower option, pick it when you can.",["hrw"]],
+  ["Check the scoreboard before you pick an app.","Fairwork India publishes ratings of 11 platforms on pay, conditions, contracts, management and representation. It takes a minute, and it's the closest thing to a consumer label this industry has.",["fw"]],
+  ["Pass on the numbers.","Save the helplines in your phone, and share the Resources page with anyone who rides, drives or delivers for a living. It costs nothing, and it's the one item on this list that works today.",[]],
+  ["Be patient when workers log off.","Over 200,000 gig workers took part in a nationwide log-off on New Year's Eve 2025, according to the Business and Human Rights Resource Centre. A strike is a late order with a reason attached. I'd rather wait twenty minutes than punish a worker for protesting.",["bhrrc"]],
+  ["Support the people organising.","IFAT, TGPWU, GIPSWU and SEWA are all on the Resources page, with a note on how I checked each. Unions here are producing policy work too: the All India Gig Workers' Union published a policy brief in 2024, which CIS carries.",["aigwu"]]
+ ]}
+];
+
+(function(){
+  var sec=document.querySelector('[data-page="contributions"]'); if(!sec) return;
+  var h='<div class="pg"><canvas class="flow" aria-hidden="true"></canvas>'
+   +pgDirt(["s","width:520px;height:520px;right:-120px;top:-80px","b","width:420px;height:420px;left:-120px;top:420px;opacity:.35"])
+   +pgHead("Contributions","The other ledger","What gig workers give, and what we owe back",
+     ["Most of this site has been about what the app does to the worker. That's half the ledger. The other half is what workers do for the rest of us, and it's easy to skip because it arrives so smoothly: dinner at your door, a cab at 5 a.m., someone to fix the fan when it dies.",
+      "I want that half on the page before I make any recommendations. Asking for protection for people who contribute nothing would be charity. Asking for it for people who keep the city running is something else. I'm a student and did no fieldwork, so every number below comes from someone else's research. Where two sources disagree, I say so."],
+     "Figures checked in November 2026. Several are projections or industry estimates, and each one says which.",
+     [["mc-numbers","How big","mc-numbers"],["mc-give","What they give","mc-give"],["mc-catch","The catch","mc-catch"],["mc-recs","Recommendations","mc-recs"],["mc-trust","How far to trust this","mc-trust"],["mc-sources","Sources","mc-sources"]])
+
+   +'<section class="wrap pgs" id="mc-numbers"><h2>How many people we are talking about</h2><p class="lead">'+T("There isn't one agreed count, so I'll give you the range. Redseer counts people active on gig internet platforms in a month and gets about 6 million for 2025. The Economic Survey says 12 million for 2024-25. I couldn't verify how each defines a gig worker, so I quote the spread and not a single number.")+'</p>'
+   +'<div class="stats mhstats">'+CB_STATS.map(function(s){return '<div class="stat"><b>'+T(s[0])+'</b><span>'+T(s[1])+'</span></div>'}).join('')+'</div>'
+   +'<p class="srcl mhnote">'+T("Projections are projections. The Survey figures are as reported by Business Today and Policy Circle, because I read the press coverage and not the Survey chapter itself. Sources: ")+PL("niti")+'; '+PL("es26")+'; '+PL("pcirc")+'; '+PL("redseer")+'</p></section>'
+
+   +'<section class="wrap pgs" id="mc-give"><h2>What they give, sector by sector</h2><p class="lead">'+T("Some sectors have decent numbers and some have almost none. I've left the gaps visible instead of filling them.")+'</p>'
+   +'<div class="rq" style="margin-top:26px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">'+CB_GIVE.map(function(x){
+      return '<article class="patch" style="padding:24px"><i class="st s"></i><div class="ptxt"><span class="stamp sm" style="width:fit-content">'+T(x.pl)+'</span><h3>'+T(x.h)+'</h3><p>'+T(x.p)+'</p>'
+       +'<div class="sm2"><div class="seen"><b>What they give</b><span>'+T(x.f)+'</span></div><div class="miss"><b>My reading</b><span>'+T(x.r)+'</span></div></div>'+PSRC(x.src)+'</div></article>'}).join('')+'</div></section>'
+
+   +'<section class="wrap pgs" id="mc-catch"><h2>The catch in the ledger</h2>'
+   +'<div class="essay"><p>'+T("Two of my sources disagree about the money, and I can't settle it. Redseer finds gig workers earn about Rs 138 an hour against about Rs 54 in comparable informal jobs, a premium of roughly 2.5 times. It also says more than 90 percent work part-time, and that full-time delivery workers net Rs 22,000 to 23,000 a month.")+'</p>'
+   +'<p>'+T("IDinsight looked at delivery workers putting in close to full-time hours and found net earnings of Rs 18,761 a month, or Rs 75.3 an hour, over about 62 hours a week. It found platform work paid about the same as comparable urban service, sales and trade jobs, not more.")+'</p>'
+   +'<p>'+T("I don't think I need to pick a winner. Neither source disputes that the money swings, and the Economic Survey says outright that income volatility persists and that about 40 percent of gig workers report under Rs 15,000 a month. A premium that depends on when you log in and how long you stay is a different thing from a wage.")+'</p>'+PSRC(["redseer","idi","es26"])+'</div></section>'
+
+   +'<section class="wrap pgs" id="mc-recs"><h2>What I’d ask of each of us</h2><p class="lead">'+T("These are mine. I built each one from something I read and I say what, so you can check my reasoning and disagree with it. They're grouped by who has to act. Some cost money, and I'd rather say that up front: the cost has to land on someone, and right now it lands on the worker.")+'</p>'
+   +'<div class="jump" style="margin-top:18px">'+CB_RECS.map(function(g){return '<a href="#mc-'+g.k+'" data-scroll="mc-'+g.k+'">'+T(g.aud)+'</a>'}).join('')+'</div>'
+   +'<div class="recgrid">'+CB_RECS.map(function(g){
+      return '<div class="recp" id="mc-'+g.k+'"><span class="stamp sm" style="width:fit-content">'+T(g.sub)+'</span><h3>'+T(g.aud)+'</h3><ol>'
+       +g.items.map(function(it){return '<li><b>'+T(it[0])+'</b><p>'+T(it[1])+'</p>'+(it[2].length?PSRC(it[2]):'')+'</li>'}).join('')+'</ol></div>'}).join('')+'</div></section>'
+
+   +'<section class="wrap pgs" id="mc-trust"><div class="mine"><h3>How far to trust this page</h3><ol>'
+   +'<li>'+T("I'm a student and did no fieldwork. Everything here is secondary: government releases, news, think-tank and academic studies.")+'</li>'
+   +'<li>'+T("Several figures are projections or come from consultancies, and I say which. I read press coverage of the Economic Survey, not the Survey itself.")+'</li>'
+   +'<li>'+T("The recommendations are mine. Each one cites what it rests on. None is legal advice, and a few would cost someone real money.")+'</li>'
+   +'<li>'+T("The gaps: there's no reliable count for warehouse workers, little Indian research on women's experience of gig work, and nothing I trust on what online freelancers in India earn.")+'</li></ol></div></section>'
+
+   +'<div id="mc-sources">'+srcGridX(["niti","es26","pcirc","redseer","idi","asia","cis20","bt18","o1","c4e","surie","rosenblat","woodcock","khera","fw"],["pibcode","ilo193","hrw","impri","sip","pibjay","ksk","dh","scc","bhrrc","aigwu"],"Research and reporting","Law, policy and campaigns","Every claim on this page traces back to something here. Where a line says a figure is old, a projection or from a consultancy, that is because I could not find a better one.")+'</div>'
+   +'<section class="wrap pgend"><span class="stamp" style="width:fit-content">Both columns</span><h2>The ledger has two sides, and so does the to-do list.</h2><p>The Resources page has the doors workers can knock on today. The recommendations above are for everyone else.</p><div class="cta"><button class="btn solid" data-nav="resources">Open Resources</button><button class="btn" data-nav="mental-health">What it costs them</button></div></section></div>';
+  sec.innerHTML=h;
 })();
 
 document.querySelectorAll("canvas.flow,#map").forEach(flow);
